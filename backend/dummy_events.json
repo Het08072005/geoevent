@@ -1,0 +1,677 @@
+[
+    {
+        "name": "Palo Alto Junior Museum Match",
+        "lat": 37.444,
+        "lon": -122.13,
+        "address": "1451 Middlefield Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Children Event",
+        "description": "Interactive science and nature activities for kids."
+    },
+    {
+        "name": "Stanford Stadium Cricket Exhibition",
+        "lat": 37.434,
+        "lon": -122.161,
+        "address": "601 Nelson Rd, Stanford, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Local charity cricket match."
+    },
+    {
+        "name": "Downtown Palo Alto Tech Mixer",
+        "lat": 37.443,
+        "lon": -122.16,
+        "address": "University Ave, Palo Alto, CA",
+        "category": "adult.nightclub",
+        "type": "Networking",
+        "description": "Evening networking for young tech professionals."
+    },
+    {
+        "name": "Children's Theatre Workshop",
+        "lat": 37.441,
+        "lon": -122.135,
+        "address": "1305 Middlefield Rd, Palo Alto, CA",
+        "category": "entertainment.cinema",
+        "type": "Education",
+        "description": "Drama workshop for ages 5-12."
+    },
+    {
+        "name": "Stanford Jazz Night",
+        "lat": 37.427,
+        "lon": -122.17,
+        "address": "Stanford University, CA",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "University jazz band performance."
+    },
+    {
+        "name": "Rinconada Park Family Festival",
+        "lat": 37.446,
+        "lon": -122.126,
+        "address": "777 Embarcadero Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Children Event",
+        "description": "Outdoor games and food stalls for families."
+    },
+    {
+        "name": "Palo Alto Art Center Exhibition",
+        "lat": 37.443,
+        "lon": -122.128,
+        "address": "1313 Newell Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Art",
+        "description": "Modern art gallery showing local artists."
+    },
+    {
+        "name": "Shoreline Amphitheatre Rock Concert",
+        "lat": 37.426,
+        "lon": -122.08,
+        "address": "1 Amphitheatre Pkwy, Mountain View, CA",
+        "category": "sport.stadium",
+        "type": "Music",
+        "description": "Major rock band performing live."
+    },
+    {
+        "name": "Gunn High Sports Field",
+        "lat": 37.402,
+        "lon": -122.14,
+        "address": "780 Arastradero Rd, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Youth Sports",
+        "description": "High school basketball tournament."
+    },
+    {
+        "name": "The Guild Theatre Indie Movie",
+        "lat": 37.452,
+        "lon": -122.18,
+        "address": "949 El Camino Real, Menlo Park, CA",
+        "category": "entertainment.cinema",
+        "type": "Movie",
+        "description": "Exclusive screening of indie award winners."
+    },
+    {
+        "name": "Stanford Shopping Center Buskers",
+        "lat": 37.442,
+        "lon": -122.172,
+        "address": "660 Stanford Shopping Center, Palo Alto",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "Live street performances and magic shows."
+    },
+    {
+        "name": "Escondido Village Young Adult Bash",
+        "lat": 37.422,
+        "lon": -122.155,
+        "address": "Stanford Campus, CA",
+        "category": "adult.nightclub",
+        "type": "Party",
+        "description": "Pop-up party for graduate students."
+    },
+    {
+        "name": "Elizabeth Gamble Garden Tour",
+        "lat": 37.44,
+        "lon": -122.145,
+        "address": "1431 Waverley St, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Nature",
+        "description": "Educational garden tour for all ages."
+    },
+    {
+        "name": "Mitchell Park Library Kids Storytime",
+        "lat": 37.423,
+        "lon": -122.115,
+        "address": "3700 Middlefield Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Children Event",
+        "description": "Interactive storytelling and book reading."
+    },
+    {
+        "name": "Cardinal Nightclub DJ Night",
+        "lat": 37.444,
+        "lon": -122.162,
+        "address": "Ramona St, Palo Alto, CA",
+        "category": "adult.nightclub",
+        "type": "Music",
+        "description": "Top 40 hits and house music."
+    },
+    {
+        "name": "Peery Family Forum Discussion",
+        "lat": 37.429,
+        "lon": -122.162,
+        "address": "Knight Management Center, Stanford",
+        "category": "entertainment.culture",
+        "type": "Education",
+        "description": "Debate on future of AI and society."
+    },
+    {
+        "name": "Roble Gym Dance Showcase",
+        "lat": 37.425,
+        "lon": -122.175,
+        "address": "375 Santa Teresa St, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Dance",
+        "description": "Contemporary and classical dance performance."
+    },
+    {
+        "name": "Caltrain Station Food Truck Hub",
+        "lat": 37.443,
+        "lon": -122.165,
+        "address": "University Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Food",
+        "description": "Gourmet food trucks and local craft stalls."
+    },
+    {
+        "name": "Winter Lodge Ice Skating",
+        "lat": 37.43,
+        "lon": -122.125,
+        "address": "567 Middlefield Rd, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Public ice skating sessions for families."
+    },
+    {
+        "name": "Lucie Stern Community Center Expo",
+        "lat": 37.445,
+        "lon": -122.138,
+        "address": "1305 Middlefield Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Exhibition",
+        "description": "Local hobbyist and craft exhibition."
+    },
+    {
+        "name": "University Ave Farmers Market",
+        "lat": 37.448,
+        "lon": -122.158,
+        "address": "Lytton Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Market",
+        "description": "Local produce and community gathering."
+    },
+    {
+        "name": "Palo Alto High Soccer Cup",
+        "lat": 37.438,
+        "lon": -122.152,
+        "address": "Embarcadero Rd, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Inter-school soccer championship."
+    },
+    {
+        "name": "Magical Bridge Playground Party",
+        "lat": 37.421,
+        "lon": -122.118,
+        "address": "Mitchell Park, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Children Event",
+        "description": "All-inclusive playground birthday celebration."
+    },
+    {
+        "name": "Coupa Cafe Startup Pitch",
+        "lat": 37.444,
+        "lon": -122.161,
+        "address": "Ramona St, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Networking",
+        "description": "Informal startup pitch event at iconic cafe."
+    },
+    {
+        "name": "Stanford Mausoleum Party",
+        "lat": 37.436,
+        "lon": -122.176,
+        "address": "Stanford Arboretum, CA",
+        "category": "entertainment.culture",
+        "type": "Party",
+        "description": "Traditional Halloween party for university students."
+    },
+    {
+        "name": "Hanahau'oli Park Community Yoga",
+        "lat": 37.448,
+        "lon": -122.142,
+        "address": "799 Hamilton Ave, Palo Alto, CA",
+        "category": "health.fitness",
+        "type": "Wellness",
+        "description": "Morning outdoor yoga session for beginners."
+    },
+    {
+        "name": "Addison Elementary Science Fair",
+        "lat": 37.447,
+        "lon": -122.152,
+        "address": "650 Addison Ave, Palo Alto, CA",
+        "category": "education.school",
+        "type": "Education",
+        "description": "Student science projects and demonstrations."
+    },
+    {
+        "name": "Palo Alto History Museum Talk",
+        "lat": 37.446,
+        "lon": -122.162,
+        "address": "250 Hamilton Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "History",
+        "description": "Lecture on the architectural heritage of Silicon Valley."
+    },
+    {
+        "name": "Cognizant Café Tech Talk",
+        "lat": 37.445,
+        "lon": -122.164,
+        "address": "High St & University Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Networking",
+        "description": "Micro-event for AI researchers and founders."
+    },
+    {
+        "name": "Lytton Plaza Jazz Quartet",
+        "lat": 37.444,
+        "lon": -122.163,
+        "address": "200 University Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "Open-air jazz performance in the heart of downtown."
+    },
+    {
+        "name": "Johnson Park Community Garden Day",
+        "lat": 37.451,
+        "lon": -122.155,
+        "address": "Waverley St & Hawthorne Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Nature",
+        "description": "Volunteer planting and gardening workshop."
+    },
+    {
+        "name": "Heritage Park Food Festival",
+        "lat": 37.453,
+        "lon": -122.152,
+        "address": "300 Homer Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Food",
+        "description": "Tasting event featuring local organic farms."
+    },
+    {
+        "name": "Eleanor Pardee Park Picnic Bash",
+        "lat": 37.455,
+        "lon": -122.138,
+        "address": "Center St & Channing Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Family",
+        "description": "Large neighborhood gathering with BBQ and music."
+    },
+    {
+        "name": "Duveneck School Carnival",
+        "lat": 37.458,
+        "lon": -122.128,
+        "address": "705 Alester Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Children Event",
+        "description": "Classic school fair with games and prizes."
+    },
+    {
+        "name": "Greer Park Soccer Clinic",
+        "lat": 37.441,
+        "lon": -122.112,
+        "address": "1098 Amarillo Ave, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Youth soccer training session with professional coaches."
+    },
+    {
+        "name": "Palo Alto Municipal Golf Expo",
+        "lat": 37.452,
+        "lon": -122.108,
+        "address": "1875 Embarcadero Rd, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Equipment showcase and swing analysis workshop."
+    },
+    {
+        "name": "Baylands Nature Center Bird Watching",
+        "lat": 37.459,
+        "lon": -122.105,
+        "address": "2775 Embarcadero Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Nature",
+        "description": "Guided tour for wildlife enthusiasts."
+    },
+    {
+        "name": "Seale Park Kids Skate Night",
+        "lat": 37.435,
+        "lon": -122.121,
+        "address": "3100 Stockton Pl, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Roller skating event for elementary students."
+    },
+    {
+        "name": "Jordan Middle School Band Concert",
+        "lat": 37.439,
+        "lon": -122.132,
+        "address": "750 N California Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "Orchestra performance by local students."
+    },
+    {
+        "name": "Palo Alto Main Library Book Sale",
+        "lat": 37.443,
+        "lon": -122.146,
+        "address": "1213 Newell Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Market",
+        "description": "Fundraiser with thousands of used books."
+    },
+    {
+        "name": "Walter Hays Elementary Art Show",
+        "lat": 37.442,
+        "lon": -122.148,
+        "address": "1525 Middlefield Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Art",
+        "description": "Gallery of paintings and crafts by young students."
+    },
+    {
+        "name": "Rinconada Pool Swim Meet",
+        "lat": 37.445,
+        "lon": -122.133,
+        "address": "777 Embarcadero Rd, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Regional youth swimming competition."
+    },
+    {
+        "name": "Greene Middle School Tech Expo",
+        "lat": 37.432,
+        "lon": -122.138,
+        "address": "750 N California Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Exhibition",
+        "description": "Robotics and coding projects display."
+    },
+    {
+        "name": "Boulware Park Community Meetup",
+        "lat": 37.425,
+        "lon": -122.135,
+        "address": "350 Fernando Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Networking",
+        "description": "Meet-and-greet for local entrepreneurs."
+    },
+    {
+        "name": "Ventura Community Center Dance Workshop",
+        "lat": 37.421,
+        "lon": -122.132,
+        "address": "3990 Ventura Ct, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Dance",
+        "description": "Introductory salsa and bachata lessons."
+    },
+    {
+        "name": "Briones Park Family Movie Night",
+        "lat": 37.412,
+        "lon": -122.128,
+        "address": "601 Clemo Ave, Palo Alto, CA",
+        "category": "entertainment.cinema",
+        "type": "Movie",
+        "description": "Outdoor screening of an animated classic."
+    },
+    {
+        "name": "Terman Park Youth Basketball",
+        "lat": 37.405,
+        "lon": -122.132,
+        "address": "655 Arastradero Rd, Palo Alto, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "3-on-3 basketball tournament for teens."
+    },
+    {
+        "name": "Gunn High School Drama Production",
+        "lat": 37.401,
+        "lon": -122.145,
+        "address": "780 Arastradero Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Theatre",
+        "description": "High school theatre group performing Shakespeare."
+    },
+    {
+        "name": "Foothills Park Guided Hike",
+        "lat": 37.382,
+        "lon": -122.175,
+        "address": "3300 Page Mill Rd, Los Altos Hills, CA",
+        "category": "entertainment.culture",
+        "type": "Nature",
+        "description": "Exploring local trails and ecology."
+    },
+    {
+        "name": "Stanford Cantor Arts Center Gala",
+        "lat": 37.432,
+        "lon": -122.171,
+        "address": "328 Lomita Dr, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Art",
+        "description": "Black-tie opening for a new Rodin exhibition."
+    },
+    {
+        "name": "Bing Concert Hall Student Recital",
+        "lat": 37.431,
+        "lon": -122.166,
+        "address": "327 Lasuen St, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "Piano and violin recital by music majors."
+    },
+    {
+        "name": "Stanford Maples Pavilion Volleyball",
+        "lat": 37.428,
+        "lon": -122.161,
+        "address": "655 Campus Dr, Stanford, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Women's collegiate volleyball match."
+    },
+    {
+        "name": "Hoover Tower Historical Tour",
+        "lat": 37.427,
+        "lon": -122.166,
+        "address": "550 Serra Mall, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Education",
+        "description": "Tour of the archives and panoramic views."
+    },
+    {
+        "name": "Tresidder Union Craft Fair",
+        "lat": 37.424,
+        "lon": -122.170,
+        "address": "459 Lagunita Dr, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Market",
+        "description": "Handmade goods by university students and staff."
+    },
+    {
+        "name": "Stanford Book Store Author Signing",
+        "lat": 37.425,
+        "lon": -122.169,
+        "address": "519 Lasuen Mall, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Education",
+        "description": "Q&A session with a Nobel Prize winning economist."
+    },
+    {
+        "name": "Stanford Dish Loop Trail Run",
+        "lat": 37.418,
+        "lon": -122.178,
+        "address": "Stanford Blvd, Stanford, CA",
+        "category": "health.fitness",
+        "type": "Sports",
+        "description": "Charity 10k run around the scenic Dish area."
+    },
+    {
+        "name": "Memorial Church Organ Concert",
+        "lat": 37.427,
+        "lon": -122.170,
+        "address": "450 Serra Mall, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "Classical organ music in the Main Quad."
+    },
+    {
+        "name": "Arrillaga Center Fencing Tournament",
+        "lat": 37.429,
+        "lon": -122.164,
+        "address": "341 Galvez St, Stanford, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Intercollegiate fencing competition."
+    },
+    {
+        "name": "Stanford Science Plaza Demo Day",
+        "lat": 37.430,
+        "lon": -122.173,
+        "address": "Lomita Mall, Stanford, CA",
+        "category": "entertainment.culture",
+        "type": "Education",
+        "description": "Live physics experiments for public visitors."
+    },
+    {
+        "name": "California Avenue Farmers Market",
+        "lat": 37.428,
+        "lon": -122.143,
+        "address": "California Ave, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Market",
+        "description": "Sunday morning market with food and crafts."
+    },
+    {
+        "name": "Molly Magees Pub Trivia",
+        "lat": 37.394,
+        "lon": -122.083,
+        "address": "241 Castro St, Mountain View, CA",
+        "category": "adult.nightclub",
+        "type": "Game Night",
+        "description": "Pop culture trivia night for young professionals."
+    },
+    {
+        "name": "Computer History Museum Lecture",
+        "lat": 37.414,
+        "lon": -122.077,
+        "address": "1401 N Shoreline Blvd, Mountain View, CA",
+        "category": "entertainment.culture",
+        "type": "Education",
+        "description": "Panel discussion on the history of the CPU."
+    },
+    {
+        "name": "Showplace ICON Movie Premiere",
+        "lat": 37.424,
+        "lon": -122.096,
+        "address": "2575 San Antonio Rd, Mountain View, CA",
+        "category": "entertainment.cinema",
+        "type": "Movie",
+        "description": "Red carpet screening for a new tech documentary."
+    },
+    {
+        "name": "San Antonio Center Open Mic",
+        "lat": 37.422,
+        "lon": -122.102,
+        "address": "El Camino Real, Mountain View, CA",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "Local singers and poets performance night."
+    },
+    {
+        "name": "Menlo Park Library Tech Workshop",
+        "lat": 37.452,
+        "lon": -122.183,
+        "address": "800 Alma St, Menlo Park, CA",
+        "category": "entertainment.culture",
+        "type": "Education",
+        "description": "Helping seniors with smartphone and app usage."
+    },
+    {
+        "name": "Kepler's Books Poetry Slam",
+        "lat": 37.454,
+        "lon": -122.181,
+        "address": "1010 El Camino Real, Menlo Park, CA",
+        "category": "entertainment.culture",
+        "type": "Art",
+        "description": "Competitive poetry reading and prizes."
+    },
+    {
+        "name": "Fremont Park Jazz in the Park",
+        "lat": 37.453,
+        "lon": -122.177,
+        "address": "Santa Cruz Ave, Menlo Park, CA",
+        "category": "entertainment.culture",
+        "type": "Music",
+        "description": "Smooth jazz performance for Sunday shoppers."
+    },
+    {
+        "name": "Burgess Park Tennis Tournament",
+        "lat": 37.455,
+        "lon": -122.172,
+        "address": "701 Laurel St, Menlo Park, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Local amateur singles championship."
+    },
+    {
+        "name": "Cafe Borrone Startup Coffee Chat",
+        "lat": 37.454,
+        "lon": -122.182,
+        "address": "1010 El Camino Real, Menlo Park, CA",
+        "category": "entertainment.culture",
+        "type": "Networking",
+        "description": "Informal investor-founder matchmaking session."
+    },
+    {
+        "name": "Bedwell Bayfront Park Trail Walk",
+        "lat": 37.488,
+        "lon": -122.168,
+        "address": "1600 Marsh Rd, Menlo Park, CA",
+        "category": "entertainment.culture",
+        "type": "Nature",
+        "description": "Guided sunset walk through the salt marshes."
+    },
+    {
+        "name": "Ravenswood Preserve Photo Shoot",
+        "lat": 37.472,
+        "lon": -122.132,
+        "address": "Bay Rd, East Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Art",
+        "description": "Community photography workshop for landscape shots."
+    },
+    {
+        "name": "Palo Alto Bridge Center Tourney",
+        "lat": 37.416,
+        "lon": -122.105,
+        "address": "432 Stierlin Rd, Mountain View, CA",
+        "category": "entertainment.culture",
+        "type": "Game Night",
+        "description": "Competitive Duplicate Bridge tournament."
+    },
+    {
+        "name": "Cubberley Community Center Expo",
+        "lat": 37.419,
+        "lon": -122.122,
+        "address": "4000 Middlefield Rd, Palo Alto, CA",
+        "category": "entertainment.culture",
+        "type": "Exhibition",
+        "description": "Multi-cultural food and dance festival."
+    },
+    {
+        "name": "Arias Park Youth Soccer Cup",
+        "lat": 37.411,
+        "lon": -122.102,
+        "address": "Middlefield Rd, Mountain View, CA",
+        "category": "sport.stadium",
+        "type": "Sports",
+        "description": "Inter-city junior league soccer cup."
+    },
+    {
+        "name": "Rengstorff Park Family BBQ",
+        "lat": 37.400,
+        "lon": -122.098,
+        "address": "201 S Rengstorff Ave, Mountain View, CA",
+        "category": "entertainment.culture",
+        "type": "Family",
+        "description": "Open public BBQ with live entertainment for kids."
+    }
+]
