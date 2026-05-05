@@ -1,16 +1,19 @@
-import uvicorn
-import os
-import sys
+# Entry point — run from the backend/ directory:
+#
+#   Local dev:   python -m uvicorn app.main:app --reload --port 8000
+#   Production:  python -m uvicorn app.main:app --host 0.0.0.0 --port 8010
+#
+# All application code lives in app/main.py
 
-# Ensure the app directory is in the path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+import subprocess, sys, os
 
 if __name__ == "__main__":
-    host = os.getenv("HOST", "0.0.0.0")
-    # Local dev: 8000 | Production (systemd): set PORT=8010 in .env
-    port = int(os.getenv("PORT", 8000))
-    # In production set ENV=production in .env → disables reload
+    port  = os.getenv("PORT", "8000")
     debug = os.getenv("ENV", "development") != "production"
-
-    print(f"Starting GeoEvents Business Analytics API on {host}:{port} (debug={debug})...")
-    uvicorn.run("app.main:app", host=host, port=port, reload=debug)
+    args  = [
+        sys.executable, "-m", "uvicorn", "app.main:app",
+        "--host", "0.0.0.0", "--port", port
+    ]
+    if debug:
+        args.append("--reload")
+    subprocess.run(args)
