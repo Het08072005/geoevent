@@ -130,9 +130,11 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
     """
     Returns enriched event list using official Eventbrite API v3 data.
     All prices, organizers, timings, and capacity values come from the API — not HTML.
+    Only returns VALIDATED events with all required fields.
     """
-    if not _get_token():
-        logger.error("EVENTBRITE_PRIVATE_TOKEN is not set — check .env file!")
+    token = _get_token()
+    if not token or not token.strip():
+        logger.error("EVENTBRITE_PRIVATE_TOKEN is not set or empty — check .env file!")
         return []
 
     # Step 1: Discover IDs
@@ -143,60 +145,73 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
     # Step 2: Enrich via API v3
     events = []
     for eid in event_ids:
-        ev = _fetch_event(eid)
-        if not ev:
+        try:
+            ev = _fetch_event(eid)
+            if not ev:
+                continue
+
+            # Venue / location — REQUIRED for distance calculation
+            venue = ev.get("venue") or {}
+            v_lat = venue.get("latitude")
+            v_lon = venue.get("longitude")
+            if not v_lat or not v_lon:
+                logger.debug(f"Event {eid} skipped: no venue coordinates")
+                continue
+
+            dist_m = _haversine(lat, lon, v_lat, v_lon)
+            if dist_m > radius:
+                continue
+
+            # ── All data below is 100% from API v3 ──
+            organizer       = ev.get("organizer") or {}
+            price_str, paid = _extract_price(ev)
+            start_local     = (ev.get("start") or {}).get("local", "")
+            end_local       = (ev.get("end")   or {}).get("local", "")
+            capacity        = ev.get("capacity")
+            attendance      = str(int(capacity)) if capacity and int(capacity) > 0 else "TBA"
+            cat_obj         = ev.get("category") or {}
+            logo            = ev.get("logo") or {}
+            addr_obj        = venue.get("address") or {}
+            venue_addr = (
+                addr_obj.get("localized_address_display")
+                or addr_obj.get("address_1")
+                or venue.get("name")
+                or "Venue TBA"
+            )
+            
+            # Validate required fields before adding
+            event_name = (ev.get("name") or {}).get("text") or "Unnamed Event"
+            if not start_local or not event_name or event_name == "Unnamed Event":
+                logger.debug(f"Event {eid} skipped: missing event name or start_time")
+                continue
+
+            event_record = {
+                "id":                eid,
+                "name":              event_name,
+                "lat":               float(v_lat),
+                "lon":               float(v_lon),
+                "address":           venue_addr,
+                "venue_name":        venue.get("name") or "",
+                "category":          (cat_obj.get("short_name") or "community").lower(),
+                "type":              "Eventbrite",
+                "description":       ev.get("summary") or "",
+                "distance":          round(dist_m),
+                "image_url":         logo.get("url") or "",
+                "date":              start_local,
+                "end_date":          end_local,
+                "url":               ev.get("url") or "",
+                "organizer_name":    organizer.get("name") or "Eventbrite Organizer",
+                "organizer_website": organizer.get("website") or "",
+                "price":             price_str,
+                "is_paid":           paid,
+                "attendance":        attendance,
+                "is_dummy":          False,
+            }
+            events.append(event_record)
+            logger.debug(f"Added valid event: {event_name[:40]}")
+        except Exception as e:
+            logger.warning(f"Error processing event {eid}: {e}")
             continue
-
-        # Venue / location
-        venue = ev.get("venue") or {}
-        v_lat = venue.get("latitude")
-        v_lon = venue.get("longitude")
-        if not v_lat or not v_lon:
-            continue
-
-        dist_m = _haversine(lat, lon, v_lat, v_lon)
-        if dist_m > radius:
-            continue
-
-        # ── All data below is 100% from API v3 ──
-        organizer       = ev.get("organizer") or {}
-        price_str, paid = _extract_price(ev)
-        start_local     = (ev.get("start") or {}).get("local", "")
-        end_local       = (ev.get("end")   or {}).get("local", "")
-        capacity        = ev.get("capacity")
-        attendance      = str(int(capacity)) if capacity and int(capacity) > 0 else "TBA"
-        cat_obj         = ev.get("category") or {}
-        logo            = ev.get("logo") or {}
-        addr_obj        = venue.get("address") or {}
-        venue_addr = (
-            addr_obj.get("localized_address_display")
-            or addr_obj.get("address_1")
-            or venue.get("name")
-            or "Venue TBA"
-        )
-
-        events.append({
-            "id":                eid,
-            "name":              (ev.get("name") or {}).get("text") or "Unnamed Event",
-            "lat":               float(v_lat),
-            "lon":               float(v_lon),
-            "address":           venue_addr,
-            "venue_name":        venue.get("name") or "",
-            "category":          (cat_obj.get("short_name") or "community").lower(),
-            "type":              "Eventbrite",
-            "description":       ev.get("summary") or "",
-            "distance":          round(dist_m),
-            "image_url":         logo.get("url") or "",
-            "date":              start_local,
-            "end_date":          end_local,
-            "url":               ev.get("url") or "",
-            "organizer_name":    organizer.get("name") or "Eventbrite Organizer",
-            "organizer_website": organizer.get("website") or "",
-            "price":             price_str,
-            "is_paid":           paid,
-            "attendance":        attendance,
-            "is_dummy":          False,
-        })
 
     events.sort(key=lambda x: x.get("distance", 999999))
     logger.info(f"Returning {len(events)} API-enriched events for '{city}'")

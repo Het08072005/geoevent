@@ -1,0 +1,463 @@
+{
+  "status": "success",
+  "location": "Palo Alto, Mira Monte, CA 93023, United States of America",
+  "total_sources": 57,
+  "websites": [
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/events/",
+      "name": "Eventbrite Palo Alto Events Directory",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/near-subway/",
+      "name": "Eventbrite Events Near Subway Palo Alto",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "paloalto.gov",
+      "url": "https://www.paloalto.gov/Home/Calendar",
+      "name": "Calendar",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "events.stanford.edu",
+      "url": "https://events.stanford.edu/calendar",
+      "name": "Events on May 6 - June 4, 2026 - Stanford University",
+      "category": "Universities",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/paly-dance-spring-show-2026-tickets-1988362806680?aff=ebdsreoeymlcollection",
+      "name": "Paly Dance Spring Show 2026 Tickets, Friday, May 22",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/the-harmony-ensemble-artist-concert-2026-tickets-1988795562063",
+      "name": "The Harmony Ensemble Artist Concert 2026",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/singles-mixer-at-four-seasons-hotel-in-palo-alto-tickets-1988815773516",
+      "name": "Singles Mixer at Four Seasons Hotel in Palo Alto!",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/career-night-your-future-in-real-estate-starts-here-tickets-1988791159896",
+      "name": "Career Night: Your Future in Real Estate Starts Here",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/i-wanna-do-it-but-not-alone/events/314373311/",
+      "name": "Jazz and Dinner at Meyhouse Jazz Palo Alto Stage",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/baypiggies/events/306320850/",
+      "name": "BayPiggies May 2026 - AI Agent REPLs, Side hustles, PyCon",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/sfsj-traders/events/314423644/",
+      "name": "Tuesday Noon Networking, Tue, May 12, 2026, 12:00 PM",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/super-family-sunday-may-17-2026-tickets-1985873709724",
+      "name": "Super Family Sunday - May 17 2026",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/rationality-book-club/events/314601136/",
+      "name": "Rationality Book Club, Sat, May 30, 2026, 2:00 PM",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/sfsj-traders/events/314547465/",
+      "name": "Tuesday Noon Networking, Tue, May 19, 2026, 12:00 PM",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "alamo.edu",
+      "url": "https://www.alamo.edu/pac/calendar/",
+      "name": "Calendar - Palo Alto College",
+      "category": "Universities",
+      "priority": 9,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/calendar/#!/",
+      "name": "Palo Alto Online Events Calendar",
+      "category": "Local Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "mercurynews.com",
+      "url": "https://www.mercurynews.com/event-calendar/#/",
+      "name": "Mercury News Event Calendar",
+      "category": "Local Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "paloaltou.edu",
+      "url": "https://paloaltou.edu/resources/translating-research-into-practice-blog/betrayal-trauma-mindfulness-and-emotional-dysregulation",
+      "name": "Betrayal Trauma, Mindfulness, and Emotional Dysregulation",
+      "category": "Universities",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/918894084065941/",
+      "name": "Citrine Collective Market",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/2122183218605344/?ref_source=NEWS_FEED",
+      "name": "Market Season 2026",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/955173650563807/?ref_source=NEWS_FEED",
+      "name": "We The People: Celebrating the Music That Defined America",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/914436727587527/?acontext=%7B%22action_history%22%3A%22null%22%7D&ref_source=newsfeed&ref_mechanism=feed_attachment",
+      "name": "Alpha Derby Weekend 2026 (Four events) Apr 30 - May 3",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/perrins-field/night-out-against-crime/1436985197626852/",
+      "name": "Night Out Against Crime",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/2039402453647763?active_tab=about",
+      "name": "Wooster Pride 2026",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/cafe-borrone/cafe-borrone-all-stars/2087134781848367/",
+      "name": "Cafe Borrone All Stars!",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/goodman-community-center/the-rent-event-2026-western-edition/1249975637093801/?locale=et_EE",
+      "name": "The Rent Event 2026: Western Edition",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/henry-w-maier-festival-park/the-racing-pulses-summerfest-2026/2252637885268277/",
+      "name": "The Racing Pulses @ Summerfest 2026",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/1661723705081328/?acontext=%7B%22action_history%22%3A%22null%22%7D&ref_source=newsfeed&ref_mechanism=feed_attachment",
+      "name": "Flag Day 2026",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "live.stanford.edu",
+      "url": "https://live.stanford.edu/",
+      "name": "Stanford Live",
+      "category": "Venues",
+      "priority": 8,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "losgatan.com",
+      "url": "https://losgatan.com/events-calendar/#/",
+      "name": "Los Gatan Events Calendar",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "almanacnews.com",
+      "url": "https://www.almanacnews.com/calendar/#!/",
+      "name": "Almanac News Calendar",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "grassrootsecology.org",
+      "url": "https://www.grassrootsecology.org/event-calendar",
+      "name": "Grassroots Ecology Event Calendar",
+      "category": "Cultural & Religious",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "canopy.org",
+      "url": "https://canopy.org/event-calendar/",
+      "name": "Canopy Environmental Event Calendar",
+      "category": "Business & Community",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/CityOfLagunaNiguel/posts/%EF%B8%8F-the-summer-2026-recreation-brochure-is-here-dont-miss-out-on-the-exciting-even/1293231232996074/",
+      "name": "☀️ The Summer 2026 Recreation Brochure is here! Don't ...",
+      "category": "City Government",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/CityofParamount/posts/-summer-is-almost-here-read-the-latest-issue-of-our-quarterly-around-town-issue-/1304344308512066/",
+      "name": "City of Paramount",
+      "category": "City Government",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/groups/957153188577850/posts/1917936709166155/",
+      "name": "Upcoming community events?",
+      "category": "Tourism & Visitors",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/Tangischools/posts/were-sitting-down-with-an-outstanding-member-of-the-class-of-2026-to-celebrate-h/1300127952296664/",
+      "name": "you won't want to miss this inspiring conversation! ...",
+      "category": "Universities",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/DallasArtsDistrict/posts/-our-may-2026-arts-event-calendar-goes-out-today-at-2pm-make-sure-youre-subscrib/1447265030778169/",
+      "name": "🤩 📆 Our MAY 2026 arts event calendar goes out TODAY ...",
+      "category": "Venues",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/community/2026/05/05/thousands-celebrate-activist-at-cinco-de-mayo-festival-in-east-palo-alto/",
+      "name": "Thousands celebrate activism at Cinco de Mayo Festival in ...",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "grassrootsecology.org",
+      "url": "https://www.grassrootsecology.org/event-calendar/2026/05/23/aapi-volunteer-cooley-post",
+      "name": "AAPI+ Volunteer Outdoors in East Palo Alto at Cooley ...",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "mercurynews.com",
+      "url": "https://www.mercurynews.com/2026/05/04/bay-area-events-calendar-for-may-8-14-weekly-editions/amp/",
+      "name": "Bay Area events calendar for May 8-14 weekly editions",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/community-leaders/2026/05/01/downtown-palo-alto-farmers-market-harvesting-connection/",
+      "name": "Downtown Palo Alto Farmers' Market: Harvesting connection",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/Nasdaq/posts/operating-with-the-heart-of-a-nonprofit-and-the-reach-of-a-world-class-enterpris/1478336851001302/",
+      "name": "Nasdaq",
+      "category": "Business & Community",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/EvergreenCrossingsRetirement/posts/-theres-always-something-going-on-check-out-our-community-calendar-to-see-whats-/1575514904007549/",
+      "name": "👀 There's always something going on! Check out our ...",
+      "category": "Business & Community",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/BearFountainCreekNatureCenters/posts/summer-programs-are-here-ready-to-celebrate-attend-the-50th-anniversary-bear-thd/1401198295367466/",
+      "name": "Bear Creek Nature Center & Fountain ...",
+      "category": "Sports & Recreation",
+      "priority": 7,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "golobos.com",
+      "url": "https://golobos.com/",
+      "name": "Go Lobos Athletics Calendar",
+      "category": "Sports & Recreation",
+      "priority": 6,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "losgatan.com",
+      "url": "https://losgatan.com/the-wildcats-zach-otoupal-and-leighton-ozawa-win-ed-howell-award-as-three-sport-standouts/",
+      "name": "The Wildcats' Zach Otoupal and Leighton Ozawa win Ed ...",
+      "category": "Sports & Recreation",
+      "priority": 6,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "golobos.com",
+      "url": "https://golobos.com/news/2026/05/1/stanfordtf26-1-1-1-1",
+      "name": "New Mexico T&F Wraps Up Regular Season at Stanford ...",
+      "category": "Sports & Recreation",
+      "priority": 6,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "instagram.com",
+      "url": "https://www.instagram.com/p/DXzkVVfht03/",
+      "name": "We're excited to be part of the Peninsula Resource Fair ...",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "paly.net",
+      "url": "https://www.paly.net/campus-life/college-career-center/college-visit-calendar",
+      "name": "College Visit Calendar",
+      "category": "Universities",
+      "priority": 5,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "healthier.stanfordchildrens.org",
+      "url": "https://healthier.stanfordchildrens.org/en/category/patient-stories/",
+      "name": "Patient Stories Archives - Healthier, Happy Lives Blog",
+      "category": "Sports & Recreation",
+      "priority": 5,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "sanjosetheaters.org",
+      "url": "https://sanjosetheaters.org/theaters/center-for-performing-arts/",
+      "name": "Center for the Performing Arts",
+      "category": "Venues",
+      "priority": 4,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "aapm.org",
+      "url": "https://www.aapm.org/meetings/default.asp?tab=3",
+      "name": "Meetings",
+      "category": "Business & Community",
+      "priority": 4,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "issuu.com",
+      "url": "https://issuu.com/santabarbaraindependent/docs/santa_barbara_independent_4_30_26",
+      "name": "Santa Barbara Independent 4/30/26",
+      "category": "Business & Community",
+      "priority": 4,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "danvillesanramon.com",
+      "url": "https://www.danvillesanramon.com/community/2026/05/01/community-briefs-native-garden-tour-save-soil-walkathon/",
+      "name": "Community Briefs: Native garden tour | Save Soil walkathon",
+      "category": "Business & Community",
+      "priority": 4,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "aol.com",
+      "url": "https://www.aol.com/news/holland-track-quartet-breaks-26-005341342.html",
+      "name": "Holland track quartet breaks 26-year-old school relay ...",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    },
+    {
+      "domain": "jewishfed.org",
+      "url": "https://jewishfed.org/events/list/?eventDisplay=past",
+      "name": "Event | Jewish Federation Bay Area",
+      "category": "Tourism & Visitors",
+      "priority": 3,
+      "description": "Event source for Palo Alto, Mira Monte, CA 93023, United States of America"
+    }
+  ]
+}

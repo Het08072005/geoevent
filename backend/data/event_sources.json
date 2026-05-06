@@ -1,0 +1,290 @@
+{
+  "sources": [
+    {
+      "id": "palo_alto_events",
+      "name": "City of Palo Alto Events Directory",
+      "category": "City Government",
+      "url": "https://www.paloaltoevents.com",
+      "geographic_coverage": ["Palo Alto", "East Palo Alto", "Mountain View"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 5,
+      "description": "Official city events, community gatherings, children's theatre, art center events, fairs"
+    },
+    {
+      "id": "menlo_park_events",
+      "name": "Menlo Park Citywide Events Calendar",
+      "category": "City Government",
+      "url": "https://www.menlopark.org/events",
+      "geographic_coverage": ["Menlo Park", "Palo Alto", "East Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 5,
+      "description": "Library events, adult/teen events, cultural exhibitions, community gatherings"
+    },
+    {
+      "id": "redwood_city_events",
+      "name": "Redwood City Events Calendar",
+      "category": "City Government",
+      "url": "https://www.redwoodcity.org/events",
+      "geographic_coverage": ["Redwood City", "San Mateo", "Atherton"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 5,
+      "description": "100+ city-sponsored events annually, family events, festivals, concerts"
+    },
+    {
+      "id": "destination_palo_alto",
+      "name": "Destination Palo Alto Events Calendar",
+      "category": "Tourism / Visitor Bureaus",
+      "url": "https://www.destinationpaloalto.com/events",
+      "geographic_coverage": ["Palo Alto", "Los Altos", "Mountain View"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / RSS",
+      "priority_level": 4,
+      "description": "Visitor-facing calendar for Palo Alto festivals, concerts, workshops, local activities"
+    },
+    {
+      "id": "stanford_events",
+      "name": "Stanford Events Calendar",
+      "category": "Universities & Educational Institutions",
+      "url": "https://events.stanford.edu",
+      "geographic_coverage": ["Stanford", "Palo Alto", "Los Altos"],
+      "update_frequency": "Daily",
+      "data_access_method": "API / Scraping",
+      "priority_level": 5,
+      "description": "Lectures, performances, seminars, campus events, visitor traffic opportunities"
+    },
+    {
+      "id": "stanford_live",
+      "name": "Stanford Live - Performances",
+      "category": "Universities & Educational Institutions",
+      "url": "https://live.stanford.edu",
+      "geographic_coverage": ["Stanford", "Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "API / Scraping",
+      "priority_level": 5,
+      "description": "Concerts, performances, cultural events at Bing Concert Hall and other venues"
+    },
+    {
+      "id": "stanford_athletics",
+      "name": "Stanford Athletics Calendar",
+      "category": "Universities & Educational Institutions",
+      "url": "https://gostanford.com",
+      "geographic_coverage": ["Stanford", "Palo Alto"],
+      "update_frequency": "Daily",
+      "data_access_method": "Scraping / API",
+      "priority_level": 4,
+      "description": "Sports events, tournaments, games - family and group dining opportunities"
+    },
+    {
+      "id": "eventbrite_palo_alto",
+      "name": "Eventbrite - Palo Alto / Menlo Park / Stanford",
+      "category": "Event Aggregation Platforms",
+      "url": "https://www.eventbrite.com/d/palo-alto",
+      "geographic_coverage": ["Palo Alto", "Menlo Park", "Stanford", "Redwood City"],
+      "update_frequency": "Hourly",
+      "data_access_method": "API / Scraping",
+      "priority_level": 5,
+      "description": "Workshops, networking, concerts, food events, fundraisers, meetups, paid events"
+    },
+    {
+      "id": "meetup_bay_area",
+      "name": "Meetup.com - Bay Area Groups",
+      "category": "Event Aggregation Platforms",
+      "url": "https://www.meetup.com/cities/us/ca/palo-alto/",
+      "geographic_coverage": ["Bay Area", "Palo Alto", "Menlo Park", "Mountain View"],
+      "update_frequency": "Hourly",
+      "data_access_method": "API / Scraping",
+      "priority_level": 4,
+      "description": "Community meetups, tech talks, hobby groups, professional networks"
+    },
+    {
+      "id": "ticketmaster",
+      "name": "Ticketmaster - Bay Area Events",
+      "category": "Event Aggregation Platforms",
+      "url": "https://www.ticketmaster.com/bay-area-ca/venues",
+      "geographic_coverage": ["Bay Area", "Palo Alto", "San Francisco", "San Jose"],
+      "update_frequency": "Hourly",
+      "data_access_method": "API / Scraping",
+      "priority_level": 4,
+      "description": "Concerts, sports, theater, festivals - premium ticketed events"
+    },
+    {
+      "id": "facebook_events",
+      "name": "Facebook Events - Local Communities",
+      "category": "Social Media",
+      "url": "https://www.facebook.com/events/discover",
+      "geographic_coverage": ["Palo Alto", "Menlo Park", "Redwood City", "Bay Area"],
+      "update_frequency": "Real-time",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 5,
+      "description": "Pop-ups, live music, community festivals, school fundraisers, farmers markets"
+    },
+    {
+      "id": "instagram_events",
+      "name": "Instagram - Local Business & Community Pages",
+      "category": "Social Media",
+      "url": "https://www.instagram.com",
+      "geographic_coverage": ["Palo Alto", "Menlo Park", "Redwood City", "Bay Area"],
+      "update_frequency": "Real-time",
+      "data_access_method": "Manual / Scraping",
+      "priority_level": 4,
+      "description": "Live event announcements, behind-the-scenes, community engagement, local business events"
+    },
+    {
+      "id": "palo_alto_theatre",
+      "name": "Palo Alto Children's Theatre",
+      "category": "Event Venues",
+      "url": "https://www.paloaltochildrenstheatre.org/events",
+      "geographic_coverage": ["Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 4,
+      "description": "Children's theater productions, family performances, community shows"
+    },
+    {
+      "id": "palo_alto_art_center",
+      "name": "Palo Alto Art Center",
+      "category": "Event Venues",
+      "url": "https://www.cityofpaloalto.org/artcenter",
+      "geographic_coverage": ["Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 4,
+      "description": "Art exhibitions, workshops, classes, community cultural events"
+    },
+    {
+      "id": "redwood_city_courthouse",
+      "name": "Redwood City Courthouse Square Venue",
+      "category": "Event Venues",
+      "url": "https://www.redwoodcity.org",
+      "geographic_coverage": ["Redwood City"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 4,
+      "description": "Outdoor concerts, festivals, community gatherings, performances"
+    },
+    {
+      "id": "patch_local",
+      "name": "Patch - Local Community Calendar",
+      "category": "Local Media & Publications",
+      "url": "https://patch.com/california/palo-alto",
+      "geographic_coverage": ["Palo Alto", "Menlo Park", "Redwood City", "East Palo Alto"],
+      "update_frequency": "Daily",
+      "data_access_method": "Scraping / RSS",
+      "priority_level": 4,
+      "description": "Community-submitted events, school events, local fundraisers, family activities"
+    },
+    {
+      "id": "palo_alto_online",
+      "name": "Palo Alto Online - News & Events",
+      "category": "Local Media & Publications",
+      "url": "https://www.paloaltoonline.com",
+      "geographic_coverage": ["Palo Alto", "Los Altos", "Mountain View"],
+      "update_frequency": "Daily",
+      "data_access_method": "Scraping / RSS",
+      "priority_level": 3,
+      "description": "Local news, civic events, arts, nonprofits, school events"
+    },
+    {
+      "id": "redwood_city_pulse",
+      "name": "Redwood City Pulse - Community Calendar",
+      "category": "Local Media & Publications",
+      "url": "https://www.redwoodcitypulse.com",
+      "geographic_coverage": ["Redwood City", "San Mateo", "Atherton"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / RSS",
+      "priority_level": 3,
+      "description": "Peninsula community events, local news, cultural activities"
+    },
+    {
+      "id": "palo_alto_chamber",
+      "name": "Palo Alto Chamber of Commerce",
+      "category": "Business & Community Organizations",
+      "url": "https://www.paloaltochamber.com",
+      "geographic_coverage": ["Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 4,
+      "description": "Business networking events, mixers, chambers events, professional development"
+    },
+    {
+      "id": "redwood_city_chamber",
+      "name": "Redwood City Chamber of Commerce",
+      "category": "Business & Community Organizations",
+      "url": "https://redwoodchamber.org",
+      "geographic_coverage": ["Redwood City"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 3,
+      "description": "Local business events, networking opportunities, community initiatives"
+    },
+    {
+      "id": "stanford_intramural",
+      "name": "Stanford Intramural & Recreation",
+      "category": "Sports & Recreation",
+      "url": "https://recsports.stanford.edu/intramurals",
+      "geographic_coverage": ["Stanford", "Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 3,
+      "description": "Intramural sports, recreation events, tournaments, league games"
+    },
+    {
+      "id": "palo_alto_parks",
+      "name": "Palo Alto Parks & Recreation - Sports & Classes",
+      "category": "Sports & Recreation",
+      "url": "https://www.cityofpaloalto.org/pocketparks",
+      "geographic_coverage": ["Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / Manual",
+      "priority_level": 4,
+      "description": "Sports leagues, youth sports, recreation classes, park events"
+    },
+    {
+      "id": "palo_alto_libraries",
+      "name": "Palo Alto Public Library - Events & Programs",
+      "category": "Cultural & Religious Organizations",
+      "url": "https://www.cityofpaloalto.org/Library",
+      "geographic_coverage": ["Palo Alto"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / RSS",
+      "priority_level": 4,
+      "description": "Story times, author talks, community programs, exhibitions, cultural events"
+    },
+    {
+      "id": "menlo_park_library",
+      "name": "Menlo Park Library - Events & Programs",
+      "category": "Cultural & Religious Organizations",
+      "url": "https://www.menlopark.org/library",
+      "geographic_coverage": ["Menlo Park"],
+      "update_frequency": "Weekly",
+      "data_access_method": "Scraping / RSS",
+      "priority_level": 3,
+      "description": "Library programs, educational events, community gatherings"
+    },
+    {
+      "id": "dotheday",
+      "name": "DoTheBay - Concerts & Nightlife",
+      "category": "Event Aggregation Platforms",
+      "url": "https://www.dotheday.com",
+      "geographic_coverage": ["Bay Area", "San Francisco", "Palo Alto"],
+      "update_frequency": "Daily",
+      "data_access_method": "Scraping / API",
+      "priority_level": 3,
+      "description": "Concerts, nightlife, venues, younger audiences, entertainment events"
+    },
+    {
+      "id": "bandsintown",
+      "name": "Bandsintown - Concert Tracking",
+      "category": "Event Aggregation Platforms",
+      "url": "https://www.bandsintown.com",
+      "geographic_coverage": ["Bay Area", "Worldwide"],
+      "update_frequency": "Hourly",
+      "data_access_method": "API",
+      "priority_level": 3,
+      "description": "Concert alerts, artist tracking, music events, festival schedules"
+    }
+  ]
+}

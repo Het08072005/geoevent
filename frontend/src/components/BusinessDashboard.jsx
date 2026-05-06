@@ -13,7 +13,9 @@ import {
     UtensilsCrossed,
     Flame,
     Star,
-    ChevronRight
+    ChevronRight,
+    Sparkles,
+    Info
 } from 'lucide-react';
 
 const DemographicRing = ({ data }) => {
@@ -65,17 +67,63 @@ const DemographicRing = ({ data }) => {
     );
 };
 
-export const BusinessDashboard = ({ data, loading }) => {
+export const BusinessDashboard = ({ data, loading, onGenerate }) => {
     if (loading) {
         return (
             <div className="bg-[#0B1221] rounded-2xl p-10 border border-slate-800 mt-8 animate-pulse text-center space-y-4">
                 <div className="h-6 w-48 bg-slate-800 rounded mx-auto"></div>
-                <div className="h-4 w-64 bg-slate-800 rounded mx-auto"></div>
+                <div className="h-4 w-64 bg-slate-800 rounded mx-auto animate-pulse"></div>
             </div>
         );
     }
 
-    if (!data || data.error) return null;
+    if (!data) {
+        return (
+            <div className="mt-8 bg-[#0B1221] text-white p-8 rounded-[1.5rem] border border-slate-800 shadow-2xl font-sans tracking-tight text-center space-y-6">
+                <div className="w-16 h-16 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mx-auto animate-pulse">
+                    <Sparkles size={28} />
+                </div>
+                <div className="space-y-2 max-w-md mx-auto">
+                    <h3 className="text-xl font-black tracking-tight text-white uppercase italic">
+                        Generative AI Retail Impact Report
+                    </h3>
+                    <p className="text-xs text-slate-400 font-semibold leading-relaxed">
+                        Leverage Google Gemini AI to analyze local event footprints and competitor dynamics to generate a customized footfall conversion report, operational strategies, and high-margin menu recommendations.
+                    </p>
+                </div>
+                <button
+                    onClick={onGenerate}
+                    className="px-6 py-3 rounded-xl text-xs font-black bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center gap-2 mx-auto"
+                >
+                    <Sparkles size={14} /> Generate AI Impact Report
+                </button>
+            </div>
+        );
+    }
+
+    if (data.error) {
+        return (
+            <div className="mt-8 bg-[#0B1221] text-white p-8 rounded-[1.5rem] border border-red-950/50 shadow-2xl font-sans tracking-tight text-center space-y-6">
+                <div className="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mx-auto">
+                    <Info size={28} />
+                </div>
+                <div className="space-y-2 max-w-md mx-auto">
+                    <h3 className="text-xl font-black tracking-tight text-red-400 uppercase italic">
+                        AI Analysis Unavailable
+                    </h3>
+                    <p className="text-xs text-slate-400 font-semibold leading-relaxed">
+                        {data.summary || "The generative AI models are currently busy or experiencing high demand. Please try again shortly."}
+                    </p>
+                </div>
+                <button
+                    onClick={onGenerate}
+                    className="px-6 py-3 rounded-xl text-xs font-black bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center gap-2 mx-auto"
+                >
+                    <Sparkles size={14} /> Retry Generation
+                </button>
+            </div>
+        );
+    }
 
     const analysis = data.combined_analysis || {};
     const store = data.store_info || {};

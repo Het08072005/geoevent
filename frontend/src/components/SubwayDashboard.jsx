@@ -3,7 +3,7 @@ import { MapPin, Search, Loader2, AlertCircle, Zap, TrendingUp, Users } from 'lu
 import { VenueCard } from './VenueCard';
 
 const GEOAPIFY_KEY = "66dd1c0d3fb542ef9d255dedfd3b2a5a";
-const BACKEND_URL = "http://localhost:8000";
+const BACKEND_URL = "http://127.0.0.1:8000";
 
 export const SubwayDashboard = () => {
   const [address, setAddress] = useState("Palo Alto, CA");

@@ -1,0 +1,631 @@
+{
+  "status": "success",
+  "location": "Palo Alto, CA",
+  "total_sources": 78,
+  "websites": [
+    {
+      "url": "https://www.cityofpaloalto.org/calendar",
+      "name": "Cityofpaloalto.org",
+      "domain": "cityofpaloalto.org",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://events.stanford.edu",
+      "name": "Events.stanford.edu",
+      "domain": "events.stanford.edu",
+      "category": "Universities",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/events",
+      "name": "Eventbrite.com",
+      "domain": "eventbrite.com",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.meetup.com/find/?location=Palo+Alto%2C+CA",
+      "name": "Meetup.com",
+      "domain": "meetup.com",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.ticketmaster.com/search?q=palo+alto",
+      "name": "Ticketmaster.com",
+      "domain": "ticketmaster.com",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.cityofpaloalto.org/community-center",
+      "name": "Cityofpaloalto.org",
+      "domain": "cityofpaloalto.org",
+      "category": "Venues & Theaters",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.cityofpaloalto.org/parks/events",
+      "name": "Cityofpaloalto.org",
+      "domain": "cityofpaloalto.org",
+      "category": "Venues & Theaters",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://events.stanford.edu/bing-concert-hall",
+      "name": "Events.stanford.edu",
+      "domain": "events.stanford.edu",
+      "category": "Venues & Theaters",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.cityofpaloalto.org/arts-events",
+      "name": "Cityofpaloalto.org",
+      "domain": "cityofpaloalto.org",
+      "category": "Cultural & Religious",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.meetup.com/find/?location=Palo+Alto&category=religion",
+      "name": "Meetup.com",
+      "domain": "meetup.com",
+      "category": "Cultural & Religious",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/cultural-events",
+      "name": "Eventbrite.com",
+      "domain": "eventbrite.com",
+      "category": "Cultural & Religious",
+      "priority": 10,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.menlopark.gov/calendar",
+      "name": "Menlopark.gov",
+      "domain": "menlopark.gov",
+      "category": "City Government",
+      "priority": 9,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.redwoodcity.org/calendar",
+      "name": "Redwoodcity.org",
+      "domain": "redwoodcity.org",
+      "category": "City Government",
+      "priority": 9,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://gostanford.com/calendar",
+      "name": "Gostanford.com",
+      "domain": "gostanford.com",
+      "category": "Universities",
+      "priority": 9,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltou.edu/events",
+      "name": "Paloaltou.edu",
+      "domain": "paloaltou.edu",
+      "category": "Universities",
+      "priority": 9,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.deanza.edu/events",
+      "name": "Deanza.edu",
+      "domain": "deanza.edu",
+      "category": "Universities",
+      "priority": 9,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.menlopark.gov/community-center",
+      "name": "Menlopark.gov",
+      "domain": "menlopark.gov",
+      "category": "Venues & Theaters",
+      "priority": 9,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://gostanford.com/calendar",
+      "name": "Gostanford.com",
+      "domain": "gostanford.com",
+      "category": "Sports & Recreation",
+      "priority": 9,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.facebook.com/events/search?q=palo+alto",
+      "name": "Facebook.com",
+      "domain": "facebook.com",
+      "category": "Social Media",
+      "priority": 8,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.theatreworks.org/calendar",
+      "name": "Theatreworks.org",
+      "domain": "theatreworks.org",
+      "category": "Venues & Theaters",
+      "priority": 8,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paphil.org/events",
+      "name": "Paphil.org",
+      "domain": "paphil.org",
+      "category": "Venues & Theaters",
+      "priority": 8,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltoscoop.com",
+      "name": "Paloaltoscoop.com",
+      "domain": "paloaltoscoop.com",
+      "category": "Local Media",
+      "priority": 8,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://patch.com/california/paloalto/calendar",
+      "name": "Patch.com",
+      "domain": "patch.com",
+      "category": "Local Media",
+      "priority": 8,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltochamber.com/events",
+      "name": "Paloaltochamber.com",
+      "domain": "paloaltochamber.com",
+      "category": "Tourism & Visitors",
+      "priority": 7,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://business.paloaltochamber.com/events",
+      "name": "Business.paloaltochamber.com",
+      "domain": "business.paloaltochamber.com",
+      "category": "Tourism & Visitors",
+      "priority": 7,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.padailypost.com",
+      "name": "Padailypost.com",
+      "domain": "padailypost.com",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.almanacnews.com/calendar",
+      "name": "Almanacnews.com",
+      "domain": "almanacnews.com",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltochamber.com/events",
+      "name": "Paloaltochamber.com",
+      "domain": "paloaltochamber.com",
+      "category": "Business Groups",
+      "priority": 7,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://business.paloaltochamber.com/calendar",
+      "name": "Business.paloaltochamber.com",
+      "domain": "business.paloaltochamber.com",
+      "category": "Business Groups",
+      "priority": 7,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltofestival.com",
+      "name": "Paloaltofestival.com",
+      "domain": "paloaltofestival.com",
+      "category": "Cultural & Religious",
+      "priority": 7,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.maxpreps.com/local/palo-alto",
+      "name": "Maxpreps.com",
+      "domain": "maxpreps.com",
+      "category": "Sports & Recreation",
+      "priority": 6,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://runsignup.com/Races/CA/PaloAlto",
+      "name": "Runsignup.com",
+      "domain": "runsignup.com",
+      "category": "Sports & Recreation",
+      "priority": 6,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.playpass.com/search?location=palo+alto",
+      "name": "Playpass.com",
+      "domain": "playpass.com",
+      "category": "Sports & Recreation",
+      "priority": 6,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.active.com/palo-alto-ca/events",
+      "name": "Active.com",
+      "domain": "active.com",
+      "category": "Sports & Recreation",
+      "priority": 6,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://paloalto.bibliocommons.com/events",
+      "name": "Paloalto.bibliocommons.com",
+      "domain": "paloalto.bibliocommons.com",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltoforward.com/events",
+      "name": "Paloaltoforward.com",
+      "domain": "paloaltoforward.com",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltoonline.com/calendar",
+      "name": "Paloaltoonline.com",
+      "domain": "paloaltoonline.com",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://paloaltomatters.org/calendar",
+      "name": "Paloaltomatters.org",
+      "domain": "paloaltomatters.org",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://ca-paloalto.civicrec.com",
+      "name": "Ca-paloalto.civicrec.com",
+      "domain": "ca-paloalto.civicrec.com",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltoccb.org/events",
+      "name": "Paloaltoccb.org",
+      "domain": "paloaltoccb.org",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.ci.east-palo-alto.ca.us/events",
+      "name": "Ci.east-palo-alto.ca.us",
+      "domain": "ci.east-palo-alto.ca.us",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.cityofepa.org/calendar",
+      "name": "Cityofepa.org",
+      "domain": "cityofepa.org",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.mountainview.gov/calendar",
+      "name": "Mountainview.gov",
+      "domain": "mountainview.gov",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.sunnyvale.ca.gov/calendar",
+      "name": "Sunnyvale.ca.gov",
+      "domain": "sunnyvale.ca.gov",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.destinationpaloalto.com/events",
+      "name": "Destinationpaloalto.com",
+      "domain": "destinationpaloalto.com",
+      "category": "Tourism & Visitors",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.siliconvalley.org/events",
+      "name": "Siliconvalley.org",
+      "domain": "siliconvalley.org",
+      "category": "Tourism & Visitors",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.visitcalifornia.com/places-to-go/palo-alto",
+      "name": "Visitcalifornia.com",
+      "domain": "visitcalifornia.com",
+      "category": "Tourism & Visitors",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://live.stanford.edu/calendar",
+      "name": "Live.stanford.edu",
+      "domain": "live.stanford.edu",
+      "category": "Universities",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.foothill.edu/events",
+      "name": "Foothill.edu",
+      "domain": "foothill.edu",
+      "category": "Universities",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.pausd.org/community/events",
+      "name": "Pausd.org",
+      "domain": "pausd.org",
+      "category": "Universities",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://allevents.in/palo-alto",
+      "name": "Allevents.in",
+      "domain": "allevents.in",
+      "category": "Event Platforms",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://dothebay.com/palo-alto",
+      "name": "Dothebay.com",
+      "domain": "dothebay.com",
+      "category": "Event Platforms",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.bandsintown.com/c/palo-alto-ca",
+      "name": "Bandsintown.com",
+      "domain": "bandsintown.com",
+      "category": "Event Platforms",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.universe.com/explore?q=palo+alto",
+      "name": "Universe.com",
+      "domain": "universe.com",
+      "category": "Event Platforms",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.eventcartel.com/palo-alto",
+      "name": "Eventcartel.com",
+      "domain": "eventcartel.com",
+      "category": "Event Platforms",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.predicthq.com",
+      "name": "Predicthq.com",
+      "domain": "predicthq.com",
+      "category": "Event Platforms",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.instagram.com/explore/tags/paloaltoevents",
+      "name": "Instagram.com",
+      "domain": "instagram.com",
+      "category": "Social Media",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.linkedin.com/search/results/events/?keywords=palo+alto",
+      "name": "Linkedin.com",
+      "domain": "linkedin.com",
+      "category": "Social Media",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://nextdoor.com",
+      "name": "Nextdoor.com",
+      "domain": "nextdoor.com",
+      "category": "Social Media",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.reddit.com/r/bayarea/events",
+      "name": "Reddit.com",
+      "domain": "reddit.com",
+      "category": "Social Media",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paplayers.org/events",
+      "name": "Paplayers.org",
+      "domain": "paplayers.org",
+      "category": "Venues & Theaters",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://live.stanford.edu/calendar",
+      "name": "Live.stanford.edu",
+      "domain": "live.stanford.edu",
+      "category": "Venues & Theaters",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.computerhistory.org/events",
+      "name": "Computerhistory.org",
+      "domain": "computerhistory.org",
+      "category": "Venues & Theaters",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.cantor.stanford.edu/events",
+      "name": "Cantor.stanford.edu",
+      "domain": "cantor.stanford.edu",
+      "category": "Venues & Theaters",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.mercurynews.com/events",
+      "name": "Mercurynews.com",
+      "domain": "mercurynews.com",
+      "category": "Local Media",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.sfgate.com/events",
+      "name": "Sfgate.com",
+      "domain": "sfgate.com",
+      "category": "Local Media",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltoonline.com/calendar",
+      "name": "Paloaltoonline.com",
+      "domain": "paloaltoonline.com",
+      "category": "Local Media",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.menloparkchamber.com/events",
+      "name": "Menloparkchamber.com",
+      "domain": "menloparkchamber.com",
+      "category": "Business Groups",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.redwoodcitychamber.com/events",
+      "name": "Redwoodcitychamber.com",
+      "domain": "redwoodcitychamber.com",
+      "category": "Business Groups",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.svlg.org/events",
+      "name": "Svlg.org",
+      "domain": "svlg.org",
+      "category": "Business Groups",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.jointventure.org/events",
+      "name": "Jointventure.org",
+      "domain": "jointventure.org",
+      "category": "Business Groups",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.palyathletics.com/calendar",
+      "name": "Palyathletics.com",
+      "domain": "palyathletics.com",
+      "category": "Sports & Recreation",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.runningintheusa.com/race/list/palo-alto",
+      "name": "Runningintheusa.com",
+      "domain": "runningintheusa.com",
+      "category": "Sports & Recreation",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.findtherun.com/palo-alto",
+      "name": "Findtherun.com",
+      "domain": "findtherun.com",
+      "category": "Sports & Recreation",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.pacificfinearts.com/events",
+      "name": "Pacificfinearts.com",
+      "domain": "pacificfinearts.com",
+      "category": "Cultural & Religious",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.cantor.stanford.edu/events",
+      "name": "Cantor.stanford.edu",
+      "domain": "cantor.stanford.edu",
+      "category": "Cultural & Religious",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.actorsensemble.org/events",
+      "name": "Actorsensemble.org",
+      "domain": "actorsensemble.org",
+      "category": "Cultural & Religious",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    },
+    {
+      "url": "https://www.paloaltohistory.org/events",
+      "name": "Paloaltohistory.org",
+      "domain": "paloaltohistory.org",
+      "category": "Cultural & Religious",
+      "priority": 5,
+      "description": "Premium Event Source for Palo Alto"
+    }
+  ]
+}
