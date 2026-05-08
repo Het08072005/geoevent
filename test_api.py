@@ -16,7 +16,7 @@ async def test():
     print("Testing SerpAPI with Palo Alto, CA...")
     result = await serpapi_service.search_event_sources("Palo Alto, CA")
     
-    print("\n✅ API Key:", "SET" if serpapi_service.api_key else "NOT SET")
+    print("\n[OK] API Key:", "SET" if serpapi_service.api_key else "NOT SET")
     print("Status:", result.get('status'))
     print("Total sources found:", result.get('total_sources', 0))
     print("Categories:", list(result.get('websites', {}).keys()) if isinstance(result.get('websites'), dict) else "N/A")

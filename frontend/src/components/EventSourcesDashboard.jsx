@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/EventSourcesDashboard.css';
 
-const API_BASE = 'http://127.0.0.1:8000/api';
-const SEARCH_HISTORY_KEY = 'eventLocationHistory';
+const API_BASE = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api';
+const SEARCH_HISTORY_KEY = 'eventLocationHistory';  // localStorage fallback key
+
 
 const CATEGORY_ICONS = {
   'Government & City': 'City',
@@ -27,6 +28,9 @@ function EventSourcesDashboard() {
   const [searchHistory, setSearchHistory] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [scrapedEvents, setScrapedEvents] = useState([]);
+  const [eventsLoading, setEventsLoading] = useState(false);
+  const pollTimeoutsRef = React.useRef([]);
 
   useEffect(() => {
     const trimmed = location.trim();
@@ -45,7 +49,7 @@ function EventSourcesDashboard() {
           }
         }
       } catch (err) {
-        console.error('Failed to fetch suggestions:', err);
+        // console.error('Failed to fetch suggestions:', err);
       }
     }, 300);
 
@@ -64,6 +68,13 @@ function EventSourcesDashboard() {
     };
   }, []);
 
+  useEffect(() => {
+    return () => {
+      pollTimeoutsRef.current.forEach(clearTimeout);
+      pollTimeoutsRef.current = [];
+    };
+  }, []);
+
   const handleSuggestionClick = (selected) => {
     setLocation(selected.name);
     setSuggestions([]);
@@ -71,7 +82,27 @@ function EventSourcesDashboard() {
     handleSearch(selected.name);
   };
 
-  const loadSearchHistory = () => {
+  /**
+   * Load recent searches — tries backend first (source of truth), falls back to
+   * localStorage if the backend is unreachable (e.g. server not started yet).
+   */
+  const loadSearchHistory = async () => {
+    try {
+      const response = await fetch(`${API_BASE}/event-sources/cached-searches`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.status === 'success' && Array.isArray(data.searches) && data.searches.length > 0) {
+          setSearchHistory(data.searches);
+          // Sync to localStorage as local warm-cache
+          localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(data.searches));
+          return;
+        }
+      }
+    } catch (err) {
+      // console.warn('Backend recent-searches unavailable, falling back to localStorage:', err);
+    }
+
+  // Fallback: read from localStorage
     try {
       const saved = localStorage.getItem(SEARCH_HISTORY_KEY);
       if (saved) {
@@ -82,8 +113,10 @@ function EventSourcesDashboard() {
         }
       }
     } catch (err) {
-      console.error('Failed to parse search history:', err);
+      // console.error('Failed to parse search history from localStorage:', err);
     }
+
+    // Ultimate fallback — seed with default
     setSearchHistory(['Palo Alto, CA']);
   };
 
@@ -92,17 +125,49 @@ function EventSourcesDashboard() {
     handleSearch('Palo Alto, CA');
   }, []);
 
+  /**
+   * Save a new search to both the backend (persistent JSON) and localStorage (fast load).
+   * Uses React state updater to be safe with concurrent calls.
+   */
   const saveSearchHistory = (searchLocation) => {
     setSearchHistory((previousHistory) => {
       const nextHistory = [
         searchLocation,
         ...previousHistory.filter((item) => item !== searchLocation),
-      ];
-      localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(nextHistory.slice(0, 20)));
+      ].slice(0, 20);
+
+      // Persist to localStorage immediately (sync)
+      localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(nextHistory));
+
+      // Persist to backend (async, fire-and-forget; failure is non-critical)
+      fetch(`${API_BASE}/event-sources/add-search?location=${encodeURIComponent(searchLocation)}`, {
+        method: 'POST',
+      }).catch(() => {
+        // suppressed search persistence warning for deployment
+      });
+
       return nextHistory;
     });
   };
 
+
+  const fetchScrapedEvents = async (searchLocation) => {
+    setEventsLoading(true);
+    try {
+      const cityKey = searchLocation.split(",")[0].trim();
+      const res = await fetch(`${API_BASE}/scraped-events?city=${encodeURIComponent(cityKey)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.status === 'success') {
+          setScrapedEvents(data.events || []);
+        }
+      }
+    } catch (err) {
+      // console.warn('Failed to fetch scraped events:', err);
+    } finally {
+      setEventsLoading(false);
+    }
+  };
 
   const handleSearch = async (searchLocation) => {
     const trimmedLocation = searchLocation.trim();
@@ -111,6 +176,9 @@ function EventSourcesDashboard() {
       setError('Please enter a location');
       return;
     }
+
+    pollTimeoutsRef.current.forEach(clearTimeout);
+    pollTimeoutsRef.current = [];
 
     // ── Check Cache First! ──
     const cacheKey = `eventLocationCache_${trimmedLocation.toLowerCase()}`;
@@ -124,10 +192,11 @@ function EventSourcesDashboard() {
           setWebsitesByCategory(parsed.websitesByCategory);
           setError(null);
           saveSearchHistory(trimmedLocation);
+          fetchScrapedEvents(trimmedLocation);
           return;
         }
       } catch (cacheError) {
-        console.error('Failed to parse cached data:', cacheError);
+        // console.error('Failed to parse cached data:', cacheError);
       }
     }
 
@@ -156,6 +225,7 @@ function EventSourcesDashboard() {
       setWebsitesByCategory(groupedWebsites);
       setWebsites(flatWebsites);
       saveSearchHistory(trimmedLocation);
+      fetchScrapedEvents(trimmedLocation);
 
       // ── Save to Cache! ──
       if (flatWebsites.length > 0) {
@@ -168,11 +238,21 @@ function EventSourcesDashboard() {
         );
       }
 
+      if (flatWebsites.length > 0) {
+        const scheduleRetry = (delayMs) => {
+          pollTimeoutsRef.current.push(
+            setTimeout(() => fetchScrapedEvents(trimmedLocation), delayMs)
+          );
+        };
+        scheduleRetry(30000);
+        scheduleRetry(90000);
+      }
+
       if (flatWebsites.length === 0) {
         setError('No event websites found. Try a different location.');
       }
     } catch (fetchError) {
-      console.error('Event website search failed:', fetchError);
+      // console.error('Event website search failed:', fetchError);
       setWebsites([]);
       setWebsitesByCategory({});
       setError(fetchError.message || 'Failed to fetch websites');
@@ -447,6 +527,94 @@ function EventSourcesDashboard() {
               </div>
             </a>
           ))}
+        </div>
+      )}
+
+      {/* Scraped Events from discovered sources */}
+      {!loading && websites.length > 0 && (
+        <div style={{ marginTop: '2rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b' }}>
+              Events found from these sources
+            </h2>
+            {eventsLoading && (
+              <span style={{ fontSize: '12px', color: '#6366f1', fontWeight: 700 }}>Loading events...</span>
+            )}
+            {!eventsLoading && scrapedEvents.length === 0 && (
+              <span style={{ fontSize: '12px', color: '#94a3b8', fontWeight: 600 }}>
+                Events will appear here after background scraping completes
+              </span>
+            )}
+            {!eventsLoading && scrapedEvents.length > 0 && (
+              <span style={{ fontSize: '12px', color: '#10b981', fontWeight: 700 }}>
+                {scrapedEvents.length} events found
+              </span>
+            )}
+          </div>
+
+          {scrapedEvents.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {scrapedEvents.map((ev, idx) => (
+                <div
+                  key={ev.url || idx}
+                  style={{
+                    background: 'white',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '16px',
+                    padding: '1.25rem 1.5rem',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: '1rem',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
+                      <span style={{
+                        fontSize: '10px', fontWeight: 800, textTransform: 'uppercase',
+                        letterSpacing: '0.05em', padding: '2px 8px', borderRadius: '999px',
+                        background: '#ede9fe', color: '#7c3aed'
+                      }}>
+                        {ev.categoryClean || 'event'}
+                      </span>
+                      {ev.date && (
+                        <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 600 }}>
+                          {ev.date.slice(0, 10)}
+                        </span>
+                      )}
+                    </div>
+                    <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                      {ev.name}
+                    </h4>
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>
+                      {ev.venue_name && <span>📍 {ev.venue_name}</span>}
+                      {ev.price && <span>🎟 {ev.price}</span>}
+                      {ev.attendance && ev.attendance !== 'TBA' && <span>👥 {ev.attendance} attending</span>}
+                    </div>
+                    {ev.description && (
+                      <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '0.3rem', fontWeight: 500 }}>
+                        {ev.description.slice(0, 120)}{ev.description.length > 120 ? '...' : ''}
+                      </p>
+                    )}
+                  </div>
+                  {ev.url && (
+                    <a
+                      href={ev.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        fontSize: '11px', fontWeight: 800, color: '#6366f1',
+                        textDecoration: 'none', whiteSpace: 'nowrap', alignSelf: 'center'
+                      }}
+                    >
+                      View →
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

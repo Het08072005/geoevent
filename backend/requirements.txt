@@ -5,3 +5,7 @@ python-dotenv
 pydantic
 google-genai
 python-multipart
+beautifulsoup4
+playwright
+lxml
+scrapling[fetchers]==0.4.7

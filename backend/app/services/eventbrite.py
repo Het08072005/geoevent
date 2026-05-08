@@ -75,35 +75,144 @@ def _extract_price(event: dict) -> tuple:
             except ValueError:
                 pass
 
-    return "Free", False
+    return "Not Available", False
+
+
+def _scrape_public_event_page(url: str) -> dict:
+    """
+    Fetches the public Eventbrite event page HTML and extracts:
+    - Ticket Price (e.g. from JSON-LD or text like "From $88.95")
+    - Total attendance count (e.g. "59 total attendees")
+    """
+    res = {"price": None, "attendance": None}
+    if not url:
+        return res
+    try:
+        r = requests.get(url, headers=SEARCH_HEADERS, timeout=10)
+        if r.status_code != 200:
+            return res
+            
+        html = r.text
+        
+        # Extract Attendance
+        attendees_match = re.search(r'"totalAttendees"\s*:\s*(\d+)', html)
+        if not attendees_match:
+            attendees_match = re.search(r'(\d+)\s+total\s+attendees', html, re.IGNORECASE)
+        if not attendees_match:
+            attendees_match = re.search(r'(\d+)\s+attendees', html, re.IGNORECASE)
+        if not attendees_match:
+            attendees_match = re.search(r'(\d+)\s+attending', html, re.IGNORECASE)
+        if attendees_match:
+            res["attendance"] = attendees_match.group(1)
+            logger.info(f"Scraped attendance: {res['attendance']} from public page")
+
+        # Extract Price via JSON-LD
+        ld_json_tags = re.findall(r'<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.DOTALL)
+        for ld_text in ld_json_tags:
+            try:
+                import json
+                data = json.loads(ld_text.strip())
+                structures = data if isinstance(data, list) else [data]
+                for s in structures:
+                    offers = s.get("offers")
+                    if offers:
+                        off = offers[0] if isinstance(offers, list) else offers
+                        low = off.get("lowPrice") or off.get("price")
+                        high = off.get("highPrice")
+                        currency = off.get("priceCurrency") or "USD"
+                        symbol = "$" if currency == "USD" else (currency + " ")
+                        if low and high and float(low) != float(high):
+                            res["price"] = f"{symbol}{float(low):.2f} - {symbol}{float(high):.2f}".replace(".00", "")
+                            logger.info(f"Scraped price range from JSON-LD: {res['price']}")
+                            break
+                        elif low:
+                            res["price"] = f"{symbol}{float(low):.2f}".replace(".00", "")
+                            logger.info(f"Scraped single price from JSON-LD: {res['price']}")
+                            break
+            except Exception:
+                pass
+
+        # Fallback direct regex price range match
+        if not res["price"]:
+            range_match = re.search(r'(\$\d+(?:\.\d{2})?)\s*[-–—]\s*(\$\d+(?:\.\d{2})?)', html)
+            if range_match:
+                res["price"] = f"{range_match.group(1)} - {range_match.group(2)}"
+                logger.info(f"Scraped price range from Regex: {res['price']}")
+
+        # Fallback price regex (lowPrice attribute)
+        if not res["price"]:
+            low_price_match = re.search(r'"lowPrice"\s*:\s*"?(\d+(?:\.\d+)?)"?', html)
+            if low_price_match:
+                res["price"] = f"${float(low_price_match.group(1)):.2f}".replace(".00", "")
+                logger.info(f"Scraped price from direct lowPrice regex: {res['price']}")
+
+        # Fallback price regex (text occurrences)
+        if not res["price"]:
+            price_match = re.search(r'From\s+(\$\d+(?:\.\d{2})?)', html, re.IGNORECASE)
+            if not price_match:
+                price_match = re.search(r'(\$\d+(?:\.\d{2})?)', html)
+            if price_match:
+                res["price"] = price_match.group(1)
+                logger.info(f"Scraped price from fallback regex: {res['price']}")
+
+    except Exception as e:
+        logger.warning(f"Failed to scrape public page {url}: {e}")
+    return res
+
+
+# ── Nearby city slugs for Bay Area Eventbrite searches ────────────────────────
+_NEARBY_SLUGS: dict = {
+    "palo alto":    ["palo-alto", "mountain-view", "menlo-park", "los-altos", "stanford", "sunnyvale", "redwood-city"],
+    "mountain view":["mountain-view", "palo-alto", "sunnyvale", "los-altos", "santa-clara"],
+    "menlo park":   ["menlo-park", "palo-alto", "redwood-city", "atherton", "san-carlos"],
+    "redwood city": ["redwood-city", "menlo-park", "san-carlos", "belmont"],
+    "sunnyvale":    ["sunnyvale", "mountain-view", "santa-clara", "cupertino"],
+    "san jose":     ["san-jose", "santa-clara", "campbell", "los-gatos"],
+    "san francisco":["san-francisco", "south-san-francisco", "daly-city"],
+    "stanford":     ["palo-alto", "menlo-park", "mountain-view"],
+    "los altos":    ["los-altos", "mountain-view", "palo-alto", "sunnyvale"],
+    "atherton":     ["menlo-park", "palo-alto", "redwood-city"],
+}
+
+
+def _city_slugs_for(primary_city: str) -> list:
+    """Return Eventbrite city slugs to search for a given primary city."""
+    key = primary_city.lower().strip()
+    for k, slugs in _NEARBY_SLUGS.items():
+        if k in key or key in k:
+            return slugs
+    # Generic fallback
+    return [key.replace(" ", "-")]
 
 
 # ── Step 1: Get IDs ────────────────────────────────────────────────────────────
-def _get_event_ids(city: str) -> list:
+def _get_event_ids(primary_city: str) -> list:
     """
-    Reads <a href="..."> links from Eventbrite search page to extract event IDs.
+    Reads <a href="..."> links from Eventbrite search pages for the primary city
+    AND nearby cities to maximise event discovery.
     No event data is taken from HTML — only numeric IDs from URL paths.
     """
-    city_slug = city.lower().strip().replace(" ", "-")
-    url = f"https://www.eventbrite.com/d/ca--{city_slug}/events/"
-    
-    try:
-        r = requests.get(url, headers=SEARCH_HEADERS, timeout=12)
-        # Find all Eventbrite event URLs in the page HTML links
-        # Pattern: /e/some-event-name-tickets-123456789
-        ids = re.findall(r'/e/[^"\'?#\s]+-(\d{6,})', r.text)
-        # Deduplicate preserving order
-        seen = set()
-        unique = []
-        for eid in ids:
-            if eid not in seen:
-                seen.add(eid)
-                unique.append(eid)
-        logger.info(f"Found {len(unique)} event IDs for '{city}'")
-        return unique[:25]
-    except Exception as e:
-        logger.error(f"ID discovery failed for {city}: {e}")
-        return []
+    slugs = _city_slugs_for(primary_city)
+    seen: set = set()
+    unique: list = []
+
+    for slug in slugs:
+        url = f"https://www.eventbrite.com/d/ca--{slug}/events/"
+        try:
+            r = requests.get(url, headers=SEARCH_HEADERS, timeout=12)
+            ids = re.findall(r'/e/[^"\'?#\s]+-(\d{6,})', r.text)
+            added = 0
+            for eid in ids:
+                if eid not in seen:
+                    seen.add(eid)
+                    unique.append(eid)
+                    added += 1
+            logger.info(f"Eventbrite '{slug}': found {added} new IDs (total {len(unique)})")
+        except Exception as e:
+            logger.warning(f"ID discovery failed for slug '{slug}': {e}")
+
+    logger.info(f"Total unique Eventbrite IDs across all cities: {len(unique)}")
+    return unique[:60]  # up from 25 → 60 to allow more candidates
 
 
 # ── Step 2: Enrich via API v3 ──────────────────────────────────────────────────
@@ -137,12 +246,16 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
         logger.error("EVENTBRITE_PRIVATE_TOKEN is not set or empty — check .env file!")
         return []
 
-    # Step 1: Discover IDs
+    # Step 1: Discover IDs — search primary city + all nearby Eventbrite pages
     event_ids = _get_event_ids(city)
     if not event_ids:
         return []
 
     # Step 2: Enrich via API v3
+    # Use a generous internal radius (max of passed radius or 50 km) so we
+    # fetch events from the whole Bay Area; main.py applies the display radius.
+    fetch_radius = max(radius, 50_000)
+
     events = []
     for eid in event_ids:
         try:
@@ -159,7 +272,7 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
                 continue
 
             dist_m = _haversine(lat, lon, v_lat, v_lon)
-            if dist_m > radius:
+            if dist_m > fetch_radius:
                 continue
 
             # ── All data below is 100% from API v3 ──
@@ -169,6 +282,17 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
             end_local       = (ev.get("end")   or {}).get("local", "")
             capacity        = ev.get("capacity")
             attendance      = str(int(capacity)) if capacity and int(capacity) > 0 else "TBA"
+
+            # Scrape public page ONLY when API data is missing/generic — avoids 60 extra HTTP calls
+            event_url = ev.get("url") or ""
+            needs_scrape = attendance == "TBA" or price_str in ("Not Available", "Paid Event")
+            if needs_scrape and event_url:
+                scraped_details = _scrape_public_event_page(event_url)
+                if scraped_details.get("price"):
+                    price_str = scraped_details["price"]
+                    paid = True
+                if scraped_details.get("attendance"):
+                    attendance = scraped_details["attendance"]
             cat_obj         = ev.get("category") or {}
             logo            = ev.get("logo") or {}
             addr_obj        = venue.get("address") or {}
@@ -194,7 +318,8 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
                 "venue_name":        venue.get("name") or "",
                 "category":          (cat_obj.get("short_name") or "community").lower(),
                 "type":              "Eventbrite",
-                "description":       ev.get("summary") or "",
+                "source":            "Eventbrite",
+                "description":       (ev.get("description") or {}).get("text") or ev.get("summary") or "No description available.",
                 "distance":          round(dist_m),
                 "image_url":         logo.get("url") or "",
                 "date":              start_local,
@@ -202,6 +327,9 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
                 "url":               ev.get("url") or "",
                 "organizer_name":    organizer.get("name") or "Eventbrite Organizer",
                 "organizer_website": organizer.get("website") or "",
+                "organizer_description": (organizer.get("description") or {}).get("text") or "",
+                "organizer_email":   organizer.get("email") or "",
+                "organizer_phone":   organizer.get("phone") or "",
                 "price":             price_str,
                 "is_paid":           paid,
                 "attendance":        attendance,

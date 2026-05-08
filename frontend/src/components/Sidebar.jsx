@@ -18,7 +18,7 @@ export default function Sidebar() {
           <Compass size={18} strokeWidth={2.5} className="animate-spin-slow" />
         </div>
         <div className="flex flex-col">
-          <span className="text-sm font-black tracking-tight text-slate-900 leading-none">AreaIQ</span>
+          <span className="text-sm font-bold tracking-tight text-slate-900 leading-none">AreaIQ</span>
           <span className="text-[10px] text-slate-400 font-bold leading-none mt-1">Location Intelligence</span>
         </div>
       </div>
@@ -33,7 +33,7 @@ export default function Sidebar() {
             to="/"
             end
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-black transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
@@ -48,7 +48,7 @@ export default function Sidebar() {
           <NavLink
             to="/events"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-black transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
@@ -63,7 +63,7 @@ export default function Sidebar() {
           <NavLink
             to="/event-sources"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-black transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
@@ -78,7 +78,7 @@ export default function Sidebar() {
           <NavLink
             to="/stores"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-black transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
@@ -93,7 +93,7 @@ export default function Sidebar() {
           <NavLink
             to="/settings"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-black transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
@@ -108,7 +108,7 @@ export default function Sidebar() {
 
       {/* User Info Bottom */}
       <div className="p-4 border-t border-slate-50 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-black shadow animate-pulse">
+        <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold shadow animate-pulse">
           JM
         </div>
         <div className="min-w-0">

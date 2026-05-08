@@ -1,249 +1,178 @@
-# 🚀 AWS Production Deployment Guide (React + FastAPI)
+ssh -i C:\Users\panch\ai_avatar.pem ubuntu@34.226.92.16
 
-This guide provides step-by-step instructions to deploy your **GeoEvents AI** application on a single **AWS EC2 (Ubuntu 22.04 LTS)** instance using **Nginx** (as a web server and reverse proxy) and **Systemd/Uvicorn** (for backend process management).
 
----
 
-## 🏗️ Architecture Overview
 
-```mermaid
-graph TD
-    Client[🌐 Web Browser / HTTPS] -->|Port 443 / Port 80| Nginx[🖥️ Nginx Web Server]
-    Nginx -->|Serves Static Files| Frontend[📦 React SPA Build]
-    Nginx -->|Reverse Proxy /api| Backend[🐍 FastAPI / Port 8000]
-```
 
-*   **Frontend**: React (Vite) built to static HTML/JS/CSS assets, served directly by **Nginx** (ultra-fast and secure).
-*   **Backend**: FastAPI running inside a Python virtual environment, managed by **Systemd** (with auto-restart on failures), listening locally on port `8000`.
 
----
 
-## 🛠️ Step 1: Launch and Configure AWS EC2 Instance
 
-1.  **Launch EC2 Instance**:
-    *   Go to **AWS EC2 Console** -> **Launch Instance**.
-    *   **OS**: Choose **Ubuntu Server 22.04 LTS (HVM)** (64-bit x86).
-    *   **Instance Type**: `t3.medium` (recommended) or `t3.micro` (free tier eligible, but compile builds slowly).
-    *   **Key Pair**: Create or choose an existing `.pem` key pair for SSH access.
-2.  **Configure Security Group (Firewall)**:
-    Add the following **Inbound Rules**:
-    *   `SSH` (Port 22): Source `My IP` (for secure server access).
-    *   `HTTP` (Port 80): Source `0.0.0.0/0` (anywhere).
-    *   `HTTPS` (Port 443): Source `0.0.0.0/0` (anywhere).
 
----
 
-## 📂 Step 2: Connect to Server and Install Dependencies
 
-Open your terminal (PowerShell or Git Bash) on your local machine and connect to your instance:
 
-```bash
-ssh -i /path/to/your-key.pem ubuntu@your-ec2-public-ip
-```
 
-Once connected, run the following commands to update the system and install required system tools (Python, Node.js, Nginx, Certbot):
 
-```bash
-# Update Ubuntu package manager
-sudo apt update && sudo apt upgrade -y
 
-# Install Python 3, virtual environment, and pip
-sudo apt install -y python3-pip python3-venv python3-dev
 
-# Install Node.js (v18+) & NPM for building the frontend
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
 
-# Install Nginx (Web Server) & Git
-sudo apt install -y nginx git certbot python3-certbot-nginx
-```
 
----
 
-## 🐍 Step 3: Deploy the FastAPI Backend
 
-1.  **Clone the Repository**:
-    ```bash
-    git clone <your-github-repo-url> /var/www/location-based
-    cd /var/www/location-based/backend
-    ```
-2.  **Create and Activate Virtual Environment**:
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-3.  **Install Requirements**:
-    Ensure your `requirements.txt` is updated. Install dependencies:
-    ```bash
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-4.  **Configure Environment Variables**:
-    Create a production `.env` file:
-    ```bash
-    nano .env
-    ```
-    Add your production API keys and configure port settings:
-    ```env
-    WEATHER_API_KEY=your_openweathermap_api_key
-    SERP_API_KEY=your_serpapi_key
-    GEMINI_API_KEY=your_gemini_api_key
-    GEOAPIFY_KEY=your_geoapify_api_key
-    PORT=8000
-    ```
-    *(Press `Ctrl+O` then `Enter` to save, and `Ctrl+X` to exit nano)*
 
-5.  **Configure Systemd Service for Process Persistence**:
-    To ensure Uvicorn runs 24/7 in the background and restarts if the server reboots or crashes, create a system service file:
-    ```bash
-    sudo nano /etc/systemd/system/fastapi.service
-    ```
-    Paste the following configuration:
-    ```ini
-    [Unit]
-    Description=FastAPI Application
-    After=network.target
 
-    [Service]
-    User=ubuntu
-    WorkingDirectory=/var/www/location-based/backend
-    ExecStart=/var/www/location-based/backend/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 4
-    Restart=always
-    EnvironmentFile=/var/www/location-based/backend/.env
 
-    [Install]
-    WantedBy=multi-user.target
-    ```
-    Save and close the file.
 
-6.  **Start and Enable Backend Service**:
-    ```bash
-    sudo systemctl daemon-reload
-    sudo systemctl start fastapi
-    sudo systemctl enable fastapi
-    ```
-    Verify it is running successfully:
-    ```bash
-    sudo systemctl status fastapi
-    ```
 
----
 
-## 📦 Step 4: Build and Deploy the React Frontend
 
-1.  **Navigate to Frontend Directory**:
-    ```bash
-    cd /var/www/location-based/frontend
-    ```
-2.  **Install NPM packages**:
-    ```bash
-    npm install
-    ```
-3.  **Build the Production Static Bundle**:
-    Vite will compile and optimize all React, JS, and CSS files into a high-performance `dist` directory.
-    ```bash
-    npm run build
-    ```
-4.  **Confirm the build output**:
-    Verify that the build generated a `dist` directory:
-    ```bash
-    ls -la dist/
-    ```
 
----
 
-## 🖥️ Step 5: Configure Nginx as Web Server & Reverse Proxy
 
-Nginx will serve the React static files directly for maximum speed and forward any `/api` routes to your local FastAPI backend server on port `8000`.
 
-1.  **Create Nginx Configuration File**:
-    ```bash
-    sudo nano /etc/nginx/sites-available/location-based
-    ```
-2.  **Paste Nginx configuration**:
-    Replace `your-domain.com` with your actual domain or EC2 Public IP address:
-    ```nginx
-    server {
-        listen 80;
-        server_name your-domain.com www.your-domain.com;
 
-        # React Static Assets
-        location / {
-            root /var/www/location-based/frontend/dist;
-            index index.html;
-            try_files $uri $uri/ /index.html;
-        }
 
-        # Reverse Proxy to FastAPI Backend
-        location /api/ {
-            proxy_pass http://127.0.0.1:8000/api/;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-        }
 
-        # Optimize static asset caching
-        location ~* \.(?:css|js|jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
-            root /var/www/location-based/frontend/dist;
-            expires 1M;
-            access_log off;
-            add_header Cache-Control "public";
-        }
-    }
-    ```
-3.  **Enable Configuration & Restart Nginx**:
-    ```bash
-    # Link to enabled sites
-    sudo ln -s /etc/nginx/sites-available/location-based /etc/nginx/sites-enabled/
-    
-    # Remove default Nginx welcome page config
-    sudo rm /etc/nginx/sites-enabled/default
-    
-    # Test Nginx syntax for errors
-    sudo nginx -t
-    
-    # Restart Nginx service
-    sudo systemctl restart nginx
-    ```
 
----
 
-## 🔒 Step 6: Secure with Free HTTPS/SSL (Certbot)
 
-To protect user searches and locations, configure free SSL certificates with Let's Encrypt:
+<!-- 
 
-1.  Ensure your domain’s DNS (e.g. `your-domain.com`) points to your **EC2 Public IP Address**.
-2.  Run Certbot to fetch and auto-configure SSL for Nginx:
-    ```bash
-    sudo certbot --nginx -d your-domain.com -d www.your-domain.com
-    ```
-3.  Follow the prompts. Certbot will automatically rewrite your Nginx configuration to support HTTPS and redirect HTTP traffic to HTTPS safely.
 
----
+We calculated Projected Lift by estimating how many extra customers an event can bring to the Subway store.
 
-## 🛠️ Step 7: Post-Deployment Logs and Troubleshooting
+Instead of using only distance, we considered multiple business factors:
 
-### View Backend Live Logs:
-```bash
-sudo journalctl -u fastapi -f
-```
+Distance from store → closer events have higher chances of bringing customers
+Attendees count → more people means more potential customers
+Event type → conferences, concerts, sports events, weddings, etc.
+Food availability → if food is already provided at the event, fewer people will visit Subway
+Time relevance → lunch/dinner time events are more valuable for a food business
 
-### View Nginx Error Logs:
-```bash
-sudo tail -f /var/log/nginx/error.log
-```
+Then we calculate an estimated conversion probability and apply it to the attendee count.
 
-### Restart Backend after Code Updates:
-Whenever you pull updates or make changes to the backend codebase, restart the service:
-```bash
-sudo systemctl restart fastapi
-```
+Final formula:
 
----
+Projected Lift=Attendees×Conversion Rate×Event Factors×10
 
-**🎉 Congratulations! Your production-grade React + FastAPI application is now live on AWS EC2 with full SSL security, background process monitoring, and optimized static serving!**
+Projected Lift=Attendees×Conversion Rate×Event Factors×10
+
+Example
+
+Suppose:
+
+Event has 5000 attendees
+Distance from Subway = 0.2 miles
+Event type = Conference
+No food provided
+Time = Lunch
+Average customer spend = $10
+
+Base conversion for 0.2 miles = 15%
+
+Formula:
+
+5000×0.15×1.0×1.0×1.2×10
+
+5000×0.15×1.0×1.0×1.2×10=9000
+
+Projected Lift = $9,000
+
+This gives a more realistic business prediction instead of only using distance. -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+direct production-grade sources hain. 
+ https://www.sf.gov/events/upcoming   
+   https://www.sftravel.com/things-to-do/events  
+    https://www.paloalto.gov/Departments/City-Clerk/City-Council/City-Council-Committee-Meetings   
+      https://www.destinationpaloalto.com/calendar/#!/   
+        https://events.stanford.edu/   
+           https://ose.stanford.edu/upcoming-events   
+             https://www.paloaltonetworks.com/resources/event-calendar  
+                https://www.paloaltoonline.com/calendar/ 
+                  https://allevents.in/palo-alto   #!/  -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+I own a Subway restaurant located in Palo Alto, California, and I want you to act like a highly experienced local business intelligence analyst for restaurants. Your task is to identify and analyze all relevant events happening within Palo Alto, Menlo Park, Stanford, Redwood City, Mountain View, East Palo Alto, and nearby surrounding areas during the next 7–10 days. I want a highly detailed and structured event intelligence report specifically focused on events that could potentially increase customer traffic to my Subway location. Please search across all possible event sources including city event calendars, Stanford University calendars, Stanford athletics and Stanford Live events, Eventbrite, Meetup, Patch, Facebook Events, Instagram event pages, local newspapers, tourism websites, community organizations, business networking groups, libraries, schools, sports schedules, concert venues, cultural organizations, nonprofit events, parks and recreation calendars, downtown associations, and any other local event platforms.
+
+For every event you find, provide detailed information including: event name, exact date, start and end time, event category (concert, conference, family event, sports event, meetup, workshop, festival, community event, cultural event, education event, etc.), venue name, exact address, estimated distance from my Subway location in Palo Alto, expected audience type (families, students, tourists, professionals, teenagers, sports fans, etc.), estimated attendance or crowd size if possible, whether food is available at the venue or not, whether outside food options nearby are limited, and whether attendees are likely to search for quick food options before or after the event. I especially want you to prioritize and identify events where there are limited food vendors, no strong food options nearby, large foot traffic, long-duration events, sports events, family gatherings, student gatherings, concerts, outdoor community events, or events where attendees may leave the venue looking for fast and affordable food like Subway.
+
+In addition, for each event, identify the organizer or hosting organization and provide as much organizer information as possible including organizer name, company or institution name, contact person if available, email address, phone number, website, LinkedIn profile, Instagram page, Facebook page, sponsorship or vendor contact page, and whether the event may be open to restaurant partnerships, catering opportunities, coupon distribution, sponsorships, or food collaborations. Also analyze whether the event audience is a good fit for Subway customers and explain why the event may or may not generate additional customer traffic for my restaurant.
+
+I want the final output in a highly detailed table format sorted by highest business opportunity first. Include a “Restaurant Opportunity Score” from 1–10 for every event based on expected foot traffic, food availability nearby, audience fit, distance from my restaurant, and likelihood of attendees purchasing food from Subway. Also provide strategic recommendations for each event such as: run sandwich combo promotions, increase staffing during specific hours, distribute coupons, target students, create family meal deals, stay open later, increase delivery readiness, or contact organizers for partnerships. I want this report to be extremely practical, business-focused, and optimized for maximizing restaurant revenue opportunities during the next 7–10 days. -->
+
+
+
+
+
+
+sudo cat /etc/systemd/system/geoevents-backend.service
+sudo cat /etc/systemd/system/new-frontend.service
+sudo systemctl status geoevents-backend
+sudo systemctl status new-frontend
+
+
+
+
+
+
+
+
+
+Score & Projected Lift Calculation
+Exact formula samajhna:
+
+SCORE = Distance + Attendance + Type + Audience Bonus + Timing Bonus + Food Penalty
+Har component alag explain:
+
+Component	Range	Kya depend karta hai
+Distance Score	0-25 pts	Event kitna paas hai store se
+Attendance Score	5-25 pts	Event mein kitne log expected hain
+Type Score	3-18 pts	Event ka type (sports=18, music=16, conference=14, etc)
+Audience Bonus	0-10+ pts	Students/professionals/sports fans = zyada
+Timing Bonus	0-10 pts	Dinner time (5-9pm) = 10 pts, lunch = 6 pts
+Food Penalty	-15 to 0	Agar event mein khana included hai = -15
+Final	20-99 pts	(clamped between 20 minimum aur 99 maximum)
+Example: Concert 0.2 miles away, 500 people, 7pm
+
+PROJECTED LIFT = Attendance × Conversion Rate × $10 (per event)
+Conversion Rate = Distance Factor × Event Factor × Food Factor × Time Factor
+
+Factor	Formula	Range	Example
+Distance	Based on miles	0.02-0.20	0.1 miles = 0.20 (20%)
+Event	Type-based multiplier	0.5-1.1	Sports = 1.1x (high intent)
+Food	Is food served?	0.3-1.0	Full meal = 0.3x, no food = 1.0x
+Time	Event hour	0.5-1.2	Dinner 5-9pm = 1.2x (peak)
+Example: Sports event 0.1 miles, 500 attendance, 6pm, no food
+
+Summary:
+
+Score = ordaining events by relevance (20-99)
+Projected Lift = revenue potential ($10 per cover) summed across all qualified events
+Filtered by selected category and date range
+Only events with score ≥ 50 count as "High Opportunity"

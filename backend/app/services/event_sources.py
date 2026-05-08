@@ -37,10 +37,8 @@ class EventSourcesService:
                 data = json.load(f)
                 return data.get('sources', [])
         except FileNotFoundError:
-            print(f"Warning: {self.sources_file} not found. Returning empty sources.")
             return []
         except json.JSONDecodeError:
-            print(f"Warning: Invalid JSON in {self.sources_file}. Returning empty sources.")
             return []
 
     def _calculate_distance(self, lat1: float, lon1: float, lat2: float, lon2: float) -> float:

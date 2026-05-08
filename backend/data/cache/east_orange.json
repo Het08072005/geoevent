@@ -1,0 +1,415 @@
+{
+  "status": "success",
+  "location": "East Orange",
+  "total_sources": 51,
+  "websites": [
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/18/",
+      "name": "Discover 18 Events & Activities in Orange, CA",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/community--festivals/",
+      "name": "Best Community Festival in Orange, CA - Events & Activities",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/street-fairs/",
+      "name": "Discover Street Fairs Events & Activities in Orange, CA",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/orange-may-parade-2026-orange-you-glad-its-americas-birthday-250-years-tickets-1981972135009",
+      "name": "Orange May Parade 2026 - Orange You Glad It's America's ...",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/carnival-festival/",
+      "name": "Discover Carnival Festival Events & Activities in Orange, CA",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/cleanup-santiago-creek-orange-county-earth-day-2026-tickets-1986771903245",
+      "name": "Cleanup – Santiago Creek (Orange County) – Earth Day ...",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/events--today/",
+      "name": "Events and Things to do in Orange, CA today",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--irvine/international-festival/",
+      "name": "International festival Events and Things to do in Irvine, CA",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/free--events/",
+      "name": "Free Orange, CA Events",
+      "category": "Eventbrite Events",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/5k-race/",
+      "name": "Discover 5k Race Events & Activities in Orange, CA",
+      "category": "Sports & Recreation",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--orange/events/",
+      "name": "Orange, CA Events, Calendar & Tickets",
+      "category": "Tourism & Visitors",
+      "priority": 10,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--orange/community/",
+      "name": "Community Events in Orange, CA",
+      "category": "Eventbrite Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/topics/orange-county/us/",
+      "name": "Orange County groups",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/find/us--ca--orange/meet-new-friends/",
+      "name": "Meet new friends in Orange, California",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/got-oc/",
+      "name": "GOT-OC! (Get Out There Orange County)",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/octravelbuddies/",
+      "name": "OC Travel Buddies & Local Events!",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/oc-happy-hour/",
+      "name": "OC Happy Hour",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/living-la-and-oc/",
+      "name": "Living LA and OC",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/orange-hip-hop-meetup-group/",
+      "name": "Orange Hip Hop Meetup Group",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/th-TH/topics/orange-county/us/",
+      "name": "Orange County groups",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/oc-outdoor-art-club/",
+      "name": "OC Outdoor Art Club",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/oc-mix-mingle-20s-30s/",
+      "name": "Mix & Mingle OC",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--orange/music/",
+      "name": "Music & Concerts Events in Orange, CA - Live Music, Dances",
+      "category": "Venues",
+      "priority": 9,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/cityoforangerecreation/videos/the-latest-issue-of-our-orange-activity-guide-spring-2026-is-here-discover-upcom/26491137543827846/",
+      "name": "The latest issue of Our Orange Activity Guide– Spring 2026 is ...",
+      "category": "City Government",
+      "priority": 7,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/cityoforangerecreation/posts/the-latest-issue-of-our-orange-activity-guide-spring-2026-is-here-discover-upcom/1194849122822237/",
+      "name": "City of Orange Recreation",
+      "category": "City Government",
+      "priority": 7,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "business.orangechamber.com",
+      "url": "https://business.orangechamber.com/events/calendar",
+      "name": "Event Calendar",
+      "category": "Local Media",
+      "priority": 7,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/OrangeCountyChamberofCommerceNY/posts/mark-your-calendars-the-2026-chamber-choice-gala-is-the-event-of-the-year-and-on/1459859576139309/",
+      "name": "Mark Your Calendars! The 2026 Chamber Choice Gala ...",
+      "category": "Business & Community",
+      "priority": 7,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "advocacy.calchamber.com",
+      "url": "https://advocacy.calchamber.com/calendar/",
+      "name": "Calendar of Events - Advocacy",
+      "category": "Business & Community",
+      "priority": 7,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "orangecounty.net",
+      "url": "https://www.orangecounty.net/html/fests.html",
+      "name": "Orange County Festivals and Events",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "ocparks.com",
+      "url": "https://www.ocparks.com/events",
+      "name": "Events",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "theorangecountycityguide.com",
+      "url": "https://www.theorangecountycityguide.com/events",
+      "name": "Orange County Events | Explore, Experience, Enjoy Your Visit",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "orangereview.com",
+      "url": "https://orangereview.com/events",
+      "name": "Events in Old Towne Orange",
+      "category": "City Government",
+      "priority": 5,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "campus.eastorange.k12.nj.us",
+      "url": "https://campus.eastorange.k12.nj.us/apps/events/",
+      "name": "Events | East Orange Campus High School",
+      "category": "Universities",
+      "priority": 5,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "bandsintown.com",
+      "url": "https://www.bandsintown.com/c/orange-ca",
+      "name": "Concerts & Events in Orange, CA",
+      "category": "Venues",
+      "priority": 5,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "scfta.org",
+      "url": "https://www.scfta.org/shows-events/calendar",
+      "name": "Calendar",
+      "category": "Venues",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "philharmonicsociety.org",
+      "url": "https://www.philharmonicsociety.org/concerts-tickets/calendar-of-events",
+      "name": "Calendar of Events",
+      "category": "Venues",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "seatgeek.com",
+      "url": "https://seatgeek.com/cities/costa-mesa/concerts",
+      "name": "Costa Mesa Concert Calendar & Tickets 2026",
+      "category": "Venues",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "chapters.cnps.org",
+      "url": "https://chapters.cnps.org/oc/home/activities/event-calendar-2026/",
+      "name": "Event Calendar 2026 - Orange County Chapter - CNPS",
+      "category": "Local Media",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "greaterorangechamber.chambermaster.com",
+      "url": "http://greaterorangechamber.chambermaster.com/events/calendar",
+      "name": "Event Calendar | Greater Orange Area Chamber of Commerce",
+      "category": "Business & Community",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "findarace.com",
+      "url": "https://findarace.com/us/events/orange-county-hftc-5k",
+      "name": "Orange County - HFTC 5k 2026 | Sat 21 Mar",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "raceroster.com",
+      "url": "https://raceroster.com/events/2026/115981/run-wild-5k",
+      "name": "2026 — Run Wild 5K",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "letsdothis.com",
+      "url": "https://www.letsdothis.com/us/running-events/in-orange-california",
+      "name": "Running Events in Orange, California 2026-2027",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "carenwareevents.com",
+      "url": "https://www.carenwareevents.com/calendar-of-events",
+      "name": "SoCal's BEST 5ks/10ks/Half Marathons",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "fleetfeet.com",
+      "url": "https://www.fleetfeet.com/races/ca/long-beach/162645-orange-county-hftc-5k?srsltid=AfmBOoqwDZ62GlrVaOeHfcSpUav19RopsEcMHFyZWSrQGctjbyICngs3",
+      "name": "Orange County - HFTC 5k",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "spartan.com",
+      "url": "https://www.spartan.com/en/races/orange-county",
+      "name": "2026 Angel Stadium Spartan Stadion Event",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "runguides.com",
+      "url": "https://www.runguides.com/event/21531/the-oc-fair-fun-run",
+      "name": "2026 The OC Fair Fun Run | Costa Mesa",
+      "category": "Sports & Recreation",
+      "priority": 4,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "musiccenter.org",
+      "url": "https://www.musiccenter.org/tickets-free-events/tmc-arts/l-a-county-holiday-celebration/",
+      "name": "A TMC Arts Program LA County Holiday Celebration",
+      "category": "Cultural & Religious",
+      "priority": 3,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "mylocaloc.com",
+      "url": "https://www.mylocaloc.com/blog/festivals-in-orange-county/",
+      "name": "Festivals in Orange County",
+      "category": "Cultural & Religious",
+      "priority": 3,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "pbssocal.org",
+      "url": "https://www.pbssocal.org/arts-culture-community-calendar",
+      "name": "SoCal Community Events Calendar",
+      "category": "Tourism & Visitors",
+      "priority": 3,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "gig-guide.co.uk",
+      "url": "https://www.gig-guide.co.uk/us/orange-county-ca/upcoming-events",
+      "name": "Upcoming Events in Orange County, California - Gig Guide",
+      "category": "Tourism & Visitors",
+      "priority": 3,
+      "description": "Event source for East Orange"
+    },
+    {
+      "domain": "visitanaheim.org",
+      "url": "https://www.visitanaheim.org/events/this-weekend/",
+      "name": "Things to Do in Orange County This Weekend",
+      "category": "Tourism & Visitors",
+      "priority": 3,
+      "description": "Event source for East Orange"
+    }
+  ]
+}

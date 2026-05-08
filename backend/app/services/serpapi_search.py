@@ -6,6 +6,10 @@ import re
 import json
 from typing import List, Dict, Any
 from math import sin, cos, sqrt, atan2, radians
+from urllib.parse import urlparse
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -185,39 +189,90 @@ def _clean_event_name(title: str, domain: str) -> str:
     return cleaned[:70]
 
 
-# ── Premium, Deep-Link Targeting Google Event Queries ──
-# Using exact location to trigger Google's native rich event search, strictly filtering out past events
+# ── Event Listing Page Discovery Queries ──
+# Each query targets a specific category of event listing pages.
+# OPTIMIZED with proven high-yield search patterns.
+# Uses city name only (not full address) — {city} is replaced with primary_city.
 CATEGORY_QUERIES = [
-    # 1. City Government
-    ("City Government", "{city} city council parks recreation community events calendar upcoming 2026"),
-
-    # 2. Tourism / Visitor Bureaus (Filtered for local events, avoiding hotels)
-    ("Tourism & Visitors", "{city} downtown association local events calendar 2026"),
-
-    # 3. Universities / Schools
-    ("Universities", "{city} university college campus events schedule calendar 2026"),
-
-    # 4. Event Platforms (Strict deep-links)
-    ("Event Platforms", "{city} upcoming events 2026 site:eventbrite.com OR site:meetup.com OR site:ticketmaster.com OR site:allevents.in"),
-
-    # 5. Social Media
-    ("Social Media", "{city} local events 2026 site:facebook.com/events OR site:linkedin.com/events"),
-
-    # 6. Venues
-    ("Venues", "{city} theater concert hall museum park events schedule upcoming 2026"),
-
-    # 7. Local Media
-    ("Local Media", "{city} local news community events calendar 2026"),
-
-    # 8. Business/Community Groups
-    ("Business & Community", "{city} chamber of commerce downtown nonprofit events calendar 2026"),
-
-    # 9. Sports/Recreation
-    ("Sports & Recreation", "{city} athletics tournament 5k race local sports schedule 2026"),
-
-    # 10. Cultural/Religious Organizations
-    ("Cultural & Religious", "{city} cultural festival holiday celebration events 2026")
+    # Generic Event Calendar Discovery
+    ("{city} events calendar", "{city} events calendar"),
+    ("{city} community events", "{city} community events"),
+    ("Things to do {city}", "things to do in {city} this week"),
+    ("Things to do {city} weekend", "things to do in {city} this weekend"),
+    
+    # City/Government Calendars (with .gov dork)
+    ("City Government", "site:.gov {city} events"),
+    ("City Calendar", "site:.gov \"{city}\" \"community calendar\""),
+    
+    # University Events
+    ("University Events", "site:stanford.edu events"),
+    ("University Calendar", "site:.edu {city} campus events calendar"),
+    
+    # Event Platforms - Eventbrite
+    ("Eventbrite", "site:eventbrite.com {city} events"),
+    ("Eventbrite Directory", "site:eventbrite.com events {city}"),
+    
+    # Meetup Groups
+    ("Meetup Events", "site:meetup.com {city} events"),
+    ("Meetup Groups", "site:meetup.com \"{city}\" events"),
+    
+    # Ticketed Venues
+    ("Venues & Concerts", "{city} concert venues events"),
+    ("Theater Events", "{city} theater events tickets"),
+    
+    # Local News & Community
+    ("Local Media Events", "{city} community events calendar"),
+    ("Local News", "{city} events upcoming"),
+    
+    # Business & Nonprofit
+    ("Business Events", "{city} chamber events"),
+    ("Nonprofit Events", "{city} nonprofit conference events"),
+    
+    # Sports & Recreation
+    ("Sports Events", "{city} 5k race sports tournament"),
+    ("Running Events", "{city} running race events"),
+    
+    # Cultural & Arts
+    ("Arts Festival", "{city} arts culture festival"),
+    ("Cultural Events", "{city} celebration events"),
+    
+    # Advanced Google Dorks
+    ("Event Pages", "inurl:events \"{city}\""),
+    ("Calendar Pages", "inurl:calendar \"{city}\""),
+    ("JSON Events", "\"events.json\" \"{city}\""),
 ]
+
+# ── Domains that are always valid event sources (no path check needed) ──
+_EVENT_PLATFORM_DOMAINS = {
+    "eventbrite.com", "meetup.com", "ticketmaster.com", "allevents.in",
+    "bandsintown.com", "facebook.com", "universe.com", "runsignup.com",
+    "active.com", "eventcartel.com", "nextdoor.com", "playpass.com",
+    "patch.com",
+}
+
+# ── Path keywords that confirm a URL is an event listing page ──
+_EVENT_PATH_KEYWORDS = {
+    "/event", "/calendar", "/schedule", "/ticket", "/show", "/shows",
+    "/whatson", "/whats-on", "/live", "/concert", "/concerts", "/upcoming",
+    "/community", "/activities", "/program", "/programs", "/fest", "/fair",
+    "/parade", "/conference", "/workshop", "/class", "/race", "/run",
+    "/tournament", "/sports", "/arts", "/d/", "/e/", "/listing",
+    "/listings", "/agenda", "/things-to-do", "/happenings",
+}
+
+
+def _is_event_listing_url(url: str, domain: str) -> bool:
+    """Returns True if URL looks like an actual event listing page, not a homepage."""
+    domain_lower = domain.lower()
+    if any(p in domain_lower for p in _EVENT_PLATFORM_DOMAINS):
+        return True
+    try:
+        path = urlparse(url).path.lower()
+        if not path or path == "/" or path == "":
+            return False
+        return any(kw in path for kw in _EVENT_PATH_KEYWORDS)
+    except Exception:
+        return False
 
 
 class SerpAPIEventSearch:
@@ -226,8 +281,150 @@ class SerpAPIEventSearch:
         self.base_url = "https://serpapi.com/search"
         logger.info(f"SerpAPI initialized. Key present: {bool(self.api_key)}")
 
+    def _parse_google_event_date(self, when_str: str) -> str:
+        if not when_str:
+            from datetime import datetime, timedelta
+            return (datetime.now() + timedelta(days=2)).strftime("%Y-%m-%dT18:00:00")
+        
+        try:
+            from datetime import datetime
+            current_year = datetime.now().year
+            
+            months_re = r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})"
+            match = re.search(months_re, when_str, re.IGNORECASE)
+            if match:
+                month_str = match.group(1)[:3].title()
+                day_val = int(match.group(2))
+                
+                time_match = re.search(r"(\d{1,2}):(\d{2})\s*(AM|PM)", when_str, re.IGNORECASE)
+                hour = 18
+                minute = 0
+                if time_match:
+                    h = int(time_match.group(1))
+                    m = int(time_match.group(2))
+                    ampm = time_match.group(3).upper()
+                    if ampm == "PM" and h < 12:
+                        h += 12
+                    elif ampm == "AM" and h == 12:
+                        h = 0
+                    hour = h
+                    minute = m
+                
+                months_map = {
+                    "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
+                    "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12
+                }
+                month_val = months_map[month_str]
+                
+                dt = datetime(current_year, month_val, day_val, hour, minute)
+                return dt.strftime("%Y-%m-%dT%H:%M:%S")
+        except Exception as e:
+            logger.debug(f"Failed to parse event date '{when_str}': {e}")
+            
+        from datetime import datetime, timedelta
+        return (datetime.now() + timedelta(days=2)).strftime("%Y-%m-%dT18:00:00")
+
+    async def search_google_events(self, location: str) -> List[Dict[str, Any]]:
+        if not self.api_key:
+            logger.error("SERP_API key not configured for Google Events")
+            return []
+
+        query = f"events in {location}"
+        params = {
+            "engine": "google_events",
+            "q": query,
+            "api_key": self.api_key,
+            "gl": "us",
+            "hl": "en"
+        }
+
+        logger.info(f"SerpAPI Google Events query: {query}")
+        events = []
+        try:
+            async with httpx.AsyncClient(timeout=30.0) as client:
+                resp = await client.get(self.base_url, params=params)
+                if resp.status_code != 200:
+                    logger.error(f"SerpAPI Google Events returned status code {resp.status_code}")
+                    return []
+                
+                data = resp.json()
+                results = data.get("events_results", [])
+                logger.info(f"SerpAPI Google Events returned {len(results)} events")
+                
+                for item in results:
+                    title = item.get("title")
+                    if not title:
+                        continue
+                    
+                    when_str = ""
+                    date_info = item.get("date", {})
+                    if isinstance(date_info, dict):
+                        when_str = date_info.get("when") or date_info.get("start_date") or ""
+                    elif isinstance(date_info, str):
+                        when_str = date_info
+                    
+                    iso_date = self._parse_google_event_date(when_str)
+                    
+                    link = item.get("link") or ""
+                    domain = self._extract_domain(link) or "google.com"
+                    
+                    address_list = item.get("address", [])
+                    address = ", ".join(address_list) if isinstance(address_list, list) else str(address_list)
+                    
+                    venue_name = item.get("venue", {}).get("name") or ""
+                    if not address and venue_name:
+                        address = venue_name
+                    
+                    desc = item.get("description") or ""
+                    
+                    price = "Free"
+                    ticket_info = item.get("ticket_info", [])
+                    if isinstance(ticket_info, list) and ticket_info:
+                        for t in ticket_info:
+                            if t.get("price"):
+                                price = t.get("price")
+                                break
+                    elif isinstance(ticket_info, dict):
+                        price = ticket_info.get("price") or "Free"
+                    
+                    category = "community"
+                    desc_lower = desc.lower() + " " + title.lower()
+                    if any(w in desc_lower for w in ["music", "concert", "show", "band", "live"]):
+                        category = "music"
+                    elif any(w in desc_lower for w in ["sports", "game", "match", "tournament", "soccer", "football", "basketball", "run"]):
+                        category = "sports"
+                    elif any(w in desc_lower for w in ["conference", "summit", "business", "networking", "workshop"]):
+                        category = "conference"
+                    elif any(w in desc_lower for w in ["food", "taste", "dining", "dinner", "celebration", "festival"]):
+                        category = "food"
+                    
+                    event_record = {
+                        "name":           title[:120],
+                        "date":           iso_date,
+                        "end_date":       "",
+                        "venue_name":     venue_name[:100],
+                        "address":        address[:150] or None,
+                        "lat":            None,
+                        "lon":            None,
+                        "price":          price,
+                        "attendance":     "TBA",
+                        "description":    desc[:200],
+                        "categoryClean":  category,
+                        "url":            link,
+                        "organizer_name": venue_name or "Event Organizer",
+                        "source":         "Scraper",
+                        "source_domain":  domain,
+                        "source_website": f"https://{domain}" if domain != "google.com" else "",
+                        "source_url":     link,
+                    }
+                    events.append(event_record)
+        except Exception as e:
+            logger.error(f"Error searching Google Events via SerpAPI: {e}")
+            
+        return events
+
     async def search_event_sources(self, location: str) -> Dict[str, Any]:
-        # ── Check Server-side File Cache First! ──
+        # ── Check Server-side File Cache First using EXACT query ──
         filepath = _get_cache_filepath(location)
         if os.path.exists(filepath):
             logger.info(f"Loading cached SerpAPI results from file: {filepath}")
@@ -242,12 +439,12 @@ class SerpAPIEventSearch:
             logger.error("SERP_API key not configured")
             return {"status": "error", "message": "SERP_API key not configured", "websites": {}}
 
-        # Extract exact primary city (e.g., "Palo Alto")
+        primary_query = location.strip()
         primary_city = _extract_city_from_location(location)
         neighboring_cities = _get_neighboring_cities(primary_city)
-        logger.info(f"Primary city: {primary_city}. Neighboring cities: {neighboring_cities}")
+        logger.info(f"Search location: '{primary_query}' → city: '{primary_city}'")
 
-        # Use the exact city string for natural Google search (avoids OR operator confusion)
+        # Use CITY NAME (not full address) so queries like "{city} events calendar" work correctly
         cities_query_part = primary_city
 
         # Define domains to completely ignore (blacklisted sites)
@@ -309,7 +506,7 @@ class SerpAPIEventSearch:
                         "num": 10,
                         "gl": "us",
                         "hl": "en",
-                        "tbs": "qdr:w",  # STRICT: Only pull pages updated in the past 7 days to guarantee 100% fresh/future events!
+                        # No tbs/time restriction — calendar pages are evergreen and don't get re-indexed every week
                     }
                     logger.info(f"SerpAPI query [{category}]: {query}")
                     resp = await client.get(self.base_url, params=params)
@@ -326,6 +523,11 @@ class SerpAPIEventSearch:
 
                         # 1. Skip invalid, helper, dead, or login URLs
                         if not _is_valid_event_url(url):
+                            continue
+
+                        # 1b. Require the URL to look like an event listing page (not a homepage)
+                        if not _is_event_listing_url(url, domain):
+                            logger.debug(f"Skipping non-event URL: {url}")
                             continue
 
                         # 2. Block blacklisted domains
@@ -479,65 +681,139 @@ class SerpAPIEventSearch:
     def _get_seeds_for_city(self, city: str) -> List[Dict[str, Any]]:
         city_lower = city.lower().strip()
         
-        # We always inject these premium seeds for any search in the Palo Alto/Bay Area region
+        # Bay Area / Palo Alto region seeds
         if any(kw in city_lower for kw in ["palo alto", "menlo park", "redwood city", "los gatos", "stanford", "mountain view", "sunnyvale"]):
             return [
+                # ── OFFICIAL CITY/GOV WEBSITES (highest priority) ──
                 {
-                    "url": "https://www.paloaltoonline.com/calendar/#!/",
-                    "title": "Palo Alto Online Events Calendar",
+                    "url": "https://www.paloalto.gov/calendar",
+                    "title": "City of Palo Alto Official Events",
+                    "domain": "paloalto.gov",
+                    "category": "City Government"
+                },
+                {
+                    "url": "https://www.sf.gov/events/upcoming",
+                    "title": "San Francisco Events",
+                    "domain": "sf.gov",
+                    "category": "City Government"
+                },
+                # ── STANFORD EVENTS ──
+                {
+                    "url": "https://events.stanford.edu/",
+                    "title": "Stanford University Events Calendar",
+                    "domain": "events.stanford.edu",
+                    "category": "Universities"
+                },
+                {
+                    "url": "https://ose.stanford.edu/upcoming-events",
+                    "title": "Stanford OSE Events",
+                    "domain": "ose.stanford.edu",
+                    "category": "Universities"
+                },
+                # ── MAJOR EVENT PLATFORMS ──
+                {
+                    "url": "https://allevents.in/palo-alto",
+                    "title": "AllEvents Palo Alto",
+                    "domain": "allevents.in",
+                    "category": "Event Platforms"
+                },
+                {
+                    "url": "https://www.meetup.com/find/us--ca--palo-alto/",
+                    "title": "Meetup Palo Alto",
+                    "domain": "meetup.com",
+                    "category": "Meetup Events"
+                },
+                # ── LOCAL MEDIA & COMMUNITY CALENDARS ──
+                {
+                    "url": "https://www.paloaltoonline.com/calendar/",
+                    "title": "Palo Alto Online Calendar",
                     "domain": "paloaltoonline.com",
                     "category": "Local Media"
                 },
                 {
-                    "url": "https://losgatan.com/events-calendar/#/",
-                    "title": "Los Gatan Events Calendar",
-                    "domain": "losgatan.com",
-                    "category": "Local Media"
+                    "url": "https://www.destinationpaloalto.com/calendar/",
+                    "title": "Destination Palo Alto Events",
+                    "domain": "destinationpaloalto.com",
+                    "category": "Tourism & Visitors"
+                },
+                # ── VENUES & ARTS ──
+                {
+                    "url": "https://livelyarts.stanford.edu/events",
+                    "title": "Stanford Lively Arts",
+                    "domain": "livelyarts.stanford.edu",
+                    "category": "Venues"
                 },
                 {
-                    "url": "https://www.mercurynews.com/event-calendar/#/",
-                    "title": "Mercury News Event Calendar",
-                    "domain": "mercurynews.com",
-                    "category": "Local Media"
+                    "url": "https://www.theatreworks.org/tickets/upcoming-events/",
+                    "title": "TheatreWorks Silicon Valley",
+                    "domain": "theatreworks.org",
+                    "category": "Venues"
                 },
-                {
-                    "url": "https://www.almanacnews.com/calendar/#!/",
-                    "title": "Almanac News Calendar",
-                    "domain": "almanacnews.com",
-                    "category": "Local Media"
-                },
+                # ── ENVIRONMENTAL & COMMUNITY ──
                 {
                     "url": "https://www.grassrootsecology.org/event-calendar",
-                    "title": "Grassroots Ecology Event Calendar",
+                    "title": "Grassroots Ecology Events",
                     "domain": "grassrootsecology.org",
-                    "category": "Cultural & Religious"
-                },
-                {
-                    "url": "https://www.eventbrite.com/d/ca--palo-alto/events/",
-                    "title": "Eventbrite Palo Alto Events Directory",
-                    "domain": "eventbrite.com",
-                    "category": "Event Platforms"
-                },
-                {
-                    "url": "https://www.eventbrite.com/d/ca--palo-alto/near-subway/",
-                    "title": "Eventbrite Events Near Subway Palo Alto",
-                    "domain": "eventbrite.com",
-                    "category": "Event Platforms"
+                    "category": "Community"
                 },
                 {
                     "url": "https://canopy.org/event-calendar/",
-                    "title": "Canopy Environmental Event Calendar",
+                    "title": "Canopy Events",
                     "domain": "canopy.org",
-                    "category": "Business & Community"
+                    "category": "Community"
+                },
+            ]
+        
+        # Bay Area generic (East Orange, Newark, etc.)
+        if any(kw in city_lower for kw in ["east orange", "orange", "newark", "jersey", "nj"]):
+            return [
+                {
+                    "url": "https://www.meetup.com/find/us--nj--orange/",
+                    "title": "Meetup Orange NJ",
+                    "domain": "meetup.com",
+                    "category": "Meetup Events"
                 },
                 {
-                    "url": "https://golobos.com/",
-                    "title": "Go Lobos Athletics Calendar",
-                    "domain": "golobos.com",
-                    "category": "Sports & Recreation"
-                }
+                    "url": "https://www.eventbrite.com/d/nj--orange/events/",
+                    "title": "Eventbrite Orange NJ",
+                    "domain": "eventbrite.com",
+                    "category": "Event Platforms"
+                },
+                {
+                    "url": "https://allevents.in/orange",
+                    "title": "AllEvents Orange NJ",
+                    "domain": "allevents.in",
+                    "category": "Event Platforms"
+                },
+                {
+                    "url": "https://www.nj.gov/nj/events/",
+                    "title": "State of New Jersey Events",
+                    "domain": "nj.gov",
+                    "category": "City Government"
+                },
             ]
-        return []
+        
+        # Fallback for any city
+        return [
+            {
+                "url": f"https://www.eventbrite.com/d/{city.lower().replace(' ', '-')}/events/",
+                "title": f"Eventbrite {city}",
+                "domain": "eventbrite.com",
+                "category": "Event Platforms"
+            },
+            {
+                "url": f"https://www.meetup.com/find/{city.lower().replace(' ', '-')}/",
+                "title": f"Meetup {city}",
+                "domain": "meetup.com",
+                "category": "Meetup Events"
+            },
+            {
+                "url": f"https://allevents.in/{city.lower().replace(' ', '-')}",
+                "title": f"AllEvents {city}",
+                "domain": "allevents.in",
+                "category": "Event Platforms"
+            },
+        ]
 
 
 serpapi_service = SerpAPIEventSearch()

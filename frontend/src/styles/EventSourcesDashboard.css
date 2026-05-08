@@ -1210,7 +1210,7 @@
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   z-index: 2000;
-  max-h: 240px;
+  max-height: 240px;
   overflow-y: auto;
   animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }

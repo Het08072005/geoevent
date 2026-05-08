@@ -1,0 +1,59 @@
+{
+  "lat": 37.4443293,
+  "lon": -122.1598465,
+  "saved_at": 1778201357.7361047,
+  "payload": {
+    "status": "success",
+    "daily": [
+      {
+        "dt": 1778241600,
+        "temp_max": 21,
+        "temp_min": 11,
+        "description": "scattered clouds",
+        "pop": 0
+      },
+      {
+        "dt": 1778328000,
+        "temp_max": 25,
+        "temp_min": 11,
+        "description": "few clouds",
+        "pop": 0
+      },
+      {
+        "dt": 1778414400,
+        "temp_max": 27,
+        "temp_min": 12,
+        "description": "few clouds",
+        "pop": 0
+      },
+      {
+        "dt": 1778500800,
+        "temp_max": 30,
+        "temp_min": 15,
+        "description": "broken clouds",
+        "pop": 0
+      },
+      {
+        "dt": 1778587200,
+        "temp_max": 29,
+        "temp_min": 16,
+        "description": "broken clouds",
+        "pop": 0
+      },
+      {
+        "dt": 1778630400,
+        "temp_max": 26,
+        "temp_min": 26,
+        "description": "clear sky",
+        "pop": 0
+      },
+      {
+        "dt": 1778716800,
+        "temp_max": 26,
+        "temp_min": 16,
+        "description": "clear sky",
+        "pop": 0
+      }
+    ]
+  }
+}

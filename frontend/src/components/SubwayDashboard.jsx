@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { MapPin, Search, Loader2, AlertCircle, Zap, TrendingUp, Users } from 'lucide-react';
 import { VenueCard } from './VenueCard';
 
-const GEOAPIFY_KEY = "66dd1c0d3fb542ef9d255dedfd3b2a5a";
-const BACKEND_URL = "http://127.0.0.1:8000";
+const GEOAPIFY_KEY = import.meta.env.VITE_GEOAPIFY_KEY || '';
+const BACKEND_URL = import.meta.env.VITE_API_URL || '';
 
 export const SubwayDashboard = () => {
   const [address, setAddress] = useState("Palo Alto, CA");
@@ -72,10 +72,10 @@ export const SubwayDashboard = () => {
           {/* Brand */}
           <div className="flex items-center gap-3 shrink-0">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-green-500/30">
-              <span className="text-white font-black text-lg">S</span>
+              <span className="text-white font-bold text-lg">S</span>
             </div>
             <div>
-              <h1 className="text-[15px] font-black text-slate-900 leading-none">Subway</h1>
+              <h1 className="text-[15px] font-bold text-slate-900 leading-none">Subway</h1>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-0.5">Event Intelligence</p>
             </div>
           </div>
@@ -96,7 +96,7 @@ export const SubwayDashboard = () => {
             <button
               onClick={fetchEvents}
               disabled={loading}
-              className="bg-green-600 hover:bg-green-500 disabled:opacity-60 text-white px-6 py-3 text-sm font-black flex items-center gap-2 transition-colors"
+              className="bg-green-600 hover:bg-green-500 disabled:opacity-60 text-white px-6 py-3 text-sm font-semibold flex items-center gap-2 transition-colors"
             >
               {loading ? <Loader2 size={15} className="animate-spin" /> : <Search size={15} />}
               Scan
@@ -113,25 +113,25 @@ export const SubwayDashboard = () => {
             <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2 mb-1">
                 <Zap size={14} className="text-green-500" />
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Events</span>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Total Events</span>
               </div>
-              <p className="text-3xl font-black text-slate-900">{events.length}</p>
+              <p className="text-3xl font-bold text-slate-900">{events.length}</p>
               <p className="text-xs text-slate-400 font-medium mt-1">within 10km of {city}</p>
             </div>
             <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2 mb-1">
                 <TrendingUp size={14} className="text-indigo-500" />
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Paid Events</span>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Paid Events</span>
               </div>
-              <p className="text-3xl font-black text-indigo-600">{paidCount}</p>
+              <p className="text-3xl font-bold text-indigo-600">{paidCount}</p>
               <p className="text-xs text-slate-400 font-medium mt-1">revenue opportunities</p>
             </div>
             <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2 mb-1">
                 <Users size={14} className="text-amber-500" />
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">High Impact</span>
+                <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">High Impact</span>
               </div>
-              <p className="text-3xl font-black text-amber-600">{highImpact}</p>
+              <p className="text-3xl font-bold text-amber-600">{highImpact}</p>
               <p className="text-xs text-slate-400 font-medium mt-1">events with 200+ attendees</p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export const SubwayDashboard = () => {
         {!loading && events.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-black text-slate-500 uppercase tracking-widest">
+              <h2 className="text-sm font-bold text-slate-500 uppercase tracking-widest">
                 Live Events Radar — {events.length} signals
               </h2>
               <div className="flex items-center gap-1.5 text-xs font-bold text-green-600 bg-green-50 px-3 py-1.5 rounded-full border border-green-200">
@@ -191,7 +191,7 @@ export const SubwayDashboard = () => {
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search size={28} className="text-slate-300" />
             </div>
-            <h3 className="text-lg font-black text-slate-700 mb-2">No Events Found</h3>
+            <h3 className="text-lg font-bold text-slate-700 mb-2">No Events Found</h3>
             <p className="text-slate-400 text-sm font-medium max-w-xs mx-auto">
               No Eventbrite events in 10km. Try a different city or check the backend logs.
             </p>
@@ -204,13 +204,13 @@ export const SubwayDashboard = () => {
             <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/30">
               <TrendingUp size={28} className="text-white" />
             </div>
-            <h3 className="text-2xl font-black text-slate-800 mb-3">Event Intelligence Dashboard</h3>
+            <h3 className="text-2xl font-bold text-slate-800 mb-3">Event Intelligence Dashboard</h3>
             <p className="text-slate-500 font-medium max-w-md mx-auto mb-8">
               Enter your store address above to discover nearby Eventbrite events, identify footfall opportunities, and prepare your team.
             </p>
             <button
               onClick={fetchEvents}
-              className="bg-green-600 hover:bg-green-500 text-white px-8 py-3 rounded-xl font-black text-sm transition-all shadow-lg shadow-green-500/30 hover:-translate-y-0.5"
+              className="bg-green-600 hover:bg-green-500 text-white px-8 py-3 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-green-500/30 hover:-translate-y-0.5"
             >
               Scan Palo Alto →
             </button>

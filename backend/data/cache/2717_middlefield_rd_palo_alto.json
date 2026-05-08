@@ -1,0 +1,487 @@
+{
+  "status": "success",
+  "location": "2717 Middlefield Rd Palo Alto",
+  "total_sources": 60,
+  "websites": [
+    {
+      "domain": "paloalto.gov",
+      "url": "https://www.paloalto.gov/calendar",
+      "name": "City of Palo Alto Official Events",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "sf.gov",
+      "url": "https://www.sf.gov/events/upcoming",
+      "name": "San Francisco Events",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "events.stanford.edu",
+      "url": "https://events.stanford.edu/",
+      "name": "Stanford University Events Calendar",
+      "category": "Universities",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/events/",
+      "name": "Palo Alto, CA Events, Calendar & Tickets",
+      "category": "{city} events calendar",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/community-night-weekly-tickets-1982407496186",
+      "name": "Community Night (Weekly) Tickets, Tuesday, November 17",
+      "category": "{city} community events",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/events--this-weekend/",
+      "name": "Events and Things to do in Palo Alto, CA this weekend",
+      "category": "Things to do {city}",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/live-music/",
+      "name": "Discover Live Music Events & Activities in Palo Alto, CA",
+      "category": "Venues & Concerts",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/intro-to-improv-in-palo-alto-with-wynne-hegarty-tickets-1984098235232",
+      "name": "Intro to Improv in Palo Alto with Wynne Hegarty",
+      "category": "Theater Events",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/startups-demos-networking-in-palo-alto-tickets-1981235420476",
+      "name": "Startups Demos & Networking in Palo Alto",
+      "category": "Nonprofit Events",
+      "priority": 10,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/find/us--ca--palo-alto/",
+      "name": "Meetup Palo Alto",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "livelyarts.stanford.edu",
+      "url": "https://livelyarts.stanford.edu/events",
+      "name": "Stanford Lively Arts",
+      "category": "Venues",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "live.stanford.edu",
+      "url": "https://live.stanford.edu/events/calendar",
+      "name": "Events - Stanford Live",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "www6.slac.stanford.edu",
+      "url": "https://www6.slac.stanford.edu/news-and-events/events",
+      "name": "Public events, lecture series and community programs",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "energy.stanford.edu",
+      "url": "https://energy.stanford.edu/news-events/events/upcoming-events",
+      "name": "Upcoming Events - Stanford Energy",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "news.stanford.edu",
+      "url": "https://news.stanford.edu/on-campus/topic/events",
+      "name": "Events | Stanford Report",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "sustainability.stanford.edu",
+      "url": "https://sustainability.stanford.edu/news/events",
+      "name": "Events | Stanford Doerr School of Sustainability",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "ccsre.stanford.edu",
+      "url": "https://ccsre.stanford.edu/events-news/upcoming-events",
+      "name": "Upcoming Events",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "ose.stanford.edu",
+      "url": "https://ose.stanford.edu/upcoming-events",
+      "name": "Stanford OSE Events",
+      "category": "Universities",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/calendar/",
+      "name": "Palo Alto Online Calendar",
+      "category": "Local Media",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "theatreworks.org",
+      "url": "https://www.theatreworks.org/tickets/upcoming-events/",
+      "name": "TheatreWorks Silicon Valley",
+      "category": "Venues",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/calendar/#!/show?search=3700+Middlefield+Rd&format=all",
+      "name": "Community Calendar",
+      "category": "{city} events calendar",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/1048404327397494/?acontext=%7B%22action_history%22%3A%22null%22%7D&ref_source=newsfeed&ref_mechanism=feed_attachment",
+      "name": "Nature Tots & Tunes July 24 - MOVED INDOORS TO PRIETO ...",
+      "category": "{city} community events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/2139638763524059/?acontext=%7B%22action_history%22%3A%22null%22%7D&ref_source=newsfeed&ref_mechanism=feed_attachment",
+      "name": "Teen & Young Adult Focus Group #1 (Ages 13-17) with the Jed ...",
+      "category": "{city} community events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "english.stanford.edu",
+      "url": "https://english.stanford.edu/news-events/upcoming-events",
+      "name": "Upcoming Events | Department of English",
+      "category": "University Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "eventcartel.com",
+      "url": "https://eventcartel.com/events/theater/palo-alto/all-dates",
+      "name": "Discover Theater Tickets in Palo Alto CA",
+      "category": "Theater Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/spooky-nook-sports/men-of-iron-2717-dinner/647163609434975/?locale=mt_MT",
+      "name": "Men of Iron 27:17 Dinner",
+      "category": "Local News",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/1471692471409969/",
+      "name": "Boost Mobile Grand Opening 4/10/2026",
+      "category": "Local News",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/4120-middlefield-rd-palo-alto-ca-94303-4741-united-states/palo-alto-chamber-orchestra-season-finale-senior-paco-concert/1979874349281765/",
+      "name": "Palo Alto Chamber Orchestra - Season Finale Senior ...",
+      "category": "Business Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/4120-middlefield-rd-palo-alto-ca-94303-4741-united-states/palo-alto-chamber-orchestra-season-finale-debut-concert/2030291727699163/",
+      "name": "Palo Alto Chamber Orchestra - Season Finale Debut Concert",
+      "category": "Business Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/1579109653324067/?ref_source=NEWS_FEED",
+      "name": "Nonprofit Conference",
+      "category": "Nonprofit Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/canalta-hotel-assiniboia/family-transition-planning-conference/1286286439387830/",
+      "name": "Family Transition Planning Conference",
+      "category": "Nonprofit Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/42nd-annual-lee-foster-memorial-5k/1351352668784164/",
+      "name": "42nd Annual Lee Foster Memorial 5k",
+      "category": "Sports Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/millennium-park/heart-to-heart-5k10k-runwalk/1387893016527103/",
+      "name": "Heart to Heart 5K/10K Run/Walk",
+      "category": "Sports Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/2763165094070898/?acontext=%7B%22action_history%22%3A%22null%22%7D&ref_source=newsfeed&ref_mechanism=feed_attachment",
+      "name": "Kylie Rose's Run 5K, 1 Mile, and Family Fun Run",
+      "category": "Sports Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/700-exchange-st-rochester-ny-14608-2717-united-states/run-our-river-tuesdays-at-the-river-5k-series/169427108453273/?locale=es_ES",
+      "name": "Run our River - Tuesdays at the River 5K Series",
+      "category": "Running Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/1501753081607754/?ref_source=NEWS_FEED",
+      "name": "Pojulo Cultural Festival",
+      "category": "Arts Festival",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/events/chalice-abbey-fair-trade-store/barefoot-productions-presents-ronny-cox-in-concert/2371464573169629/?locale=ro_RO",
+      "name": "Barefoot Productions Presents Ronny Cox in Concert",
+      "category": "Cultural Events",
+      "priority": 8,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "allevents.in",
+      "url": "https://allevents.in/palo-alto",
+      "name": "AllEvents Palo Alto",
+      "category": "Event Platforms",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "grassrootsecology.org",
+      "url": "https://www.grassrootsecology.org/event-calendar",
+      "name": "Grassroots Ecology Events",
+      "category": "Community",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "canopy.org",
+      "url": "https://canopy.org/event-calendar/",
+      "name": "Canopy Events",
+      "category": "Community",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/morgue/listings/1997_May_9.entertainment.html",
+      "name": "Palo Alto Weekly Entertainment Listings",
+      "category": "{city} community events",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/morgue/listings/1997_Feb_7.entertainment.html",
+      "name": "Palo Alto Weekly Entertainment Listings",
+      "category": "Venues & Concerts",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "business.paloaltochamber.com",
+      "url": "https://business.paloaltochamber.com/events/calendar",
+      "name": "Event Calendar",
+      "category": "Business Events",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/morgue/listings/1996_Apr_19.entertainment.html",
+      "name": "Palo Alto Weekly Entertainment Listings",
+      "category": "Nonprofit Events",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/ButternutValleyAlliance/posts/1483668076123739/",
+      "name": "BVA 5K Fun Run",
+      "category": "Sports Events",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/morgue/listings/1995_Oct_27.entertainment.html",
+      "name": "Palo Alto Weekly Entertainment Listings",
+      "category": "Cultural Events",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/morgue/listings/1997_May_16.entertainment.html",
+      "name": "Palo Alto Weekly Entertainment Listings",
+      "category": "Cultural Events",
+      "priority": 7,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltochamber.com",
+      "url": "https://www.paloaltochamber.com/festival-of-the-arts-entertainment/",
+      "name": "Palo Alto Festival of the Arts - Entertainment",
+      "category": "Venues & Concerts",
+      "priority": 6,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "destinationpaloalto.com",
+      "url": "https://www.destinationpaloalto.com/calendar/",
+      "name": "Destination Palo Alto Events",
+      "category": "Tourism & Visitors",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "avenidas.org",
+      "url": "https://www.avenidas.org/events/",
+      "name": "Events from May 7, 2024 - Avenidas",
+      "category": "{city} community events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "pacomusic.org",
+      "url": "https://www.pacomusic.org/concert-season/concert-venues",
+      "name": "Concert Venues",
+      "category": "Venues & Concerts",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "marriott.com",
+      "url": "https://www.marriott.com/en-us/hotels/sjcwp-the-westin-palo-alto/events/",
+      "name": "Events & Weddings | The Westin Palo Alto",
+      "category": "Venues & Concerts",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "meyhousejazz.com",
+      "url": "https://www.meyhousejazz.com/event-list",
+      "name": "Upcoming Events (Palo Alto)",
+      "category": "Venues & Concerts",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "todaytix.com",
+      "url": "https://www.todaytix.com/sf-bay-area/shows/46279-primary-trust",
+      "name": "Primary Trust tickets | Palo Alto",
+      "category": "Theater Events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltoelks.org",
+      "url": "https://www.paloaltoelks.org/event",
+      "name": "Special Events",
+      "category": "Local Media Events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "paloaltochamber.chambermaster.com",
+      "url": "http://paloaltochamber.chambermaster.com/events/calendar/rue",
+      "name": "Event Calendar | Palo Alto Chamber of Commerce - cmsite",
+      "category": "Business Events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "cnmsocal.org",
+      "url": "https://cnmsocal.org/events/",
+      "name": "Events - Center For Nonprofit Management",
+      "category": "Nonprofit Events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "unitypaloalto.org",
+      "url": "https://unitypaloalto.org/calendar/list/page/2/?hide_subsequent_recurrences=1&tribe-bar-date=2024-11-23",
+      "name": "Events from April 1, 0026 – January 23, 2022 – Page 2",
+      "category": "Nonprofit Events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "solismentalhealth.org",
+      "url": "https://www.solismentalhealth.org/event-details/solis-mental-health-conference",
+      "name": "Solis Mental Health Conference",
+      "category": "Nonprofit Events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    },
+    {
+      "domain": "runguides.com",
+      "url": "https://www.runguides.com/event/14137/byxbee-parkrun",
+      "name": "Byxbee parkrun | Palo Alto",
+      "category": "Sports Events",
+      "priority": 3,
+      "description": "Event source for 2717 Middlefield Rd Palo Alto"
+    }
+  ]
+}

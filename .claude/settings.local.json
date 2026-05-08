@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(Remove-Item \"c:/Users/panch/OneDrive/Desktop/vikara/march/location_based/backend/data/cache/*.json\" -Force)",
+      "Bash(Write-Host \"Cache cleared\")"
+    ]
+  }
+}

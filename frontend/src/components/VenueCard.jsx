@@ -74,7 +74,7 @@ export const VenueCard = ({ venue }) => {
             }}
           />
           {dist && (
-            <span className="absolute bottom-1.5 left-1.5 bg-black/60 text-white text-[9px] font-black px-1.5 py-0.5 rounded flex items-center gap-0.5">
+            <span className="absolute bottom-1.5 left-1.5 bg-black/60 text-white text-[9px] font-semibold px-1.5 py-0.5 rounded flex items-center gap-0.5">
               <MapPin size={8} />{dist}
             </span>
           )}
@@ -86,7 +86,7 @@ export const VenueCard = ({ venue }) => {
           <div>
             <div className="flex items-center gap-2 mb-1 flex-wrap">
               {venue.category && (
-                <span className={`text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded ${catStyle}`}>
+                <span className={`text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${catStyle}`}>
                   {venue.category}
                 </span>
               )}
@@ -118,7 +118,7 @@ export const VenueCard = ({ venue }) => {
           {/* Bottom: price + buttons */}
           <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
             <div className="flex items-center gap-3">
-              <span className={`flex items-center gap-1 text-sm font-black ${isPaid ? 'text-indigo-700' : 'text-green-600'}`}>
+              <span className={`flex items-center gap-1 text-sm font-semibold ${isPaid ? 'text-indigo-700' : 'text-green-600'}`}>
                 <DollarSign size={13} className={isPaid ? 'text-indigo-500' : 'text-green-500'} />
                 {price}
               </span>
@@ -132,7 +132,7 @@ export const VenueCard = ({ venue }) => {
             <div className="flex items-center gap-1.5">
               <button
                 onClick={() => setOpen(v => !v)}
-                className={`flex items-center gap-1 text-[11px] font-black px-3 py-1.5 rounded-lg border transition-all
+                className={`flex items-center gap-1 text-[11px] font-semibold px-3 py-1.5 rounded-lg border transition-all
                   ${open
                     ? 'bg-slate-900 text-white border-slate-900'
                     : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50'}`}
@@ -162,14 +162,14 @@ export const VenueCard = ({ venue }) => {
           <div className="space-y-4">
             {venue.description && (
               <div>
-                <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1.5">About</p>
+                <p className="text-[9px] font-semibold uppercase tracking-widest text-slate-400 mb-1.5">About</p>
                 <p className="text-[13px] text-slate-600 leading-relaxed">{venue.description}</p>
               </div>
             )}
 
             {/* Organizer */}
             <div>
-              <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2">Organizer</p>
+              <p className="text-[9px] font-semibold uppercase tracking-widest text-slate-400 mb-2">Organizer</p>
               <div className="flex items-center gap-3 bg-white rounded-xl border border-slate-200 p-3">
                 <div className="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <User size={16} className="text-indigo-500" />
@@ -197,7 +197,7 @@ export const VenueCard = ({ venue }) => {
           <div className="space-y-4">
             {/* Details */}
             <div>
-              <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2">Event Details</p>
+              <p className="text-[9px] font-semibold uppercase tracking-widest text-slate-400 mb-2">Event Details</p>
               <div className="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 overflow-hidden text-[12px]">
                 <Row icon={<Clock size={12} className="text-indigo-400" />} label="Time">
                   {startStr !== 'TBA'
@@ -205,7 +205,7 @@ export const VenueCard = ({ venue }) => {
                     : 'TBA'}
                 </Row>
                 <Row icon={<DollarSign size={12} className="text-green-500" />} label="Price">
-                  <span className={isPaid ? 'text-indigo-700 font-black' : 'text-green-700 font-black'}>{price}</span>
+                  <span className={isPaid ? 'text-indigo-700 font-semibold' : 'text-green-700 font-semibold'}>{price}</span>
                 </Row>
                 <Row icon={<Users size={12} className="text-amber-500" />} label="Capacity">
                   {cap ? `${cap} people` : 'Not disclosed'}
@@ -230,7 +230,7 @@ export const VenueCard = ({ venue }) => {
 
             {/* Manager tip */}
             <div className="bg-slate-900 rounded-xl p-4 text-white">
-              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">🎯 Manager Tip</p>
+              <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest mb-2">🎯 Manager Tip</p>
               <p className="text-[13px] font-semibold leading-snug text-slate-200">
                 {venue.category === 'sports'
                   ? 'Post-game rush likely. Boost meal deals & increase staffing 60 min before event ends.'
