@@ -155,19 +155,30 @@ function EventSourcesDashboard() {
 
   const fetchScrapedEvents = async (searchLocation) => {
     setEventsLoading(true);
+    const cityKey = searchLocation.split(",")[0].trim();
+    console.log(`[EventSourcesDashboard] 🔄 Loading scraped events for: ${cityKey}`);
     try {
-      const cityKey = searchLocation.split(",")[0].trim();
       const res = await fetch(`${API_BASE}/scraped-events?city=${encodeURIComponent(cityKey)}`);
       if (res.ok) {
         const data = await res.json();
         if (data.status === 'success') {
-          setScrapedEvents(data.events || []);
+          const events = data.events || [];
+          setScrapedEvents(events);
+          console.log(`[EventSourcesDashboard] ✅ Scraped events loaded: ${events.length} events`);
+        } else {
+          console.warn(`[EventSourcesDashboard] ⚠️ Backend returned status: ${data.status}`);
+          setScrapedEvents([]);
         }
+      } else {
+        console.warn(`[EventSourcesDashboard] ⚠️ Fetch failed: HTTP ${res.status}`);
+        setScrapedEvents([]);
       }
     } catch (err) {
-      // console.warn('Failed to fetch scraped events:', err);
+      console.error(`[EventSourcesDashboard] ❌ Failed to fetch scraped events:`, err);
+      setScrapedEvents([]);
     } finally {
       setEventsLoading(false);
+      console.log(`[EventSourcesDashboard] ✓ Scraping complete`);
     }
   };
 
@@ -178,6 +189,8 @@ function EventSourcesDashboard() {
       setError('Please enter a location');
       return;
     }
+
+    console.log(`[EventSourcesDashboard] 🔍 Search started: ${trimmedLocation}`);
 
     pollTimeoutsRef.current.forEach(clearTimeout);
     pollTimeoutsRef.current = [];
@@ -193,17 +206,21 @@ function EventSourcesDashboard() {
           setWebsites(parsed.websites);
           setWebsitesByCategory(parsed.websitesByCategory);
           setError(null);
+          setScrapedEvents([]);  // Clear old scraped events
           saveSearchHistory(trimmedLocation);
+          console.log(`[EventSourcesDashboard] ✓ Loaded from cache, fetching scraped events...`);
           fetchScrapedEvents(trimmedLocation);
           return;
         }
       } catch (cacheError) {
-        // console.error('Failed to parse cached data:', cacheError);
+        console.warn(`[EventSourcesDashboard] Cache parse error:`, cacheError);
       }
     }
 
     setLoading(true);
+    setScrapedEvents([]);  // Clear old scraped events before new search
     setError(null);
+    console.log(`[EventSourcesDashboard] 🔄 Fetching websites from backend...`);
 
     try {
       const response = await fetch(
@@ -226,7 +243,11 @@ function EventSourcesDashboard() {
       setLocation(trimmedLocation);
       setWebsitesByCategory(groupedWebsites);
       setWebsites(flatWebsites);
+      console.log(`[EventSourcesDashboard] ✓ Websites loaded: ${flatWebsites.length}`);
       saveSearchHistory(trimmedLocation);
+
+      // Fetch scraped events
+      console.log(`[EventSourcesDashboard] 🔄 Starting scraped events fetch...`);
       fetchScrapedEvents(trimmedLocation);
 
       // ── Save to Cache! ──
@@ -243,7 +264,10 @@ function EventSourcesDashboard() {
       if (flatWebsites.length > 0) {
         const scheduleRetry = (delayMs) => {
           pollTimeoutsRef.current.push(
-            setTimeout(() => fetchScrapedEvents(trimmedLocation), delayMs)
+            setTimeout(() => {
+              console.log(`[EventSourcesDashboard] 🔄 Retrying scraped events fetch (${delayMs}ms delay)...`);
+              fetchScrapedEvents(trimmedLocation);
+            }, delayMs)
           );
         };
         scheduleRetry(30000);
@@ -254,12 +278,13 @@ function EventSourcesDashboard() {
         setError('No event websites found. Try a different location.');
       }
     } catch (fetchError) {
-      // console.error('Event website search failed:', fetchError);
+      console.error(`[EventSourcesDashboard] ❌ Website search failed:`, fetchError);
       setWebsites([]);
       setWebsitesByCategory({});
       setError(fetchError.message || 'Failed to fetch websites');
     } finally {
       setLoading(false);
+      console.log(`[EventSourcesDashboard] ✓ Search phase complete`);
     }
   };
 
@@ -537,22 +562,61 @@ function EventSourcesDashboard() {
         <div style={{ marginTop: '2rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
             <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b' }}>
-              Events found from these sources
+              Events from Discovered Sources
             </h2>
             {eventsLoading && (
-              <span style={{ fontSize: '12px', color: '#6366f1', fontWeight: 700 }}>Loading events...</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '12px', color: '#6366f1', fontWeight: 700 }}>
+                <div style={{
+                  width: '12px',
+                  height: '12px',
+                  border: '2px solid #e0e7ff',
+                  borderTopColor: '#6366f1',
+                  borderRadius: '50%',
+                  animation: 'spin 0.6s linear infinite'
+                }} />
+                Scraping event details...
+              </div>
             )}
             {!eventsLoading && scrapedEvents.length === 0 && (
               <span style={{ fontSize: '12px', color: '#94a3b8', fontWeight: 600 }}>
-                Events will appear here after background scraping completes
+                🔍 Searching for events from discovered websites...
               </span>
             )}
             {!eventsLoading && scrapedEvents.length > 0 && (
               <span style={{ fontSize: '12px', color: '#10b981', fontWeight: 700 }}>
-                {scrapedEvents.length} events found
+                ✓ {scrapedEvents.length} event{scrapedEvents.length !== 1 ? 's' : ''} found
               </span>
             )}
           </div>
+
+          {eventsLoading && scrapedEvents.length === 0 && (
+            <div style={{
+              background: 'white',
+              border: '1px solid #e2e8f0',
+              borderRadius: '16px',
+              padding: '2rem',
+              textAlign: 'center',
+              color: '#94a3b8',
+              fontWeight: 600,
+              fontSize: '13px'
+            }}>
+              <div style={{ marginBottom: '0.75rem' }}>
+                <div style={{
+                  width: '32px',
+                  height: '32px',
+                  border: '3px solid #e0e7ff',
+                  borderTopColor: '#6366f1',
+                  borderRadius: '50%',
+                  animation: 'spin 0.8s linear infinite',
+                  margin: '0 auto 0.75rem'
+                }} />
+              </div>
+              <p>Indexing and scraping websites for live events...</p>
+              <p style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '0.5rem' }}>
+                This can take 30-60 seconds depending on event website complexity
+              </p>
+            </div>
+          )}
 
           {scrapedEvents.length > 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -617,8 +681,29 @@ function EventSourcesDashboard() {
               ))}
             </div>
           )}
+
+          {!eventsLoading && scrapedEvents.length === 0 && (
+            <div style={{
+              background: '#f0fdf4',
+              border: '1px solid #dcfce7',
+              borderRadius: '12px',
+              padding: '1rem',
+              fontSize: '12px',
+              color: '#166534',
+              fontWeight: 500
+            }}>
+              ℹ️ Events will appear here automatically once scraping completes. Refresh or check back in 30-60 seconds.
+            </div>
+          )}
         </div>
       )}
+
+      <style>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
 
       {!loading && !error && websites.length > 0 && (
         <div className="summary-footer">

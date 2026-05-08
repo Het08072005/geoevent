@@ -1,7 +1,7 @@
 {
-  "lat": 37.4443,
-  "lon": -122.1598,
-  "saved_at": 1778227173.0722535,
+  "lat": 37.4419,
+  "lon": -122.143,
+  "saved_at": 1778230374.4212632,
   "payload": {
     "status": "success",
     "daily": [
@@ -49,10 +49,10 @@
       },
       {
         "dt": 1778738400,
-        "temp_max": 27,
-        "temp_min": 14,
+        "temp_max": 25,
+        "temp_min": 13,
         "description": "few clouds",
-        "pop": 10
+        "pop": 5
       }
     ]
   }

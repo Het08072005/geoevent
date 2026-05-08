@@ -224,12 +224,6 @@ export default function Header({
           <Bell size={16} />
           <div className="w-2 h-2 rounded-full bg-indigo-500 absolute top-2 right-2 border-2 border-slate-50" />
         </button>
-
-        {/* Live Indicator */}
-        <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 rounded-full border border-slate-100 shrink-0">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Network Live</span>
-        </div>
       </div>
     </header>
   );

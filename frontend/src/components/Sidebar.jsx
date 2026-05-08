@@ -6,20 +6,25 @@ import {
   Calendar,
   Search,
   Store,
-  Settings as SettingsIcon
+  Settings as SettingsIcon,
+  MapPin
 } from 'lucide-react';
 
 export default function Sidebar() {
   return (
     <aside className="w-64 border-r border-slate-100 flex flex-col bg-white shrink-0 h-full">
       {/* Brand Header */}
-      <div className="h-16 px-6 border-b border-slate-50 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-200">
-          <Compass size={18} strokeWidth={2.5} className="animate-spin-slow" />
+      <div className="h-16 px-6 border-b border-slate-100 flex items-center gap-3 bg-white select-none">
+        <div className="w-10 h-10 rounded-[12px] bg-[#4f46e5] flex items-center justify-center text-white shrink-0">
+          <MapPin size={21} strokeWidth={2.2} />
         </div>
-        <div className="flex flex-col">
-          <span className="text-sm font-bold tracking-tight text-slate-900 leading-none">AreaIQ</span>
-          <span className="text-[10px] text-slate-400 font-bold leading-none mt-1">Location Intelligence</span>
+        <div className="flex flex-col min-w-0">
+          <span className="text-[17px] font-bold text-slate-800 tracking-tight leading-none">
+            AreaIQ
+          </span>
+          <span className="text-[11px] text-slate-400 font-medium leading-none mt-1.5">
+            Location Intelligence
+          </span>
         </div>
       </div>
 
@@ -33,14 +38,14 @@ export default function Sidebar() {
             to="/"
             end
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`
             }
           >
-            <LayoutDashboard size={16} />
+            <LayoutDashboard size={17} />
             Dashboard
           </NavLink>
 
@@ -48,14 +53,14 @@ export default function Sidebar() {
           <NavLink
             to="/events"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`
             }
           >
-            <Calendar size={16} />
+            <Calendar size={17} />
             Events
           </NavLink>
 
@@ -63,14 +68,14 @@ export default function Sidebar() {
           <NavLink
             to="/event-sources"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`
             }
           >
-            <Search size={16} />
+            <Search size={17} />
             Event Sources
           </NavLink>
 
@@ -78,14 +83,14 @@ export default function Sidebar() {
           <NavLink
             to="/stores"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`
             }
           >
-            <Store size={16} />
+            <Store size={17} />
             Stores
           </NavLink>
 
@@ -93,14 +98,14 @@ export default function Sidebar() {
           <NavLink
             to="/settings"
             className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+              `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-semibold transition-all ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100/30'
                   : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`
             }
           >
-            <SettingsIcon size={16} />
+            <SettingsIcon size={17} />
             Settings
           </NavLink>
         </div>

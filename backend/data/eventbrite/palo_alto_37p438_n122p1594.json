@@ -2,7 +2,7 @@
   "city": "Palo Alto",
   "lat": 37.4380184,
   "lon": -122.1593744,
-  "saved_at": 1778150261.6632042,
+  "saved_at": 1778225581.5402923,
   "event_count": 16,
   "events": [
     {
@@ -28,7 +28,8 @@
       "price": "$85.59 - $1182.71",
       "is_paid": true,
       "attendance": "TBA",
-      "is_dummy": false
+      "is_dummy": false,
+      "is_enriched": true
     },
     {
       "id": "1988138887933",
@@ -53,7 +54,8 @@
       "price": "$77.38 - $311.71",
       "is_paid": true,
       "attendance": "TBA",
-      "is_dummy": false
+      "is_dummy": false,
+      "is_enriched": true
     },
     {
       "id": "1988444394712",
@@ -303,7 +305,8 @@
       "price": "$0",
       "is_paid": true,
       "attendance": "TBA",
-      "is_dummy": false
+      "is_dummy": false,
+      "is_enriched": true
     },
     {
       "id": "1557130913479",

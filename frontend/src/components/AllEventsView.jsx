@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import {
   Calendar,
@@ -13,7 +13,10 @@ import {
   Music,
   PartyPopper,
   Flag,
-  Presentation
+  Presentation,
+  Globe,
+  Filter,
+  ExternalLink
 } from 'lucide-react';
 import EventDetailView from './EventDetailView';
 
@@ -34,10 +37,26 @@ export default function AllEventsView() {
     getCategoryDetails,
     selectedEvent,
     setSelectedEvent,
-    GEOAPIFY_KEY
+    GEOAPIFY_KEY,
+    selectedSource,
+    setSelectedSource
   } = useOutletContext();
 
-  const { totalEvents, enrichedVenues } = getMetrics();
+  const { totalEvents, enrichedVenues, uniqueSources } = getMetrics();
+
+  const [sourceDropdownOpen, setSourceDropdownOpen] = useState(false);
+  const [sourceSearch, setSourceSearch] = useState("");
+  const sourceDropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (sourceDropdownRef.current && !sourceDropdownRef.current.contains(event.target)) {
+        setSourceDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   if (selectedEvent) {
     return (
@@ -55,7 +74,7 @@ export default function AllEventsView() {
 
   return (
     <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-[#f8fafc] custom-scrollbar pb-24">
-      
+
       {/* Header section matching All Events */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-6">
         <div>
@@ -65,30 +84,135 @@ export default function AllEventsView() {
           </p>
         </div>
 
-        {/* Day filter dropdown */}
-        <div className="flex items-center gap-3.5 bg-white p-2 px-5 rounded-full border border-slate-100 shadow-sm shrink-0">
-          <span className="text-xs text-slate-400 font-semibold">{totalEvents} events in {activeDays === 0 ? "Today" : `${activeDays} days`}</span>
-          <div className="w-px h-4 bg-slate-200/60 self-center"></div>
-          <div className="relative flex items-center">
-            <select
-              value={activeDays}
-              onChange={(e) => setActiveDays(parseInt(e.target.value))}
-              className="appearance-none bg-transparent hover:bg-slate-50 border-0 outline-none ring-0 focus:ring-0 focus:outline-none rounded-lg pl-1.5 pr-6 py-0.5 text-xs font-bold text-slate-700 hover:text-indigo-600 cursor-pointer transition-all"
-              style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
+        {/* Filters group on the right */}
+        <div className="flex flex-wrap md:flex-nowrap items-center gap-3 shrink-0 w-full md:w-auto">
+          {/* Custom Searchable Source filter dropdown */}
+          <div className="relative" ref={sourceDropdownRef}>
+            <button
+              onClick={() => {
+                setSourceDropdownOpen(!sourceDropdownOpen);
+                setSourceSearch(""); // Reset search on open
+              }}
+              className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200/80 shadow-sm hover:border-slate-300 transition-all text-xs font-bold text-slate-700 select-none cursor-pointer"
             >
-              <option value={0}>Today</option>
-              <option value={1}>1 Day</option>
-              <option value={2}>2 Days</option>
-              <option value={3}>3 Days</option>
-              <option value={7}>7 Days</option>
-              <option value={10}>10 Days</option>
-              <option value={15}>15 Days</option>
-              <option value={20}>20 Days</option>
-              <option value={25}>25 Days</option>
-              <option value={30}>30 Days</option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1 text-slate-400">
-              <ChevronDown size={14} className="text-slate-400" />
+              <Globe size={13} className={selectedSource ? "text-blue-500" : "text-slate-400"} />
+              <span className="truncate max-w-[120px]">
+                {selectedSource ? selectedSource : "All Sources"}
+              </span>
+              <ChevronDown size={14} className="text-slate-400 shrink-0" />
+            </button>
+
+            {sourceDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl border border-slate-100 shadow-xl z-50 p-2.5 space-y-2">
+                {/* Search box */}
+                <div className="relative flex items-center bg-slate-50 border border-slate-100 rounded-xl px-2.5 py-1.5">
+                  <Filter size={13} className="text-slate-400 shrink-0 mr-1.5" />
+                  <input
+                    type="text"
+                    placeholder="Search sources..."
+                    value={sourceSearch}
+                    onChange={(e) => setSourceSearch(e.target.value)}
+                    className="w-full bg-transparent border-0 outline-none ring-0 focus:ring-0 focus:outline-none text-[11px] font-semibold text-slate-700 placeholder-slate-400"
+                  />
+                  {sourceSearch && (
+                    <button
+                      onClick={() => setSourceSearch("")}
+                      className="text-slate-400 hover:text-slate-600 font-bold text-xs px-1"
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+
+                {/* Sources list */}
+                <div className="max-h-56 overflow-y-auto custom-scrollbar space-y-0.5 pr-0.5">
+                  {/* All Sources option */}
+                  <button
+                    onClick={() => {
+                      setSelectedSource("");
+                      setSourceDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-1.5 rounded-xl text-[11px] font-semibold flex justify-between items-center transition-all ${
+                      selectedSource === "" 
+                        ? "bg-blue-50 text-blue-600 font-bold" 
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    }`}
+                  >
+                    <span>All Sources</span>
+                    <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${selectedSource === "" ? "bg-blue-100/80 text-blue-700 font-bold" : "bg-slate-100 text-slate-500"} shrink-0`}>
+                      {venues.length}
+                    </span>
+                  </button>
+
+                  <div className="border-t border-slate-100/60 my-1"></div>
+
+                  {/* Filtered unique sources list */}
+                  {(() => {
+                    const filtered = (uniqueSources || []).filter(item => 
+                      item.domain.toLowerCase().includes(sourceSearch.toLowerCase())
+                    );
+                    
+                    if (filtered.length === 0) {
+                      return (
+                        <div className="text-center py-4 text-[10px] text-slate-400 font-semibold">
+                          No sources found
+                        </div>
+                      );
+                    }
+
+                    return filtered.map((item, idx) => {
+                      const isSel = selectedSource === item.domain;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            setSelectedSource(item.domain);
+                            setSourceDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-1.5 rounded-xl text-[11px] font-semibold flex justify-between items-center transition-all ${
+                            isSel 
+                              ? "bg-blue-50 text-blue-600 font-bold" 
+                              : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                          }`}
+                        >
+                          <span className="truncate pr-2">{item.domain}</span>
+                          <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${isSel ? "bg-blue-100/80 text-blue-700 font-bold" : "bg-slate-100 text-slate-500"} shrink-0`}>
+                            {item.count}
+                          </span>
+                        </button>
+                      );
+                    });
+                  })()}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Day filter dropdown */}
+          <div className="flex items-center gap-3.5 bg-white p-2 px-5 rounded-full border border-slate-200/80 shadow-sm shrink-0">
+            <span className="text-xs text-slate-400 font-semibold">{totalEvents} events in {activeDays === 0 ? "Today" : `${activeDays} days`}</span>
+            <div className="w-px h-4 bg-slate-200/60 self-center"></div>
+            <div className="relative flex items-center">
+              <select
+                value={activeDays}
+                onChange={(e) => setActiveDays(parseInt(e.target.value))}
+                className="appearance-none bg-transparent hover:bg-slate-50 border-0 outline-none ring-0 focus:ring-0 focus:outline-none rounded-lg pl-1.5 pr-6 py-0.5 text-xs font-bold text-slate-700 hover:text-indigo-600 cursor-pointer transition-all"
+                style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
+              >
+                <option value={0}>Today</option>
+                <option value={1}>1 Day</option>
+                <option value={2}>2 Days</option>
+                <option value={3}>3 Days</option>
+                <option value={7}>7 Days</option>
+                <option value={10}>10 Days</option>
+                <option value={15}>15 Days</option>
+                <option value={20}>20 Days</option>
+                <option value={25}>25 Days</option>
+                <option value={30}>30 Days</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1 text-slate-400">
+                <ChevronDown size={14} className="text-slate-400" />
+              </div>
             </div>
           </div>
         </div>
@@ -97,7 +221,7 @@ export default function AllEventsView() {
       {/* Category pills */}
       <div className="flex flex-wrap gap-2.5 items-center">
         {[
-          { id: "", label: "All", icon: Compass, activeColors: "bg-slate-700 border-slate-800 text-white", inactiveColors: "bg-slate-50 border-slate-100/80 text-slate-600 hover:bg-slate-100" },
+          { id: "", label: "All", icon: Globe, activeColors: "bg-slate-700 border-slate-800 text-white", inactiveColors: "bg-slate-50 border-slate-100/80 text-slate-600 hover:bg-slate-100" },
           { id: "sports", label: "Sports", icon: Trophy, activeColors: "bg-orange-500 border-orange-600 text-white", inactiveColors: "bg-orange-50 border-orange-100/80 text-orange-600 hover:bg-orange-100/40" },
           { id: "music", label: "Concert", icon: Music, activeColors: "bg-purple-500 border-purple-600 text-white", inactiveColors: "bg-purple-50 border-purple-100/80 text-purple-600 hover:bg-purple-100/40" },
           { id: "community", label: "Meetup", icon: Users, activeColors: "bg-sky-500 border-sky-600 text-white", inactiveColors: "bg-sky-50 border-sky-100/80 text-sky-600 hover:bg-sky-100/40" },
@@ -107,7 +231,7 @@ export default function AllEventsView() {
         ].map(cat => {
           const Icon = cat.icon;
           const isActive = selectedCategory === cat.id;
-          
+
           return (
             <button
               key={cat.id}
@@ -132,8 +256,8 @@ export default function AllEventsView() {
             .filter(v => selectedCategory === "" || v.categoryClean === selectedCategory)
             .map((v, idx) => {
               return (
-                <div 
-                  key={v.id || idx} 
+                <div
+                  key={v.id || idx}
                   onClick={() => setSelectedEvent(v)}
                   className="bg-white rounded-xl border border-slate-100 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-sm hover:shadow-md hover:border-slate-200 transition-all duration-300 cursor-pointer group/card"
                 >
@@ -164,7 +288,7 @@ export default function AllEventsView() {
                         </span>
                       </div>
                       <h3 className="text-lg font-bold text-slate-900 leading-snug truncate group-hover/card:text-indigo-600 transition-colors">{v.name}</h3>
-                      <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-slate-400 font-bold">
+                      <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-slate-500 font-medium">
                         <span className="flex items-center gap-1">
                           <Calendar size={12} className="text-indigo-400" /> {fmtDate(v.date)} · {fmtTime(v.date)}
                         </span>
@@ -179,17 +303,20 @@ export default function AllEventsView() {
                           <TrendingUp size={12} /> ~{v.covers} covers ({v.convRate}% conv)
                         </span>
                       </div>
-                      <p className="text-[10px] text-slate-400 font-bold mt-1.5">
-                        Source: <a href={v.url} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="underline hover:text-indigo-600">{v.source_domain || v.organizer_name || 'Event Source'}</a>
+                      <p className="text-xs text-slate-500 font-medium mt-1.5 flex items-center gap-1">
+                        Source: <a href={v.url} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="inline-flex items-center gap-0.5 text-blue-600 hover:text-blue-700 font-semibold hover:underline transition-colors">
+                          <span>{v.source_domain || v.organizer_name || 'Event Source'}</span>
+                          <ExternalLink size={11} className="shrink-0" />
+                        </a>
                       </p>
                     </div>
                   </div>
 
                   {/* Lift indicator */}
                   <div className="flex flex-col items-end gap-1 border-l border-slate-100 pl-6 shrink-0 w-full md:w-auto mt-4 md:mt-0">
-                    <span className="text-2xl font-bold text-slate-900">+{v.lift >= 1000 ? `$${(v.lift/1000).toFixed(1)}k` : `$${v.lift}`}</span>
+                    <span className="text-2xl font-bold text-slate-900">+{v.lift >= 1000 ? `$${(v.lift / 1000).toFixed(1)}k` : `$${v.lift}`}</span>
                     <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest">Projected Lift</span>
-                    <button 
+                    <button
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedEvent(v);

@@ -333,5 +333,13 @@
   "321 easy st, mountain view, ca, mountain view, ca": [
     37.400108944005225,
     -122.06574218576435
+  ],
+  "downtown library, 270 forest ave, palo alto, ca": [
+    37.4438796,
+    -122.1592083
+  ],
+  "king plaza, 250 hamilton ave, palo alto, ca": [
+    37.4441997,
+    -122.1596747
   ]
 }

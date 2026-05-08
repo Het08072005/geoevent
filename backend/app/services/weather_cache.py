@@ -120,9 +120,9 @@ def roll_and_pad_weather_payload(payload: dict, saved_at: float) -> tuple[dict, 
         while len(daily) < target_len:
             t_max = round(avg_max + random.uniform(-1.5, 1.5))
             t_min = round(avg_min + random.uniform(-1.5, 1.5))
-            # Sane boundary limits
+            # Sane boundary limits — ensure min is always meaningfully below max
             t_max = max(15, min(33, t_max))
-            t_min = max(8, min(19, t_min))
+            t_min = max(8, min(t_max - 5, t_min))
 
             desc = random.choice(pleasant_descs)
             pop = random.choice([0, 0, 0, 5, 10, 15])  # dry / low pop

@@ -68,27 +68,231 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
     }
   }
 
-  // Generate mock actions based on categories (matching Screenshot 3)
-  const defaultActions = [
-    {
-      title: "Launch game-day prix-fixe",
-      desc: "Bundle 2 entrées + shareables priced for fans heading to/from the venue.",
-      priority: "HIGH",
-      color: "text-emerald-600 bg-emerald-50 border-emerald-100"
-    },
-    {
-      title: "Extend kitchen hours",
-      desc: "Stay open 90 min past final whistle to capture post-game crowd.",
-      priority: "MEDIUM",
-      color: "text-amber-600 bg-amber-50 border-amber-100"
-    },
-    {
-      title: "Pitch sponsorship",
-      desc: "Reach out to organizer about pre-game watch-party partnership.",
-      priority: "MEDIUM",
-      color: "text-amber-600 bg-amber-50 border-amber-100"
+  // ─── DYNAMIC RECOMMENDED ACTIONS ALGORITHM ─────────────────────────────────
+  // NO Gemini AI — pure logic-based recommendations based on event properties
+  const generateRecommendedActions = () => {
+    const actions = [];
+    const cat = (event.categoryClean || '').toLowerCase();
+    const att = parseInt(event.attendance) || 0;
+    const isPaid = event.is_paid || event.price?.toLowerCase?.() !== 'free';
+    const startDate = parseLocalISO(event.date);
+    const eventHour = startDate?.getHours() || 0;
+    const eventDay = startDate?.getDay() || 0; // 0 = Sunday, 6 = Saturday
+    const isWeekend = eventDay === 0 || eventDay === 6;
+    const isMorning = eventHour < 12;
+    const isAfternoon = eventHour >= 12 && eventHour < 18;
+    const isEvening = eventHour >= 18;
+    const lift = event.lift || 0;
+    const coversVal = event.covers || 0;
+
+    // ─────────────────────────────────────────────────────────────────────────
+
+    // MUSIC/CONCERT — Focus on bar/beverage and post-event partnerships
+    if (cat.includes('music') || cat.includes('concert') || cat.includes('dj')) {
+      if (isEvening && att > 300) {
+        actions.push({
+          title: "Launch happy hour specials",
+          desc: `Bundle craft cocktails + small plates ($2 discount) to capture ${att > 800 ? 'high-volume' : 'mid-volume'} pre-event crowd.`,
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      }
+      if (att > 500 && isPaid) {
+        actions.push({
+          title: "Partner as official after-party spot",
+          desc: "Pitch exclusive venue partnership to organizer for post-event VIP access (premium pricing opportunity).",
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      } else {
+        actions.push({
+          title: "Extend service hours late-night",
+          desc: "Stay open extra 2 hours past event end to capture post-concert crowd flowing to nearby venues.",
+          priority: "MEDIUM",
+          color: "text-amber-600 bg-amber-50 border-amber-100"
+        });
+      }
+      if (isWeekend) {
+        actions.push({
+          title: "Create event-themed drink menu",
+          desc: "Design limited-time signature drink/appetizer combo tied to artist/genre for social media buzz.",
+          priority: "MEDIUM",
+          color: "text-amber-600 bg-amber-50 border-amber-100"
+        });
+      }
     }
-  ];
+
+    // SPORTS — Focus on pre/post-game dining and viewing parties
+    if (cat.includes('sport') || cat.includes('game') || cat.includes('match') || cat.includes('soccer') || cat.includes('baseball')) {
+      if (isEvening) {
+        actions.push({
+          title: "Launch game-day prix-fixe",
+          desc: `Bundle 2 entrées + shareables priced for fans heading to/from the venue (${coversVal > 0 ? coversVal + ' estimated covers' : 'projected audience: ' + att}).`,
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      }
+      if (att > 200) {
+        actions.push({
+          title: "Extend kitchen hours post-game",
+          desc: `Stay open ${isEvening ? '90 min' : '2 hours'} past final whistle to capture post-game crowd. Peak = ${att > 1000 ? 'very high' : 'high'} volume.`,
+          priority: "MEDIUM",
+          color: "text-amber-600 bg-amber-50 border-amber-100"
+        });
+      }
+      actions.push({
+        title: "Pitch watch-party sponsorship",
+        desc: "Contact organizer about official watch-party partnership with branded seating/specials.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+    }
+
+    // FOOD & FESTIVAL — Focus on cross-promotion and sampler menus
+    if (cat.includes('food') || cat.includes('festival') || cat.includes('tasting') || cat.includes('culinary')) {
+      if (att > 500 || coversVal > 100) {
+        actions.push({
+          title: "Create collaborative sampler booth",
+          desc: `Set up branded tasting booth at event with QR code for exclusive ${isPaid ? 'discounts' : 'loyalty rewards'} driving post-event traffic.`,
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      }
+      actions.push({
+        title: "Cross-promote featured menu items",
+        desc: "Coordinate with event organizer to feature your signature dish/ingredient in event program.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+      if (isMorning || isAfternoon) {
+        actions.push({
+          title: "Partner on post-event chef talk",
+          desc: "Offer venue for organizer's chef speaker panel to drive foot traffic post-tasting.",
+          priority: "LOW",
+          color: "text-blue-600 bg-blue-50 border-blue-100"
+        });
+      }
+    }
+
+    // BUSINESS/CONFERENCE — Focus on networking and premium services
+    if (cat.includes('conference') || cat.includes('business') || cat.includes('workshop') || cat.includes('seminar')) {
+      const isWeekday = !isWeekend;
+      if (isWeekday) {
+        actions.push({
+          title: "Offer attendee networking breakfast/lunch",
+          desc: `Partner to provide ${isPaid ? 'premium catering' : 'coffee + pastry station'} during networking breaks (${att > 500 ? 'high' : 'moderate'} volume).`,
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      }
+      actions.push({
+        title: "Sponsor executive dinner",
+        desc: "Pitch invitation-only dinner for VIP attendees/speakers at premium pricing.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+      actions.push({
+        title: "Capture attendee emails for CRM",
+        desc: "Set up exclusive discount code at event to build email list + track ROI from attendees.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+    }
+
+    // ARTS/THEATER — Focus on ambiance, pre/post-show dining
+    if (cat.includes('art') || cat.includes('theater') || cat.includes('exhibition') || cat.includes('comedy')) {
+      if (isEvening) {
+        actions.push({
+          title: "Create pre-show prix-fixe",
+          desc: `Offer ${eventHour >= 19 ? '2-course' : '3-course'} menu ending 30 min before showtime for attendees.`,
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      }
+      actions.push({
+        title: "Host post-show wine & dessert bar",
+        desc: "Stay open 2 hours post-event with themed wine selection + signature desserts for sophisticated crowd.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+      if (att > 300) {
+        actions.push({
+          title: "Pitch artist/director partnership",
+          desc: "Offer exclusive pre-show VIP lounge access or custom menu collaboration with organizer.",
+          priority: "MEDIUM",
+          color: "text-amber-600 bg-amber-50 border-amber-100"
+        });
+      }
+    }
+
+    // EDUCATION/TRAINING — Focus on professional development partnerships
+    if (cat.includes('education') || cat.includes('training') || cat.includes('course')) {
+      actions.push({
+        title: "Offer attendee study break venue",
+        desc: `Partner to provide quiet lounge + refreshments during multi-day event (${att > 200 ? 'bulk' : 'per-person'} pricing).`,
+        priority: "HIGH",
+        color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+      });
+      actions.push({
+        title: "Sponsor lunch-and-learn session",
+        desc: "Host educational content session at venue to position brand as thought leader.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+    }
+
+    // COMMUNITY/SOCIAL — Focus on group bookings and loyalty
+    if (cat.includes('community') || cat.includes('social') || cat.includes('meetup')) {
+      if (att > 100) {
+        actions.push({
+          title: "Create group dining package",
+          desc: `Pitch preset group menu + table reservation (${att > 500 ? 'premium markup' : 'modest discount'} to maximize covers).`,
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      }
+      actions.push({
+        title: "Offer event attendees loyalty signup",
+        desc: "Place branded signup cards at event for exclusive discounts + future promotions.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+    }
+
+    // FALLBACK — Generic high-value recommendations if no specific category match
+    if (actions.length === 0) {
+      if (att > 500 || lift > 1000) {
+        actions.push({
+          title: "Launch exclusive event package",
+          desc: `Create special menu/pricing for event attendees to capture high-volume opportunity (${att} expected attendees).`,
+          priority: "HIGH",
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100"
+        });
+      }
+      actions.push({
+        title: "Pitch co-marketing partnership",
+        desc: "Contact event organizer about cross-promotion via email/social to drive mutual traffic.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+      actions.push({
+        title: "Set up promotional presence at event",
+        desc: "Sponsor booth/table with staff to hand out coupons + drive foot traffic post-event.",
+        priority: "MEDIUM",
+        color: "text-amber-600 bg-amber-50 border-amber-100"
+      });
+    }
+
+    // Return top 3 actions only (prioritize HIGH > MEDIUM > LOW)
+    const sorted = actions.sort((a, b) => {
+      const priorityScore = { "HIGH": 3, "MEDIUM": 2, "LOW": 1 };
+      return (priorityScore[b.priority] || 0) - (priorityScore[a.priority] || 0);
+    });
+
+    return sorted.slice(0, 3);
+  };
+
+  const recommendedActions = generateRecommendedActions();
 
   return (
     <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-[#f8fafc] custom-scrollbar pb-24">
@@ -122,10 +326,10 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
                     <span>{distanceMiles ? `${distanceMiles} km from ${currentStore?.name || 'Store'}` : 'Distance Not Available'}</span>
                   </div>
                   <h1 className="text-2xl font-bold text-slate-950 leading-tight mt-1">{event.name}</h1>
-                  <div className="flex items-center gap-2 flex-wrap text-xs text-slate-500 font-bold mt-1">
-                    <span className="bg-slate-100 px-2 py-0.5 rounded-md text-slate-700">Price: {event.price || 'Not Available'}</span>
+                  <div className="flex items-center gap-2 flex-wrap text-xs text-slate-500 font-medium mt-1">
+                    <span className="bg-slate-100 px-2 py-0.5 rounded-md text-slate-600 font-semibold">Price: {event.price || 'Not Available'}</span>
                     <span>·</span>
-                    <span className="capitalize">{details.label} Event</span>
+                    <span className="capitalize font-semibold">{details.label} Event</span>
                   </div>
                 </>
               );
@@ -158,7 +362,7 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
           <p className="text-sm font-bold text-slate-900">
             {fmtTime(event.date)}{event.end_date ? ` – ${fmtTime(event.end_date)}` : ''}
           </p>
-          {durationText && <p className="text-[10px] text-slate-400 font-bold">{durationText}</p>}
+          {durationText && <p className="text-[10px] text-slate-400 font-semibold">{durationText}</p>}
         </div>
 
         {/* Attendance Card */}
@@ -179,7 +383,7 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
           <p className="text-sm font-bold text-slate-900">
             {distanceMiles ? `${distanceMiles} km` : 'Not Available'}
           </p>
-          <p className="text-[10px] text-slate-400 font-bold">from your store</p>
+          <p className="text-[10px] text-slate-400 font-semibold">from your store</p>
         </div>
       </div>
 
@@ -203,7 +407,7 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
             {event.venue_name && <h4 className="text-xs font-semibold text-slate-800">{event.venue_name}</h4>}
             <h3 className="text-sm font-bold text-slate-900 leading-tight">{event.address || 'Venue TBA'}</h3>
             {event.lat && event.lon && (
-              <p className="text-[10px] text-slate-400 font-bold leading-none">{event.lat.toFixed(4)}, {event.lon.toFixed(4)}</p>
+              <p className="text-[10px] text-slate-400 font-semibold leading-none">{event.lat.toFixed(4)}, {event.lon.toFixed(4)}</p>
             )}
           </div>
         </div>
@@ -280,7 +484,7 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
           <Sparkles size={16} className="text-indigo-500" /> Recommended actions
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {defaultActions.map((act, i) => (
+          {recommendedActions.map((act, i) => (
             <div key={i} className="bg-white rounded-xl border border-slate-100 p-5 flex flex-col justify-between gap-4 shadow-sm hover:shadow transition-all">
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
@@ -301,7 +505,7 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
         <div className="space-y-1">
           <p className="text-[9px] font-semibold text-indigo-600 uppercase tracking-widest">Organizer</p>
           <h3 className="text-lg font-bold text-slate-900">{event.organizer_name || 'Not Available'}</h3>
-          <p className="text-xs text-slate-400 font-bold leading-relaxed max-w-xl">
+          <p className="text-xs text-slate-500 font-medium leading-relaxed max-w-xl">
             {event.organizer_description || 'No detailed organizer description available.'}
           </p>
           <div className="flex flex-wrap gap-x-4 pt-2 text-xs text-slate-400 font-medium">
@@ -350,16 +554,17 @@ export default function EventDetailView({ event, currentStore, onBack, fmtDate, 
       </div>
 
       {/* Footer Details */}
-      <div className="border-t border-slate-100 pt-4 flex flex-col sm:flex-row justify-between text-[10px] text-slate-400 font-bold gap-2">
+      <div className="border-t border-slate-100 pt-4 flex flex-col sm:flex-row justify-between text-xs text-slate-500 font-medium gap-2">
         <span className="flex items-center gap-1">
           Source: {event.source_website || event.url ? (
             <a
               href={event.source_website || event.url}
               target="_blank"
               rel="noreferrer"
-              className="underline hover:text-indigo-600"
+              className="inline-flex items-center gap-0.5 text-blue-600 hover:text-blue-700 font-semibold hover:underline transition-colors"
             >
-              {event.source_domain || event.organizer_name || 'Event Source'}
+              <span>{event.source_domain || event.organizer_name || 'Event Source'}</span>
+              <ExternalLink size={11} className="shrink-0" />
             </a>
           ) : (
             <span>{event.source_domain || event.organizer_name || 'Event Source'}</span>

@@ -25,9 +25,11 @@ logging.getLogger("uvicorn.access").disabled = True
 from google import genai
 
 from app.services.eventbrite import search_eventbrite_events
+from app.services.ticketmaster import search_ticketmaster_events
 from app.services.event_sources import event_sources_service
 from app.services.serpapi_search import serpapi_service
 from app.services.eventbrite_cache import load_cached_events, save_cached_events, load_cached_events_ignore_ttl
+from app.services.ticketmaster_cache import load_cached_ticketmaster_events, save_cached_ticketmaster_events, load_cached_ticketmaster_events_ignore_ttl
 from app.services.weather_cache import load_cached_weather, save_cached_weather
 from app.services.recent_searches import get_recent_searches, add_recent_search, clear_recent_searches
 from app.services.scraper_service import scraper_service
@@ -362,6 +364,41 @@ async def get_nearby_venues(
             if venues:
                 save_cached_events(city, lat, lon, venues)
 
+        # ── Step 1.1: Try the on-disk Ticketmaster cache first ──────────────────
+        tm_venues = []
+        tm_cached_events, tm_cache_hit = load_cached_ticketmaster_events(city, lat, lon)
+        if tm_cache_hit and tm_cached_events:
+            logger.info(f"Serving {len(tm_cached_events)} Ticketmaster events from disk cache for '{city}'")
+            tm_venues.extend(tm_cached_events)
+        else:
+            # ── Step 2.1: Fetch fresh from Ticketmaster API ─────────────────────────
+            tm_stale_events = load_cached_ticketmaster_events_ignore_ttl(city, lat, lon)
+            tm_stale_by_id = {str(e.get("id")): e for e in tm_stale_events if e.get("id")}
+
+            tm_events = search_ticketmaster_events(city, lat, lon, radius)
+            tm_fresh_ids = set()
+            if tm_events:
+                for event in tm_events:
+                    try:
+                        if all(k in event for k in ["name", "lat", "lon", "price", "date"]):
+                            tm_venues.append(event)
+                            tm_fresh_ids.add(str(event.get("id", "")))
+                    except (KeyError, TypeError):
+                        logger.warning(f"Skipped malformed Ticketmaster event: {event}")
+                        continue
+
+            # Merge in stale Ticketmaster events that weren't in the fresh results
+            for eid, ev in tm_stale_by_id.items():
+                if eid not in tm_fresh_ids:
+                    tm_venues.append(ev)
+
+            # ── Step 3.1: Persist to disk so next reload is instant ─────────────────
+            if tm_venues:
+                save_cached_ticketmaster_events(city, lat, lon, tm_venues)
+
+        # Merge Ticketmaster venues with Eventbrite venues
+        venues.extend(tm_venues)
+
         # ── Merge Normalized Scraped Events ────────────────────────────
         # Try exact city key first, then fallback to first word before comma
         # (handles mismatch between "Palo Alto, CA" saved vs "Palo Alto" looked up)
@@ -379,6 +416,32 @@ async def get_nearby_venues(
                 if "eventbrite.com" not in (e.get("url") or "").lower()
                 and "eventbrite.com" not in (e.get("source_domain") or "").lower()
             ]
+
+        # ─── DATE FILTERING FOR SCRAPED EVENTS: Next 7 days only ───
+        if scraped_events:
+            from datetime import datetime, timedelta
+            now = datetime.now()
+            seven_days_later = now + timedelta(days=7)
+            filtered_scraped = []
+            for ev in scraped_events:
+                event_date_str = ev.get("date") or ""
+                try:
+                    # Try ISO format parsing
+                    if event_date_str:
+                        event_date = datetime.fromisoformat(event_date_str.replace('Z', '+00:00').split('+')[0].split('T')[0])
+                        if now.date() <= event_date.date() <= seven_days_later.date():
+                            filtered_scraped.append(ev)
+                        else:
+                            logger.debug(f"Scraped event skipped: outside 7-day window: {ev.get('name')}")
+                    else:
+                        # If no date, include it anyway
+                        filtered_scraped.append(ev)
+                except (ValueError, AttributeError):
+                    # If date parsing fails, include the event anyway
+                    filtered_scraped.append(ev)
+            
+            scraped_events = filtered_scraped
+            logger.info(f"After date filtering: {len(scraped_events)} scraped events within next 7 days")
 
         if scraped_events:
             logger.info(f"Loaded {len(scraped_events)} non-Eventbrite scraped events for {city}")
@@ -457,19 +520,24 @@ async def get_nearby_venues(
         filtered.sort(key=lambda x: x.get("distance") if x.get("distance") is not None else float('inf'))
         
         # Determine source label
-        source_label = "cache" if cache_hit else "live"
+        source_label = "cache" if (cache_hit or tm_cache_hit) else "live"
         if scraped_events:
             source_label += "+scraped"
 
         # Return all events (no hard cap) — frontend handles display limits
-        logger.info(f"Returning {len(filtered)} total events for '{city}' (Eventbrite: {len([e for e in filtered if e.get('source') == 'Eventbrite']) or 0}, Scraped: {len([e for e in filtered if e.get('source') == 'Scraper']) or 0})")
+        eb_count = len([e for e in filtered if e.get('source') == 'Eventbrite'])
+        tm_count = len([e for e in filtered if e.get('source') == 'Ticketmaster'])
+        scr_count = len([e for e in filtered if e.get('source') == 'Scraper'])
+        logger.info(f"Returning {len(filtered)} total events for '{city}' (Eventbrite: {eb_count}, Ticketmaster: {tm_count}, Scraped: {scr_count})")
         return {"status": "success", "venues": filtered, "source": source_label}
     except Exception as e:
         logger.error(f"Get nearby venues error: {e}")
         # Attempt to serve stale cache as fallback even if TTL expired
-        stale, _ = load_cached_events(city, lat, lon)
+        stale_eb = load_cached_events_ignore_ttl(city, lat, lon)
+        stale_tm = load_cached_ticketmaster_events_ignore_ttl(city, lat, lon)
+        stale = (stale_eb or []) + (stale_tm or [])
         if stale:
-            logger.warning(f"Serving stale Eventbrite cache as fallback for '{city}'")
+            logger.warning(f"Serving stale Eventbrite/Ticketmaster cache as fallback for '{city}'")
             return {"status": "success", "venues": stale, "source": "stale_cache"}
         return {"status": "error", "message": "Failed to fetch nearby venues", "venues": []}
 
@@ -1042,10 +1110,16 @@ async def get_weather(lat: float = Query(...), lon: float = Query(...)):
         temps = [s["main"]["temp"] for s in day_slots]
         pops  = [s.get("pop", 0) for s in day_slots]
         rep   = next((s for s in day_slots if "12:00" in s["dt_txt"]), day_slots[-1])
+        t_max = round(max(temps))
+        t_min = round(min(temps))
+        # Single-slot days (last day of 5-day forecast) have no real spread —
+        # subtract a typical 8°C diurnal range to produce a realistic minimum.
+        if t_min >= t_max:
+            t_min = t_max - 8
         daily.append({
             "dt": rep["dt"],  # real Unix timestamp from API
-            "temp_max": round(max(temps)),
-            "temp_min": round(min(temps)),
+            "temp_max": t_max,
+            "temp_min": t_min,
             "description": rep["weather"][0]["description"] if rep.get("weather") else "",
             "pop": round(max(pops) * 100),
         })

@@ -240,7 +240,10 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
     Returns enriched event list using official Eventbrite API v3 data.
     All prices, organizers, timings, and capacity values come from the API — not HTML.
     Only returns VALIDATED events with all required fields.
+    Filters events to NEXT 7 DAYS by default (upcoming events).
     """
+    from datetime import datetime, timedelta
+    
     token = _get_token()
     if not token or not token.strip():
         logger.error("EVENTBRITE_PRIVATE_TOKEN is not set or empty — check .env file!")
@@ -255,6 +258,10 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
     # Use a generous internal radius (max of passed radius or 50 km) so we
     # fetch events from the whole Bay Area; main.py applies the display radius.
     fetch_radius = max(radius, 50_000)
+
+    # Date filtering: only events in next 7 days
+    now = datetime.now()
+    seven_days_later = now + timedelta(days=7)
 
     events = []
     for eid in event_ids:
@@ -280,6 +287,18 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
             price_str, paid = _extract_price(ev)
             start_local     = (ev.get("start") or {}).get("local", "")
             end_local       = (ev.get("end")   or {}).get("local", "")
+            
+            # ─── DATE FILTERING: Only include events in next 7 days ───
+            if start_local:
+                try:
+                    event_start = datetime.fromisoformat(start_local.replace('Z', '+00:00').split('+')[0])
+                    if event_start < now or event_start > seven_days_later:
+                        logger.debug(f"Event {eid} skipped: outside 7-day window (starts {event_start})")
+                        continue
+                except (ValueError, AttributeError):
+                    logger.debug(f"Event {eid} skipped: invalid date format")
+                    continue
+            
             capacity        = ev.get("capacity")
             attendance      = str(int(capacity)) if capacity and int(capacity) > 0 else "TBA"
 
@@ -342,5 +361,5 @@ def search_eventbrite_events(city: str, lat: float, lon: float, radius: float = 
             continue
 
     events.sort(key=lambda x: x.get("distance", 999999))
-    logger.info(f"Returning {len(events)} API-enriched events for '{city}'")
+    logger.info(f"Returning {len(events)} API-enriched events for '{city}' (next 7 days)")
     return events

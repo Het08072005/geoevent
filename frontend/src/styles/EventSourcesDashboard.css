@@ -312,7 +312,7 @@
 
 .card-domain {
   margin: 0.5rem 0;
-  color: #667eea;
+  color: #2563eb;
   font-size: 0.9rem;
   font-weight: 600;
   word-break: break-all;
@@ -333,14 +333,14 @@
 }
 
 .visit-link {
-  color: #667eea;
+  color: #2563eb;
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.2s ease;
 }
 
 .website-card:hover .visit-link {
-  color: #764ba2;
+  color: #1d4ed8;
   transform: translateX(4px);
 }
 
@@ -485,7 +485,7 @@
 
 .grid-domain {
   margin: 0.5rem 0;
-  color: #667eea;
+  color: #2563eb;
   font-size: 0.8rem;
   font-weight: 600;
   word-break: break-all;

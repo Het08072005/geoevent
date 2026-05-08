@@ -96,6 +96,7 @@ function Layout() {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedFormat, setSelectedFormat] = useState("");
+  const [selectedSource, setSelectedSource] = useState("");
   const [storeDropdownOpen, setStoreDropdownOpen] = useState(false);
   const [error, setError] = useState(null);
   const dropdownRef = useRef(null);
@@ -115,6 +116,7 @@ function Layout() {
 
   const fetchNearby = useCallback(async (lat, lon, city, category = selectedCategory, date = selectedDate, price = selectedPrice, format = selectedFormat, currentRadius = radiusMiles * 1609.34) => {
     setLoading(true);
+    console.log(`[DashboardView] 🔄 Loading events for ${city} (${Math.round(currentRadius / 1609.34)}km radius)...`);
     try {
       const res = await axios.get(`${API_BASE_URL}/api/nearby-venues`, {
         params: {
@@ -130,11 +132,13 @@ function Layout() {
       });
       if (res.data.status === 'success') {
         setVenues(res.data.venues);
+        console.log(`[DashboardView] ✅ Events loaded: ${res.data.venues.length} events (source: ${res.data.source})`);
       }
     } catch (err) {
-      // suppressed to avoid noisy logs during normal app use
+      console.error(`[DashboardView] ❌ Failed to load events:`, err.message);
     } finally {
       setLoading(false);
+      console.log(`[DashboardView] ✓ Loading complete`);
     }
   }, [selectedCategory, selectedDate, selectedPrice, selectedFormat, radiusMiles]);
 
@@ -163,13 +167,25 @@ function Layout() {
       if (currentStore.city && !scrapedCitiesRef.current.has(currentStore.city)) {
         scrapedCitiesRef.current.add(currentStore.city);
         const _lat = currentStore.lat, _lon = currentStore.lon, _city = currentStore.city;
+        console.log(`[DashboardView] 🔄 Background scraping websites for: ${_city}`);
         axios.get(`${API_BASE_URL}/api/event-websites-by-category`, { params: { location: _city, lat: _lat, lon: _lon } })
           .then(() => {
+            console.log(`[DashboardView] ✓ Website scraping initiated for ${_city}`);
             // Refetch venues at 60s and 120s to pick up newly scraped events
-            setTimeout(() => fetchNearbyRef.current?.(_lat, _lon, _city), 60000);
-            setTimeout(() => fetchNearbyRef.current?.(_lat, _lon, _city), 120000);
+            console.log(`[DashboardView] 🔄 Scheduling event refresh in 60s...`);
+            setTimeout(() => {
+              console.log(`[DashboardView] 🔄 Event refresh (60s timeout)...`);
+              fetchNearbyRef.current?.(_lat, _lon, _city);
+            }, 60000);
+            console.log(`[DashboardView] 🔄 Scheduling event refresh in 120s...`);
+            setTimeout(() => {
+              console.log(`[DashboardView] 🔄 Event refresh (120s timeout)...`);
+              fetchNearbyRef.current?.(_lat, _lon, _city);
+            }, 120000);
           })
-          .catch(() => { });
+          .catch((err) => {
+            console.error(`[DashboardView] ❌ Website scraping failed:`, err.message);
+          });
       }
     }
   }, [currentStore, radiusMiles, selectedCategory, selectedDate, selectedPrice, selectedFormat, fetchNearby]);
@@ -184,18 +200,23 @@ function Layout() {
     if (!query) return;
     setLoading(true);
     setError(null);
+    console.log(`[App] 🔍 Search initiated: "${query}"`);
     try {
       const res = await axios.get(`${API_BASE_URL}/api/search`, { params: { text: query } });
       if (res.data.status === 'success' && res.data.results.length > 0) {
         setSearchResults(res.data.results);
+        console.log(`[App] ✅ Search results: ${res.data.results.length} locations found`);
         if (res.data.results.length === 1) handleSelect(res.data.results[0]);
       } else {
         setError("No results found.");
+        console.warn(`[App] ⚠️ No search results for: "${query}"`);
       }
     } catch (err) {
       setError("Search failed.");
+      console.error(`[App] ❌ Search error:`, err.message);
     } finally {
       setLoading(false);
+      console.log(`[App] ✓ Search phase complete`);
     }
   };
 
@@ -569,8 +590,23 @@ function Layout() {
         const covers = Math.round(effectiveAttendance * overallConversion);
         const lift = Math.round(effectiveAttendance * overallConversion * avgSpend);
 
+        // Normalize source_domain for all events consistently
+        let domain = v.source_domain;
+        if (!domain && v.url) {
+          try {
+            domain = new URL(v.url).hostname.replace('www.', '');
+          } catch {
+            domain = v.source || 'Event Source';
+          }
+        }
+        if (!domain) {
+          domain = v.source || 'Event Source';
+        }
+        const domainLower = domain.toLowerCase().trim();
+
         return {
           ...v,
+          source_domain: domainLower,
           categoryClean,
           score,
           covers,
@@ -582,8 +618,25 @@ function Layout() {
         };
       });
 
-    // Filter enriched venues dynamically by selectedCategory
-    const filteredVenues = enrichedVenues.filter(v => selectedCategory === "" || v.categoryClean === selectedCategory);
+    // Get all unique source domains and their counts before filtering by selectedSource
+    const sourceCounts = {};
+    const categoryFiltered = enrichedVenues.filter(v => selectedCategory === "" || v.categoryClean === selectedCategory);
+    
+    categoryFiltered.forEach(v => {
+      const src = v.source_domain || 'Event Source';
+      sourceCounts[src] = (sourceCounts[src] || 0) + 1;
+    });
+
+    const uniqueSources = Object.keys(sourceCounts).map(src => ({
+      domain: src,
+      count: sourceCounts[src]
+    })).sort((a, b) => b.count - a.count); // Sort by count descending
+
+    // Filter enriched venues dynamically by selectedCategory and selectedSource
+    let filteredVenues = categoryFiltered;
+    if (selectedSource && selectedSource !== "") {
+      filteredVenues = filteredVenues.filter(v => v.source_domain === selectedSource);
+    }
 
     // Sum metrics on the filtered list of events
     filteredVenues.forEach(v => {
@@ -603,7 +656,8 @@ function Layout() {
       projectedLift: totalLift >= 1000 ? `$${(totalLift / 1000).toFixed(1)}k` : `$${totalLift}`,
       extraCovers: totalCovers,
       highOpportunity: highOppCount,
-      enrichedVenues: filteredVenues
+      enrichedVenues: filteredVenues,
+      uniqueSources: uniqueSources
     };
   };
 
@@ -721,6 +775,8 @@ function Layout() {
           setSelectedPrice,
           selectedFormat,
           setSelectedFormat,
+          selectedSource,
+          setSelectedSource,
           loading,
           setLoading,
           venues,

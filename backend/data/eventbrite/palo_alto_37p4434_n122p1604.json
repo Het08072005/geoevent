@@ -2,7 +2,7 @@
   "city": "Palo Alto",
   "lat": 37.443413,
   "lon": -122.160421,
-  "saved_at": 1778147607.7311456,
+  "saved_at": 1778220834.5129828,
   "event_count": 16,
   "events": [
     {
@@ -228,7 +228,8 @@
       "price": "$0",
       "is_paid": true,
       "attendance": "TBA",
-      "is_dummy": false
+      "is_dummy": false,
+      "is_enriched": true
     },
     {
       "id": "1986551977441",

@@ -84,3 +84,29 @@ body {
 .leaflet-tooltip-right:before {
   border-right-color: white !important;
 }
+
+/* Premium Brand Header Styles */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-badge:hover,
+.group:hover .brand-badge {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+}
+
+.brand-badge:hover .brand-icon,
+.group:hover .brand-badge .brand-icon {
+  animation: spin-slow 3s linear infinite;
+}

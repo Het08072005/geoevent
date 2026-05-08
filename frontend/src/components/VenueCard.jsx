@@ -144,8 +144,9 @@ export const VenueCard = ({ venue }) => {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center w-8 h-8 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
-                title="Open on Eventbrite"
+                className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors text-white
+                  ${venue.source === 'Ticketmaster' ? 'bg-sky-600 hover:bg-sky-700' : 'bg-indigo-600 hover:bg-indigo-700'}`}
+                title={venue.source === 'Ticketmaster' ? 'Open on Ticketmaster' : 'Open on Eventbrite'}
               >
                 <ExternalLink size={13} />
               </a>
@@ -176,7 +177,7 @@ export const VenueCard = ({ venue }) => {
                 </div>
                 <div className="min-w-0">
                   <p className="text-[13px] font-bold text-slate-800 leading-tight">
-                    {venue.organizer_name || 'Eventbrite Organizer'}
+                    {venue.organizer_name || (venue.source === 'Ticketmaster' ? 'Ticketmaster Organizer' : 'Eventbrite Organizer')}
                   </p>
                   {venue.organizer_website && (
                     <a

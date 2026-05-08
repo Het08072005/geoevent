@@ -1,0 +1,487 @@
+{
+  "status": "success",
+  "location": "CA 94301",
+  "total_sources": 60,
+  "websites": [
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca-94301/events/",
+      "name": "Eventbrite CA 94301",
+      "category": "Event Platforms",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/events/",
+      "name": "Palo Alto, CA Events, Calendar & Tickets",
+      "category": "{city} events calendar",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "paloalto.gov",
+      "url": "https://www.paloalto.gov/Events-Directory",
+      "name": "Events Listing",
+      "category": "{city} events calendar",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/events--today/",
+      "name": "Events and Things to do in Palo Alto, CA today",
+      "category": "{city} events calendar",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/events--this-weekend/",
+      "name": "Events and Things to do in Palo Alto, CA this weekend",
+      "category": "Things to do {city} weekend",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "losaltoshills.ca.gov",
+      "url": "https://www.losaltoshills.ca.gov/calendar.aspx?month=1&year=2018&CID=0&Keywords=&startDate=&enddate=&",
+      "name": "Calendar • Los Altos Hills, CA • CivicEngage",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "mountainview.gov",
+      "url": "https://www.mountainview.gov/whats-happening/events",
+      "name": "Calendar of Events | Mountain View, CA",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "menlopark.gov",
+      "url": "https://www.menlopark.gov/Citywide-calendar/Events",
+      "name": "Events City of Menlo Park",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "cupertino.gov",
+      "url": "https://www.cupertino.gov/Parks-Recreation/Events/Disco-at-Dusk",
+      "name": "Disco at Dusk",
+      "category": "City Government",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--mountain-view/events/",
+      "name": "Mountain View, CA Events, Calendar & Tickets",
+      "category": "Eventbrite Directory",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/unicorn-battle-in-silicon-valley-registration-1988381298991",
+      "name": "Unicorn Battle in Silicon Valley",
+      "category": "Eventbrite Directory",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--redwood-city/events--tomorrow/",
+      "name": "Events and Things to do in Redwood City, CA tomorrow",
+      "category": "Eventbrite Directory",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/peninsula-wedding-fair-free-tickets-available-tickets-1986965955661",
+      "name": "Peninsula Wedding Fair - FREE Tickets Available",
+      "category": "Eventbrite Directory",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--san-jose/nightlife/",
+      "name": "Discover Nightlife Events & Activities in San Jose, CA",
+      "category": "Eventbrite Directory",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/palo-alto-prowl-scavenger-hunt-tickets-1721589112379",
+      "name": "Palo Alto Prowl Scavenger Hunt Tickets, Multiple dates",
+      "category": "Eventbrite Directory",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/ama-sf-marketing-hackathon-2026-tickets-1985106600279",
+      "name": "AMA SF Marketing Hackathon 2026",
+      "category": "Eventbrite Directory",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/redwood-city-social-meetup/events/314157226/",
+      "name": "Happy Hour @ Rose & Crown (Palo Alto)!",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/studio-7-30-early-morning-creative-club/events/314511171/",
+      "name": "10AM Writing Club (Palo Alto) — Blue Bottle",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/palo-alto-buddhist-meditation-meetup/events/314100512/",
+      "name": "Meditation Circle, Wed, Apr 22, 2026, 7:00 PM",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/sfsj-traders/events/314547465/",
+      "name": "Tuesday Noon Networking, Tue, May 19, 2026, 12:00 PM",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/studio-7-30-early-morning-creative-club/events/pbqxwtyjcgbjc/",
+      "name": "10AM Writing Club (Palo Alto) — Blue Bottle",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/twenties-thirties-social-club/events/314538171/",
+      "name": "Social Mixer - New Friends & Dance",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/influenceothers/events/314185055/",
+      "name": "Tuesday Noon Networking, Tue, Apr 28, 2026, 12:00 PM",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/bay-area-jewish-singles-havurah/events/314538749/",
+      "name": "Dinner and music, Sat, May 30, 2026, 7:30 PM",
+      "category": "Meetup Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/silicon-valley-startup-founders-investors-meetup/events/314300891/",
+      "name": "Tuesday Noon Networking, Tue, May 5, 2026, 12:00 PM",
+      "category": "Meetup Groups",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/bay-angels-live-pitch-event-nordic-innovation-house-tickets-1988963848412",
+      "name": "Bay Angels Live Pitch Event @ Nordic Innovation House",
+      "category": "Nonprofit Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--san-jose/free--sports-and-fitness--events/5k-race/",
+      "name": "Free San Jose, CA 5k Race Events",
+      "category": "Sports Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/d/ca--palo-alto/races/",
+      "name": "Best Race Events in Palo Alto - On the Track of Triumph",
+      "category": "Running Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/tech-business-networking-in-palo-alto-tickets-1981235422482",
+      "name": "Tech & Business Networking in Palo Alto",
+      "category": "Event Pages",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/e/startup-pitch-event-palo-alto-tickets-1981235418470",
+      "name": "Startup Pitch Event Palo Alto Tickets, Multiple dates",
+      "category": "Event Pages",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "montereypark.ca.gov",
+      "url": "https://www.montereypark.ca.gov/calendar.aspx?PREVIEW=YES&EID=7714",
+      "name": "Calendar • Monterey Park, CA • CivicEngage - CA.gov",
+      "category": "JSON Events",
+      "priority": 10,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/find/ca-94301/",
+      "name": "Meetup CA 94301",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/find/us--ca--palo-alto/",
+      "name": "Events in Palo Alto, California",
+      "category": "{city} events calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "sanjoseca.gov",
+      "url": "https://www.sanjoseca.gov/your-government/departments-offices/parks-recreation-neighborhood-services/programs-activities",
+      "name": "Explore activities and programs | City of San José",
+      "category": "City Government",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "live.stanford.edu",
+      "url": "https://live.stanford.edu/events/events",
+      "name": "Events - Stanford Live",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "groups.stanford.edu",
+      "url": "https://groups.stanford.edu/events",
+      "name": "All Events",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "bechtel.stanford.edu",
+      "url": "https://bechtel.stanford.edu/engage-our-center/programs-events/event-calendar/events-center?trumbaEmbed=view%3Devent%26eventid%3D1383773104",
+      "name": "Events at the Center - Bechtel International Center",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "sui.stanford.edu",
+      "url": "https://sui.stanford.edu/events",
+      "name": "Events | Sustainability, Utilities & Infrastructure",
+      "category": "University Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "deanza.edu",
+      "url": "https://www.deanza.edu/events/",
+      "name": "Events Calendar",
+      "category": "University Calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "foothill.edu",
+      "url": "https://foothill.edu/events/index.html",
+      "name": "Events Calendar",
+      "category": "University Calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "csueastbay.edu",
+      "url": "https://www.csueastbay.edu/us/calendar/",
+      "name": "University Events Calendar",
+      "category": "University Calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "events.sjsu.edu",
+      "url": "https://events.sjsu.edu/calendar",
+      "name": "Events on May 7 - 13, 2026 - SJSU Events Calendar",
+      "category": "University Calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "events.canadacollege.edu",
+      "url": "https://events.canadacollege.edu/outreach/event/109391-palo-alto-high-school-application-workshop",
+      "name": "Palo Alto High School Application Workshop",
+      "category": "University Calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "paloaltou.edu",
+      "url": "https://paloaltou.edu/events",
+      "name": "Events | Palo Alto University",
+      "category": "University Calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "evc.edu",
+      "url": "https://www.evc.edu/events",
+      "name": "Events",
+      "category": "University Calendar",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--palo-alto/science-and-tech/high-tech/",
+      "name": "Science & Tech: High Tech Events & Tickets in Palo Alto, CA",
+      "category": "Eventbrite Directory",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--redwood-city/music/",
+      "name": "Music & Concerts Events in Redwood City, CA",
+      "category": "Eventbrite Directory",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/startup-pitches-events/",
+      "name": "Startup Pitches and Events",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/en-AU/twenties-thirties-social-club/",
+      "name": "20s & 30's Social Club",
+      "category": "Meetup Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "meetup.com",
+      "url": "https://www.meetup.com/studio-7-30-early-morning-creative-club/",
+      "name": "Studio 7:30 — Early Morning Creative Club",
+      "category": "Meetup Groups",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--palo-alto/arts/theatre/",
+      "name": "Arts: Theatre Events & Tickets in Palo Alto, CA",
+      "category": "Theater Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--palo-alto/community/",
+      "name": "Community Events in Palo Alto, CA",
+      "category": "Local Media Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--palo-alto/business/non-profit-and-ngos/",
+      "name": "Non Profit & NGOs Events & Tickets in Palo Alto, CA",
+      "category": "Nonprofit Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "eventbrite.com",
+      "url": "https://www.eventbrite.com/b/ca--goshen/community/",
+      "name": "Community Events in Goshen, CA",
+      "category": "JSON Events",
+      "priority": 9,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "paloaltoonline.com",
+      "url": "https://www.paloaltoonline.com/calendar/",
+      "name": "Community Calendar",
+      "category": "{city} events calendar",
+      "priority": 8,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "allevents.in",
+      "url": "https://allevents.in/ca-94301",
+      "name": "AllEvents CA 94301",
+      "category": "Event Platforms",
+      "priority": 7,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "business.paloaltochamber.com",
+      "url": "https://business.paloaltochamber.com/events/calendarcatgid/67",
+      "name": "Events Calendar - Community Calendar",
+      "category": "{city} events calendar",
+      "priority": 7,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/paloaltochamberofcommerce/",
+      "name": "Palo Alto Chamber of Commerce & Visitors Center",
+      "category": "Business Events",
+      "priority": 7,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "facebook.com",
+      "url": "https://www.facebook.com/people/Palo-Alto-Chamber-of-Commerce/61556932761804/",
+      "name": "Palo Alto Chamber of Commerce",
+      "category": "Business Events",
+      "priority": 7,
+      "description": "Event source for CA 94301"
+    },
+    {
+      "domain": "paloaltochamber.com",
+      "url": "https://www.paloaltochamber.com/festival-of-the-arts/",
+      "name": "Palo Alto Festival of the Arts",
+      "category": "Arts Festival",
+      "priority": 6,
+      "description": "Event source for CA 94301"
+    }
+  ]
+}

@@ -1,0 +1,601 @@
+{
+  "name": "World Cup: Match 8 Group B- Qatar vs Switzerland",
+  "type": "event",
+  "id": "Z7r9jZ1A7433K",
+  "test": false,
+  "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7433K",
+  "locale": "en-us",
+  "images": [
+    {
+      "ratio": "4_3",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_CUSTOM.jpg",
+      "width": 305,
+      "height": 225,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RETINA_PORTRAIT_16_9.jpg",
+      "width": 640,
+      "height": 360,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_ARTIST_PAGE_3_2.jpg",
+      "width": 305,
+      "height": 203,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_TABLET_LANDSCAPE_3_2.jpg",
+      "width": 1024,
+      "height": 683,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_SOURCE",
+      "width": 2426,
+      "height": 1365,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RETINA_PORTRAIT_3_2.jpg",
+      "width": 640,
+      "height": 427,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_EVENT_DETAIL_PAGE_16_9.jpg",
+      "width": 205,
+      "height": 115,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RECOMENDATION_16_9.jpg",
+      "width": 100,
+      "height": 56,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_TABLET_LANDSCAPE_16_9.jpg",
+      "width": 1024,
+      "height": 576,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "width": 2048,
+      "height": 1152,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RETINA_LANDSCAPE_16_9.jpg",
+      "width": 1136,
+      "height": 639,
+      "fallback": false
+    }
+  ],
+  "distance": 10.3,
+  "units": "MILES",
+  "sales": {
+    "public": {
+      "startDateTime": "1900-01-01T18:00:00Z",
+      "startTBD": false,
+      "startTBA": false,
+      "endDateTime": "2026-06-13T19:00:00Z"
+    }
+  },
+  "dates": {
+    "start": {
+      "localDate": "2026-06-13",
+      "localTime": "12:00:00",
+      "dateTime": "2026-06-13T19:00:00Z",
+      "dateTBD": false,
+      "dateTBA": false,
+      "timeTBA": false,
+      "noSpecificTime": false
+    },
+    "status": {
+      "code": "onsale"
+    },
+    "spanMultipleDays": false
+  },
+  "classifications": [
+    {
+      "primary": true,
+      "segment": {
+        "id": "KZFzniwnSyZfZ7v7nE",
+        "name": "Sports"
+      },
+      "genre": {
+        "id": "KnvZfZ7vA7E",
+        "name": "Soccer"
+      },
+      "subGenre": {
+        "id": "KZazBEonSMnZfZ7vFtt",
+        "name": "Soccer"
+      },
+      "family": false
+    }
+  ],
+  "outlets": [
+    {
+      "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7433K",
+      "type": "tmMarketPlace"
+    }
+  ],
+  "ticketing": {
+    "allInclusivePricing": {
+      "enabled": true
+    }
+  },
+  "nameOrigin": "custom",
+  "_links": {
+    "self": {
+      "href": "/discovery/v2/events/Z7r9jZ1A7433K?locale=en-us"
+    },
+    "attractions": [
+      {
+        "href": "/discovery/v2/attractions/K8vZ917rUHV?locale=en-us"
+      },
+      {
+        "href": "/discovery/v2/attractions/K8vZ917GFyV?locale=en-us"
+      },
+      {
+        "href": "/discovery/v2/attractions/K8vZ9175cO0?locale=en-us"
+      }
+    ],
+    "venues": [
+      {
+        "href": "/discovery/v2/venues/ZFr9jZ11eF?locale=en-us"
+      }
+    ]
+  },
+  "_embedded": {
+    "venues": [
+      {
+        "name": "Levi's Stadium",
+        "type": "venue",
+        "id": "ZFr9jZ11eF",
+        "test": false,
+        "locale": "en-us",
+        "distance": 10.3,
+        "units": "MILES",
+        "postalCode": "95054",
+        "timezone": "America/Los_Angeles",
+        "city": {
+          "name": "Santa Clara"
+        },
+        "state": {
+          "name": "California",
+          "stateCode": "CA"
+        },
+        "country": {
+          "name": "United States Of America",
+          "countryCode": "US"
+        },
+        "address": {
+          "line1": "4900 Marie P. DeBartolo Way"
+        },
+        "location": {
+          "longitude": "-121.965500000",
+          "latitude": "37.393398000"
+        },
+        "dmas": [
+          {
+            "id": 382
+          }
+        ],
+        "upcomingEvents": {
+          "tmr": 6,
+          "_total": 6,
+          "_filtered": 0
+        },
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/venues/ZFr9jZ11eF?locale=en-us"
+          }
+        }
+      }
+    ],
+    "attractions": [
+      {
+        "name": "2026 World Cup",
+        "type": "attraction",
+        "id": "K8vZ917rUHV",
+        "test": false,
+        "url": "https://www.ticketmaster.com/2026-world-cup-tickets/artist/4067734",
+        "locale": "en-us",
+        "externalLinks": {
+          "homepage": [
+            {
+              "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+            }
+          ]
+        },
+        "aliases": [
+          "world cup",
+          "fifa"
+        ],
+        "images": [
+          {
+            "ratio": "4_3",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_CUSTOM.jpg",
+            "width": 305,
+            "height": 225,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RETINA_PORTRAIT_16_9.jpg",
+            "width": 640,
+            "height": 360,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_ARTIST_PAGE_3_2.jpg",
+            "width": 305,
+            "height": 203,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_TABLET_LANDSCAPE_3_2.jpg",
+            "width": 1024,
+            "height": 683,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RETINA_PORTRAIT_3_2.jpg",
+            "width": 640,
+            "height": 427,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_TABLET_LANDSCAPE_16_9.jpg",
+            "width": 1024,
+            "height": 576,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+            "width": 2048,
+            "height": 1152,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RETINA_LANDSCAPE_16_9.jpg",
+            "width": 1136,
+            "height": 639,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_SOURCE",
+            "width": 2426,
+            "height": 1365,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_EVENT_DETAIL_PAGE_16_9.jpg",
+            "width": 205,
+            "height": 115,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/9d4/101abbaa-1635-4f78-a6a7-ef820ced19d4_RECOMENDATION_16_9.jpg",
+            "width": 100,
+            "height": 56,
+            "fallback": false
+          }
+        ],
+        "classifications": [
+          {
+            "primary": true,
+            "segment": {
+              "id": "KZFzniwnSyZfZ7v7nE",
+              "name": "Sports"
+            },
+            "genre": {
+              "id": "KnvZfZ7vA7E",
+              "name": "Soccer"
+            },
+            "subGenre": {
+              "id": "KZazBEonSMnZfZ7vFtt",
+              "name": "Soccer"
+            },
+            "type": {
+              "id": "KZAyXgnZfZ7v7l1",
+              "name": "Group"
+            },
+            "subType": {
+              "id": "KZFzBErXgnZfZ7vA7k",
+              "name": "League"
+            },
+            "family": false
+          }
+        ],
+        "upcomingEvents": {
+          "tmr": 104,
+          "_total": 104,
+          "_filtered": 0
+        },
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/attractions/K8vZ917rUHV?locale=en-us"
+          }
+        }
+      },
+      {
+        "name": "Qatar National Football Team",
+        "type": "attraction",
+        "id": "K8vZ917GFyV",
+        "test": false,
+        "url": "https://www.ticketmaster.com/qatar-national-football-team-tickets/artist/1193154",
+        "locale": "en-us",
+        "aliases": [
+          "Qatari"
+        ],
+        "images": [
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_TABLET_LANDSCAPE_16_9.jpg",
+            "width": 1024,
+            "height": 576,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+            "width": 2048,
+            "height": 1152,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_RETINA_LANDSCAPE_16_9.jpg",
+            "width": 1136,
+            "height": 639,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_RETINA_PORTRAIT_16_9.jpg",
+            "width": 640,
+            "height": 360,
+            "fallback": false
+          },
+          {
+            "ratio": "4_3",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_CUSTOM.jpg",
+            "width": 305,
+            "height": 225,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_EVENT_DETAIL_PAGE_16_9.jpg",
+            "width": 205,
+            "height": 115,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_SOURCE",
+            "width": 2426,
+            "height": 1365,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_RETINA_PORTRAIT_3_2.jpg",
+            "width": 640,
+            "height": 427,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_RECOMENDATION_16_9.jpg",
+            "width": 100,
+            "height": 56,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_TABLET_LANDSCAPE_3_2.jpg",
+            "width": 1024,
+            "height": 683,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/801/66ad16c8-f36d-4021-b40a-2722bd420801_ARTIST_PAGE_3_2.jpg",
+            "width": 305,
+            "height": 203,
+            "fallback": false
+          }
+        ],
+        "classifications": [
+          {
+            "primary": true,
+            "segment": {
+              "id": "KZFzniwnSyZfZ7v7nE",
+              "name": "Sports"
+            },
+            "genre": {
+              "id": "KnvZfZ7vA7E",
+              "name": "Soccer"
+            },
+            "subGenre": {
+              "id": "KZazBEonSMnZfZ7vFtt",
+              "name": "Soccer"
+            },
+            "type": {
+              "id": "KZAyXgnZfZ7v7nI",
+              "name": "Undefined"
+            },
+            "subType": {
+              "id": "KZFzBErXgnZfZ7v7lJ",
+              "name": "Undefined"
+            },
+            "family": false
+          }
+        ],
+        "upcomingEvents": {
+          "tmr": 3,
+          "ticketmaster": 2,
+          "_total": 5,
+          "_filtered": 0
+        },
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/attractions/K8vZ917GFyV?locale=en-us"
+          }
+        }
+      },
+      {
+        "name": "Switzerland National Football Team",
+        "type": "attraction",
+        "id": "K8vZ9175cO0",
+        "test": false,
+        "url": "https://www.ticketmaster.com/switzerland-national-football-team-tickets/artist/28084",
+        "locale": "en-us",
+        "aliases": [
+          "Swiss"
+        ],
+        "images": [
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_TABLET_LANDSCAPE_3_2.jpg",
+            "width": 1024,
+            "height": 683,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+            "width": 2048,
+            "height": 1152,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_RETINA_PORTRAIT_16_9.jpg",
+            "width": 640,
+            "height": 360,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_ARTIST_PAGE_3_2.jpg",
+            "width": 305,
+            "height": 203,
+            "fallback": false
+          },
+          {
+            "ratio": "4_3",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_CUSTOM.jpg",
+            "width": 305,
+            "height": 225,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_RECOMENDATION_16_9.jpg",
+            "width": 100,
+            "height": 56,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_EVENT_DETAIL_PAGE_16_9.jpg",
+            "width": 205,
+            "height": 115,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_RETINA_LANDSCAPE_16_9.jpg",
+            "width": 1136,
+            "height": 639,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_TABLET_LANDSCAPE_16_9.jpg",
+            "width": 1024,
+            "height": 576,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_SOURCE",
+            "width": 2426,
+            "height": 1365,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/fcc/57dfce11-4078-478d-8a2e-09715ba52fcc_RETINA_PORTRAIT_3_2.jpg",
+            "width": 640,
+            "height": 427,
+            "fallback": false
+          }
+        ],
+        "classifications": [
+          {
+            "primary": true,
+            "segment": {
+              "id": "KZFzniwnSyZfZ7v7nE",
+              "name": "Sports"
+            },
+            "genre": {
+              "id": "KnvZfZ7vA7E",
+              "name": "Soccer"
+            },
+            "subGenre": {
+              "id": "KZazBEonSMnZfZ7vFtt",
+              "name": "Soccer"
+            },
+            "type": {
+              "id": "KZAyXgnZfZ7v7nI",
+              "name": "Undefined"
+            },
+            "subType": {
+              "id": "KZFzBErXgnZfZ7v7lJ",
+              "name": "Undefined"
+            },
+            "family": false
+          }
+        ],
+        "upcomingEvents": {
+          "tmr": 2,
+          "ticketmaster": 1,
+          "_total": 3,
+          "_filtered": 0
+        },
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/attractions/K8vZ9175cO0?locale=en-us"
+          }
+        }
+      }
+    ]
+  }
+}
