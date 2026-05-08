@@ -43,7 +43,7 @@ export default function Header({
     // Load recent searches from backend or localStorage
     const loadSearches = async () => {
       try {
-        const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+        const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/api\/?$/, '');
         const res = await fetch(`${API_BASE_URL}/api/event-sources/cached-searches`);
         if (res.ok) {
           const data = await res.json();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/EventSourcesDashboard.css';
 
-const API_BASE = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api';
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 const SEARCH_HISTORY_KEY = 'eventLocationHistory';  // localStorage fallback key
 
 

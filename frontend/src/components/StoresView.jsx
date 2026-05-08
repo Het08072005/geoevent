@@ -53,7 +53,7 @@ export default function StoresView() {
     setGeocodingLoading(true);
     setValidationError('');
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+      const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/api\/?$/, '');
       const res = await fetch(`${API_BASE_URL}/api/search?text=${encodeURIComponent(address)}`);
       if (res.ok) {
         const data = await res.json();
@@ -97,7 +97,7 @@ export default function StoresView() {
     if (!latitudeVal || !longitudeVal) {
       setGeocodingLoading(true);
       try {
-        const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+        const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/api\/?$/, '');
         const res = await fetch(`${API_BASE_URL}/api/search?text=${encodeURIComponent(address)}`);
         if (res.ok) {
           const data = await res.json();

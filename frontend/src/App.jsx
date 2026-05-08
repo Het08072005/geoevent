@@ -23,7 +23,7 @@ import EventSourcesDashboard from './components/EventSourcesDashboard';
 import StoresView from './components/StoresView';
 import SettingsView from './components/SettingsView';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/api\/?$/, '');
 const GEOAPIFY_KEY = import.meta.env.VITE_GEOAPIFY_KEY || '';
 
 // Predefined list of active store locations

@@ -3,7 +3,7 @@ import { MapPin, Search, Loader2, AlertCircle, Zap, TrendingUp, Users } from 'lu
 import { VenueCard } from './VenueCard';
 
 const GEOAPIFY_KEY = import.meta.env.VITE_GEOAPIFY_KEY || '';
-const BACKEND_URL = import.meta.env.VITE_API_URL || '';
+const BACKEND_URL = (import.meta.env.VITE_API_URL || '').replace(/\/api\/?$/, '');
 
 export const SubwayDashboard = () => {
   const [address, setAddress] = useState("Palo Alto, CA");
