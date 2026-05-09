@@ -130,7 +130,7 @@ I want the final output in a highly detailed table format sorted by highest busi
 
 
 
-
+ ssh -i C:\Users\panch\ai_avatar.pem ubuntu@34.226.92.16
 sudo cat /etc/systemd/system/geoevents-backend.service
 sudo cat /etc/systemd/system/new-frontend.service
 sudo systemctl status geoevents-backend
